@@ -48,19 +48,26 @@ Dying  Mate는 죽음을 본인과는 상관없는 먼 미래로만 여기는 �
 <img src="https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7">
 
 
-
 <br>
 
 ## 구현 화면(진행중)
-![image](https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/a799edbf-d730-44cb-9440-7803db89b71b)
-![image](https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/e0e8e14c-3592-4222-b81e-ec1c4b38f13d)
-![image](https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/afdf84c8-13c0-4d93-9c90-04a8c349a19e)
-![image](https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/a9dbecf5-46da-40ba-868e-8563b363251b)
-![image](https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/0d8830d8-5086-4ec0-9664-501b9e423523)
-![image](https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/723e03e6-49a1-424a-b070-accc6182e8a3)
-![image](https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/ae476890-c8a1-48ef-9697-afa159848adb)
-![image](https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/001f041c-fac3-4f72-9a03-764a4d364baf)
-![image](https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/8c024919-0099-4277-94bc-f0c1a0e2101c)
+
+<img src="https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/a799edbf-d730-44cb-9440-7803db89b71b">
+
+<img src="https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/e0e8e14c-3592-4222-b81e-ec1c4b38f13d">
+
+<img src="https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/a9dbecf5-46da-40ba-868e-8563b363251b">
+
+<img src="https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/0d8830d8-5086-4ec0-9664-501b9e423523">
+
+<img src="https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/723e03e6-49a1-424a-b070-accc6182e8a3">
+
+<img src="https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/ae476890-c8a1-48ef-9697-afa159848adb">
+
+<img src="https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/001f041c-fac3-4f72-9a03-764a4d364baf">
+
+<img src="https://github.com/Dying-Mate/dyingmate-frontend/assets/68267094/8c024919-0099-4277-94bc-f0c1a0e2101c">
+
 
 
 
