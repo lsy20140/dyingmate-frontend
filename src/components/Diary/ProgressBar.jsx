@@ -18,11 +18,9 @@ export default function ProgressBar({curIdx}) {
 }
 
 const ProgressBarWrapper = styled.div`
-  position: absolute;
   display: flex;
   width: 100%;
   justify-content: center;
-  bottom: 8rem;
   color: white;
 `
 

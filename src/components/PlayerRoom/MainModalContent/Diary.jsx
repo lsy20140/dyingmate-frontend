@@ -51,36 +51,39 @@ export default function Diary() {
   return (
     <>
       <Container>
-        <div>
+        <MainComponent>
           <Button onClick={(e)=>{handleIndex('prev', e)}} style={(curIdx === 1) ? {opacity: 0} : {}}><PrevButton/></Button>
           {comp}
           <Button onClick={(e)=>{handleIndex('next', e)}} style={(curIdx === 4) ? {opacity: 0} : {}}><NextButton/></Button>
-        </div>
+        </MainComponent>
+        <ProgressBar curIdx={curIdx}/>
       </Container>
-      <ProgressBar curIdx={curIdx}/>
-
     </>
   )
 }
 const Container = styled.div`
   width: 100%;
+  height: 100%;
+  max-height: calc(100% - 11rem);
   position: absolute;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   box-sizing: border-box;
   border-radius: 2.5rem;  
-  padding: 1rem 8rem 2.5rem 8rem;
+  padding: 2rem 8rem 2.5rem 8rem;
   color: white;
-  margin: auto;
+  gap: 4rem;
+`
 
-  & > div{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5.75rem;
-  }
+const MainComponent = styled.div`
+ display: flex;
+ align-items: center;
+ justify-content: center;  
 
-
+ & > * {
+  flex-shrink: 0;
+ }
 `
 
 

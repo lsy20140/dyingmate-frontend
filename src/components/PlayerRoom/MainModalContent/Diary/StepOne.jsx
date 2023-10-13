@@ -16,17 +16,17 @@ export default function StepOne() {
     { id: 3, itemText: "매장", explain: `매장 방신은 공간에서 사랑하는 이들과 함께하는 장례방법입니다. \n \n 사랑하는 사람들이 편안하고 평화로운 곳에서 쉬어갈 수 있도록 고정적인 장소를 마련해 장례를 진행하는 하나의 방식입니다. `},
   ]
 
-  useEffect(() => {
-    getDiary()
-    .then((res) => {
-      console.log("Step one comp res",res.data)
-      setDiary(() => ({...res.data}))
-    })
-    .then(() => {
-      console.log("StepOne diary", diary)
-      setCurIdx(diary.method)
-    })
-  },[])
+  // useEffect(() => {
+  //   getDiary()
+  //   .then((res) => {
+  //     console.log("Step one comp res",res.data)
+  //     setDiary(() => ({...res.data}))
+  //   })
+  //   .then(() => {
+  //     console.log("StepOne diary", diary)
+  //     setCurIdx(diary.method)
+  //   })
+  // },[])
 
   useEffect(() => {
     setDiary((data) => ({...data, 'method': curIdx}))
@@ -47,7 +47,7 @@ export default function StepOne() {
       <Main>
         <ul>
           {
-            data.map((item, i) => (
+            data && data.map((item, i) => (
               <MethodItem isSelected={(curIdx === i+1) ? true: false} handleOnClick={() => setCurIdx(i+1)} itemText={item.itemText} />
             ))
           }
@@ -60,8 +60,14 @@ export default function StepOne() {
 }
 
 const Content = styled.div`
-  width: 80rem;
+  width: 60rem;
+  height: 30rem;
+  display: flex;
   flex-direction: column;
+  align-items: center;
+  margin: 0 4.25rem;
+  flex-shrink: 0;
+
 `
 
 const TextArea = styled.div`
@@ -85,7 +91,7 @@ const Text = styled.div`
 const Main = styled.div`
   display: flex;
   gap: 2rem;
-
+  width: 100%;
   ul {
     flex: 60%;
   }

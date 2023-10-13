@@ -43,9 +43,9 @@ export default function LoginSignup() {
 
 // styled-components
 const Container = styled.div`
-  height: calc( 100% - 12rem);
+  height: 100%;
   display: flex;
-  margin-top: 12rem;
+  align-items: center;
 `
 
 const FormBox = styled.div`

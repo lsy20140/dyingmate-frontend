@@ -109,6 +109,7 @@ export default function Phone() {
 
 const Container = styled.div`
   width: 100%;
+  height: calc(100vh - 11rem); 
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -127,7 +128,7 @@ const PhoneWrapper = styled.div`
   border-radius: 1.25rem;
   display: flex;
   flex-direction: column;
-
+  justify-content: space-between;
 
 `
 
@@ -135,7 +136,6 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0.75rem 1.5rem;
-
   *{
     display: block;
   }
@@ -148,11 +148,12 @@ const Header = styled.div`
 
 const Main = styled.div`
   padding: 1.8rem;
-  height: 38rem;
+  box-sizing: border-box;
+  height: 100%;
   font-size: 0.875rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  position: relative;
   p{
     color: var(--font-gray-3);
   }

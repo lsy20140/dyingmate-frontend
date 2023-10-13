@@ -55,14 +55,14 @@ const Content = styled.div`
   gap: 3.75rem;
   margin: 0 4.25rem;
   align-items: center;
-
+  justify-content: center;
 `
 
 const TextArea = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  flex:60%;
+  max-width: 50rem;
+  width: fit-content;
   gap: 1.8rem;
  
 `

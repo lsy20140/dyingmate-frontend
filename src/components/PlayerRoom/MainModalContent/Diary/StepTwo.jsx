@@ -6,27 +6,30 @@ import { useDiaryContext } from '../../../../contexts/DiaryContext';
 
 export default function StepTwo() {
 
-  const [stoneText, setStoneText] = useState('');
+  const [stoneTextInput, setStoneTextInput] = useState('');
+  const [epitaph, setEpitaph] = useState('')
   const [isDone, setIsDone] = useState(false)
   const {diary, setDiary} = useDiaryContext()
 
+  const hasEpitaph = epitaph ?? ''
+
   const handleChange = (e) => {
-    setStoneText(e.target.value);
+    setStoneTextInput(e.target.value);
   }
 
   const handleClick = (e) => {
-    setIsDone(true);
+    setIsDone(true)
     setDiary((data) => ({...data, 'epitaph': stoneText}))
   }
 
   useEffect(() => {
     console.log("stepTwo diary", diary)
-    setStoneText(diary.epitaph)
+    
   },[])
 
   return (
     <Content>
-      <GraveStone><p>{isDone ? stoneText : ''}</p></GraveStone>
+      <GraveStone><p>{isDone ? stoneTextInput : ''}</p></GraveStone>
       <div>
         <TextArea>
           <MainIcon/>
@@ -42,11 +45,15 @@ export default function StepTwo() {
             type='text' 
             id='stoneText' 
             name='stoneText' 
-            value={stoneText ?? ''}
+            value={stoneTextInput ?? ''}
             placeholder='묘비명을 입력해주세요.' 
             onChange={handleChange}
             required/>
-          <Button onClick={handleClick} isDone={isDone}>{isDone ? '수정하기' : '저장하기'}</Button>
+          {isDone ?
+            <EditButton isFill={stoneTextInput!==''} onClick={handleClick}>수정하기</EditButton>
+            :
+            <SaveButton isFill={stoneTextInput!==''} onClick={handleClick}>저장하기</SaveButton>
+         }
         </InputBox>
       </div>
     </Content>
@@ -63,6 +70,7 @@ const Content = styled.div`
   margin: 0 4.25rem;
   align-items: center;
   justify-content: center;
+  flex-shrink:0;
 
   & > div{
     display: flex;
@@ -77,6 +85,7 @@ const GraveStone = styled.div`
   width: 13rem;
   height: 20rem;
   background-repeat:no-repeat;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   font-family: Perpetua Titling MT;  
@@ -96,9 +105,10 @@ const GraveStone = styled.div`
 const TextArea = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  max-width: 50rem;
+  width: fit-content;
   gap: 1.8rem;
- 
+
 `
 
 const Text = styled.div`
@@ -108,33 +118,16 @@ const Text = styled.div`
     font-size: 1.25rem;
     margin-bottom: 0.4rem;
   }
-
-`
-
-const Button = styled.button`
-  display: block;
-  width: 11rem;
-  height: 3.5rem;
-  border: none;
-  background-color: ${props => props.isDone ? '#F0EAE0' :`var(--main-color)`} ;
-  color: ${props => props.isDone ? `var(--font-gray-3)` : 'white'};
-  padding: 0.75rem 1.5rem;
-  border-radius: 1.25rem;
-  position: absolute;
-  font-weight: 700;
-  
-
 `
 
 
 const InputBox= styled.div`
   display: flex;
+  width: 32rem;
   justify-content: flex-end;
-  width: 100%;
 `
 
 const FormInput = styled.input`
-  position: relative;
   box-sizing: border-box;
   border-radius: 1.25rem;
   width: 100%;
@@ -149,4 +142,28 @@ const FormInput = styled.input`
     color: var(--font-gray-1);
   }
   
+`
+
+const SaveButton = styled.button`
+width: 11rem;
+height: 3.5rem;
+border: none;
+background-color: ${(props) => props.isFill ? 'var(--main-color)' : '#DEDEDE'};
+color: ${(props) => props.isFill ? 'white' : '#999'};
+padding: 0.75rem 1.5rem;
+border-radius: 1.25rem;
+font-weight: 700;
+position: absolute;
+`
+
+const EditButton = styled.button`
+width: 11rem;
+height: 3.5rem;
+border: none;
+background-color: '#DEDEDE';
+color: var(--font-gray-3);
+padding: 0.75rem 1.5rem;
+border-radius: 1.25rem;
+font-weight: 700;
+position: absolute;
 `
