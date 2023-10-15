@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import styled from 'styled-components';
-import google_icon from '../../assets/icons/google_icon.png'
-import kakao_icon from '../../assets/icons/kakao_icon.png'
-import hide_icon from '../../assets/icons/hide_icon.png'
+import {ReactComponent as GoogleIcon} from '../../assets/icons/google_icon.svg'
+import {ReactComponent as KakaoIcon} from '../../assets/icons/kakao_icon.svg'
+import {ReactComponent as HidePwdIcon} from '../../assets/icons/hide_pwd_icon.svg'
 import axios from 'axios'  
 import {GoCheckCircleFill} from 'react-icons/go'
 import {IoMdAlert} from 'react-icons/io'
 
 export default function SignUpForm() {
   const navigate = useNavigate()
-  // const [user, setUser] = useState({});
   const [email, setEmail] = useState('')
   const [pwd, setPwd] = useState('')
-  const [checkPwd, setCheckPwd] = useState()
+  const [checkPwd, setCheckPwd] = useState('')
   const [showPwd, setShowPwd] = useState([])
-  const [isEmailValid, setIsEmailValid] = useState(null)
 
-  // const handleChange = (e) => {
-  //   const {name, value} = e.target
-  //   setUser((user) => ({...user, [name]: value}))
-  // }
+  const [emailCheckText, setEmailCheckText ] = useState(false)
+  const [pwdCheckText, setPwdCheckText ] = useState(false)
+
+  const [isEmailValid, setIsEmailValid] = useState(false)
+  const [isPwdCorrect, setPwdCorrect] = useState(false)
+
+  const isAllValid = isEmailValid && isPwdCorrect
+
 
   const handleEmail = (e) => {
     setEmail(e.target.value)
@@ -30,27 +32,39 @@ export default function SignUpForm() {
   }
 
   const handleCheckPwd = (e) => {
-    setCheckPwd(e.target.value)
+    const {value} = e.target
+    setCheckPwd(value)
+    setPwdCheckText(true)
+    setPwdCorrect(false)
+
+    if(value === pwd) {
+      setPwdCorrect(true)
+    }
   }
 
   const handleCheckEmail = () => {
-    axios.get(`/api/user/email/exists/${email}`,{} )
-    .then(function (response) {
-      console.log('response.data', response.data)
-      setIsEmailValid(response.data)
+    axios.get(`https://dying-mate-server.link/user/email/exists/${email}`,{} )
+    .then(function (res) {
+      // 존재하면
+      if(res.data === true){
+        setEmailCheckText(true)
+        setIsEmailValid(false)
+      }else{
+        setIsEmailValid(true)
+      }
+      
     })
     .catch(function (error) {
       console.log(error);
     });
   }
 
+
   const handleSubmit = (e) => {
     e.preventDefault()  
-    // navigate('/onboarding');  
 
-    // 회원가입 post api 연결 필요
     axios.post(
-      '/api/user/join',
+      'https://dying-mate-server.link/user/join',
       {
         email: email,
         pwd: pwd
@@ -66,7 +80,6 @@ export default function SignUpForm() {
       }
         
     }).catch(function (error) {
-        // 오류발생시 실행
         console.log(error)
     })
   }
@@ -76,12 +89,9 @@ export default function SignUpForm() {
     setShowPwd([...showPwd])
   }
 
-
-
-
   return (
     <>
-        <EmailInputWrapper>
+        <EmailInputWrapper isShow={emailCheckText}>
           <FormInput 
             type='text' 
             id='email' 
@@ -89,22 +99,22 @@ export default function SignUpForm() {
             value={email ?? ''}
             placeholder='아이디를 입력해주세요' 
             onChange={handleEmail}
-            required/>
-          <EmailCheckBtn onClick={handleCheckEmail}>중복확인</EmailCheckBtn>
+            required
+            showOutline={emailCheckText}
+            />
+          <EmailCheckBtn isFill={email !== ''} onClick={handleCheckEmail}>중복확인</EmailCheckBtn>
         </EmailInputWrapper>
-        <EmailCheckText>
+        <ValidText isShow={emailCheckText}>
           {
             isEmailValid ? <GoCheckCircleFill /> : <IoMdAlert/>
           }
           {
             isEmailValid ? <p>사용 가능한 아이디 입니다. </p> : <p>중복된 아이디 입니다! 다시 한번 입력해주세요.</p>
           }
-        </EmailCheckText>
-
-
+        </ValidText>
         <PasswordInput>
           <FormInput 
-            type={showPwd[0] ? "password" : "text"}
+            type={showPwd[0] ? "text" : "password"}
             id='pwd' 
             name='pwd' 
             value={pwd ?? ''}
@@ -112,13 +122,12 @@ export default function SignUpForm() {
             onChange={handlePwd}
             required
           />
-          <img onClick={() => handlePwdHide(0)} src={hide_icon} />
-
+          <HidePwdIcon onClick={() => handlePwdHide(0)}/>
         </PasswordInput>
 
         <PasswordInput>
           <FormInput 
-            type={showPwd[1] ? "password" : "text"}
+            type={showPwd[1] ? "text" : "password"}
             id='checkPwd' 
             name='checkPwd' 
             value={checkPwd ?? ''}
@@ -126,17 +135,23 @@ export default function SignUpForm() {
             onChange={handleCheckPwd}
             required
           />
-          <img onClick={() => handlePwdHide(1)} src={hide_icon} />
-
+          <HidePwdIcon onClick={() => handlePwdHide(1)}/>
         </PasswordInput>
-        <LoginButton onClick={handleSubmit}>회원가입</LoginButton>
+        <ValidText isShow={pwdCheckText}>
+          {
+            isPwdCorrect ? <GoCheckCircleFill /> : <IoMdAlert/>
+          }
+          {
+            isPwdCorrect ? <p>비밀번호가 일치합니다. </p> : <p>비밀번호가 일치하지 않습니다! 다시 입력해주세요.</p>
+          }
+        </ValidText>
+        <LoginButton onClick={handleSubmit} disabled={!isAllValid}>회원가입</LoginButton>
         <SocialLogin>
           <p>간편하게 로그인하기</p>
           <SocialLoginIcons>
-            <img src={google_icon} />
-            <img src={kakao_icon} />
+            <GoogleIcon />
+            <KakaoIcon />
           </SocialLoginIcons>
-
         </SocialLogin>
 
     </>
@@ -149,13 +164,13 @@ const PasswordInput = styled.div`
   display: flex;
   align-items: center;
   verticle-align: middle;
-  img {
-    height: 1rem;
+  margin-bottom: 1rem;
+
+  svg {
+    height: 100%;
     width: 1rem;
-    transform: translateY(-6px);
-    padding: 0.5rem;
     position: absolute;
-    right: 0.5rem;
+    right: 1rem;
   }
 
 `
@@ -164,38 +179,41 @@ const EmailInputWrapper = styled.div`
   display: flex;
   gap: 0.5rem;
   height: 3rem;
+  margin-bottom: 1rem;
 `
 
 const EmailCheckBtn = styled.button`
   width: 6.8rem;
   padding: 0.5rem 1.5rem;
-  background-color: var(--main-color);
+  background-color: ${props => props.isFill ? 'var(--main-color)' : 'var(--font-gray-1)'};
   color: white;
   border: none;
   border-radius: 1rem;
   flex-shrink: 0;
-
 `
 
-const EmailCheckText = styled.div`
-  display: flex;
+const ValidText = styled.div` 
+  display: ${props => props.isShow ? 'flex' : 'none'};
   gap: 0.5rem;
+  margin: -0.5rem 0 0.5rem 0;
   color: var(--main-color);
-  margin: 0.5rem 0;
   align-items: center;
+
+  svg {
+    font-size: 1.25rem;
+  }
 `
 
 const FormInput = styled.input`
-  box-sizing: border-box;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   width: 100%;
   height: 3rem;
-  color: black;
+  color: var(--font-gray-3);
   background-color: #F3F3F3;
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
+  padding: 0 1.25rem;
+
   &:focus {
-    outline: 1px solid #999999;
+    outline: 1.5px solid black;
   }
   &::placeholder {
     color: var(--font-gray-1);
@@ -214,9 +232,10 @@ const SocialLogin = styled.div`
 
   p:before,
   p:after {
+      height: 1px;
       content: "  ";
       flex: 1 1;
-      border-bottom: 1px solid #CBCBCB;
+      border-bottom: 1px solid white;
       margin: auto;
 
   }
@@ -227,10 +246,7 @@ const SocialLogin = styled.div`
   p:after {
     margin-left: 1.25rem;
   }
-
 `
-
-
 
 const SocialLoginIcons = styled.div`
   display: flex;
@@ -239,12 +255,12 @@ const SocialLoginIcons = styled.div`
 `
 
 const LoginButton = styled.button`
-width: 100%;
-height: 3rem;
-border: none;
-background-color: var(--main-color);
-color: white;
-margin-top: 2rem;
-padding: 12px 0;
-border-radius: 20px;
+  width: 100%;
+  height: 3rem;
+  border: none;
+  background-color: var(--main-color);
+  color: white;
+  margin-top: 2rem;
+  padding: 12px 0;
+  border-radius: 20px;
 `

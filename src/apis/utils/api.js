@@ -1,17 +1,17 @@
 import axios from 'axios'
 
-// get, delete 등 인증이 필요하지 않은 경우
+// 인증이 필요하지 않은 경우
 const axiosApi = () => {
-  const instance = axios.create({baseURL: '/api/', withCredentials: true})
+  const instance = axios.create({baseURL: 'https://dying-mate-server.link/', withCredentials: true})
   return instance;
 }
 
-// post, patch 등 인증이 필요한 경우
+// 인증이 필요한 경우
 const axiosAuthApi = () => {
   const token = localStorage.getItem('login-token')
 
   const instance =  axios.create({
-    baseURL: '/api/',
+    baseURL: 'https://dying-mate-server.link/',
     headers: {Authorization: 'Bearer ' + token},
     withCredentials: true
   })
