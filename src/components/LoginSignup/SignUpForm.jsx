@@ -43,7 +43,10 @@ export default function SignUpForm() {
   }
 
   const handleCheckEmail = () => {
-    axios.get(`https://dying-mate-server.link/user/email/exists/${email}`,{} )
+    axios.get(`https://dying-mate-server.link/user/email/exists/${email}`,{
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    } )
     .then(function (res) {
       // 존재하면
       if(res.data === true){
