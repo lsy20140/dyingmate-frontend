@@ -98,7 +98,7 @@ export default function LoginForm() {
             onChange={handlePwd}
             required
           />
-          <HidePwdIcon onClick={handlePwd}/>
+          <HidePwdIcon onClick={handlePwdHide}/>
         </PasswordInput>
 
         <FindInfoText>아이디 / 비밀번호를 잊으셨나요?</FindInfoText>

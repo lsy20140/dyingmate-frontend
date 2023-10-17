@@ -3,18 +3,17 @@ import { Canvas } from "@react-three/fiber";
 import { DirectionalLightHelper } from "three";
 import { useHelper} from "@react-three/drei";
 import { CameraControls } from '../Camera';
-import { Diary } from '../components/models/Diary';
-import { Phone } from '../components/models/Phone';
-import { WillPaper } from '../components/models/WillPaper';
 import { usePlay } from '../contexts/Play';
-import { BoardForLightingmap } from '../components/models/PlayerRoom/BoardForLightingmap';
 import ModalOverlay from '../components/PlayerRoom/ModalOverlay';
-import styled from 'styled-components';
-import { Shelf } from '../components/models/Shelf';
-import { Desktop } from '../components/models/Desktop';
 import FriendListModal from '../components/PlayerRoom/FriendListModal';
 import { Room } from '../components/models/PlayerRoom/Room';
 import ModalButton from '../components/PlayerRoom/FriendList/ModalButton';
+import { Will } from '../components/models/PlayerRoom/Will';
+import { Board } from '../components/models/PlayerRoom/Board';
+import { Phone } from '../components/models/PlayerRoom/Phone';
+import { Diary } from '../components/models/PlayerRoom/Diary';
+import { Shelf } from '../components/models/PlayerRoom/Shelf';
+import { Desktop } from '../components/models/PlayerRoom/Desktop';
 
 export default function PlayerRoom() {
   const light1 = useRef()
@@ -49,14 +48,14 @@ export default function PlayerRoom() {
       position = { x: 3, y: 7, z: -8 };
       target = { x: 5, y: 4, z: -10 };
     } else if ( idx === 4) {
-      position = { x: 10, y: 3, z: 5 };
-      target = { x: 5, y: 0, z: 4 };
+      position = { x: 7, y: 3, z: 9 };
+      target = { x: 5, y: 0, z: 7 };
     } else if ( idx ===5) {
       position = { x: -8, y: 5, z: 11.5 };
       target = { x: -12, y: 5, z: 12 };
     } else if ( idx ===6) {
-      position = { x: -8, y: 8, z: 4 };
-      target = { x: -10, y: 7, z: 4 };
+      position = { x: -8, y: 9, z: 4 };
+      target = { x: -10, y: 9, z: 4 };
     }
     if(curIdx === idx) {
       setCamera()
@@ -97,16 +96,16 @@ export default function PlayerRoom() {
         <group rotation-y={-Math.PI} >
           <Room/>
           <group onClick={() => handleClick(1)}>
-            <WillPaper/>
+            <Will/>
           </group>
           <group onClick={() => handleClick(2)}>
-            <BoardForLightingmap/>  
+            <Board/>  
           </group>
           <group onClick={() => handleClick(3)}>
             <Phone/>
           </group>
           <group onClick={() => handleClick(4)}>
-              <Diary/>
+            <Diary/>
           </group>
           <group onClick={() => handleClick(5)}>
             <Shelf/>
