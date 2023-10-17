@@ -38,7 +38,7 @@ export default function WomanRoom() {
           {/* Woman 에셋 넣기 */}
         </group>
       </Canvas>
-      <CharMainDialog messageArr={MessageArr} />
+      <CharMainDialog messageArr={MessageArr} stageNum={3} />
     </>
   )
 }

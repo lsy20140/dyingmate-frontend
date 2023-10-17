@@ -44,7 +44,7 @@ export default function GrandmaRoom() {
           <Grandmother/>
         </group>        
         </Canvas>
-        <CharMainDialog messageArr={MessageArr} />
+        <CharMainDialog messageArr={MessageArr} stageNum={1} />
       </>
 
       

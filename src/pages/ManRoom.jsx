@@ -39,7 +39,7 @@ export default function ManRoom() {
           <Man/>
         </group>
       </Canvas>
-      <CharMainDialog messageArr={MessageArr} />
+      <CharMainDialog messageArr={MessageArr} stageNum={2} />
     </>
   )
 }

@@ -4,12 +4,15 @@ import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom'
 import { ReactComponent as DialogNextIcon } from '../../assets/icons/dialog_next_icon.svg'
 import { useRoomFocus } from '../../contexts/RoomFocus';
+import { useAuthContext } from '../../contexts/AuthContext';
+import axios from 'axios'
 
-export default function DialogBox({messageArr}) {
+export default function DialogBox({messageArr, stageNum}) {
   const [curMessage, setCurMessage] = useState(0);
   const [messageEnded, setMessageEnded] = useState(false);
   const {setFocus} = useRoomFocus();
   const navigate = useNavigate()
+  const {token} = useAuthContext
 
     const handleOnClick = useCallback(() => {
       setMessageEnded(false);
@@ -21,6 +24,20 @@ export default function DialogBox({messageArr}) {
       }
 
       if(curMessage > messageArr.length -2) {
+        axios
+        .patch(`https://dying-mate-server.link/map/open/${stageNum}`, {}, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          withCredentials: true,
+        })
+        .then((response) => {
+          console.log(response)
+            
+        }).catch(function (error) {
+            // 오류발생시 실행
+            console.log(error.message)
+        })
         setTimeout(() => {
           navigate('/main')
         }, 2000)
