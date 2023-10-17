@@ -36,7 +36,7 @@ export default function AddPostModal({isImagePost, setOpenModal}) {
     console.log("formData", formData)
     closeModal()
     await axios
-    .post('/api/bucketlist/add', formData, {
+    .post('https://dying-mate-server.link/bucketlist/add', formData, {
       headers: {
         'Content-Type' : 'multipart/form-data',
         'Authorization': `Bearer ${token}`,

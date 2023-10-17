@@ -29,7 +29,7 @@ export default function Phone() {
   const handleSubmit = async (e) => {
     setIsSend(true);
     textarea.value = ''
-    axios.post('/api/message/send', {message: data}, {
+    axios.post('https://dying-mate-server.link/message/send', {message: data}, {
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -45,7 +45,7 @@ export default function Phone() {
   }
 
   useEffect(() => {
-    axios.get('/api/message/load', {
+    axios.get('https://dying-mate-server.link/message/load', {
       headers: {Authorization: 'Bearer ' + token},
     }, )
     .then(function (response) {

@@ -21,7 +21,7 @@ export default function Will() {
 
   const handleSubmit = (e) => {
     axios
-    .post('/api/will/write', {content: data}, {
+    .post('https://dying-mate-server.link/will/write', {content: data}, {
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -38,7 +38,7 @@ export default function Will() {
 
   const handleEdit = (e) => {
     axios.patch(
-      '/api/will/modify', 
+      'https://dying-mate-server.link/will/modify', 
       {content: data}, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -56,7 +56,7 @@ export default function Will() {
 
   useEffect(() => {
     console.log("token??",token)
-    axios.get('/api/will/load', {
+    axios.get('https://dying-mate-server.link/will/load', {
       headers: {Authorization: 'Bearer ' + token},
     }, )
     .then(function (response) {

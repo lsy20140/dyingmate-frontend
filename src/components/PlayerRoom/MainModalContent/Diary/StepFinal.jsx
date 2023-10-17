@@ -15,7 +15,7 @@ export default function StepFinal() {
       formData.append(key, diary[key]);
     }
     axios
-    .post('/api/funeral/save', formData, {
+    .post('https://dying-mate-server.link/funeral/save', formData, {
       headers: {
         'Content-Type' : 'multipart/form-data',
         'Authorization': `Bearer ${token}`,

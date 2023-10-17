@@ -19,7 +19,7 @@ export const StageContextProvider = ({children}) => {
     .catch(function (error) {
       console.log(error);
     });
-  },[stage])
+  },[])
 
   return (
     <StageContext.Provider value={{stage, setStage}}>

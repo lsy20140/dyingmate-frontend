@@ -35,7 +35,7 @@ export default function Onboarding() {
 
   useEffect(() => {
     axios.post(
-      '/api/user/login',
+      'https://dying-mate-server.link/user/login',
       {
         email: email,
         pwd: pwd  
@@ -67,7 +67,7 @@ export default function Onboarding() {
   const handleOnSubmit = async (e) => {
     e.preventDefault()
     await axios
-    .post(`/api/user/${userName}/save`, {}, {
+    .post(`https://dying-mate-server.link/user/${userName}/save`, {}, {
       headers: {
         Authorization: `Bearer ${token}`
       },
