@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./public/favicon.png" width="100px" alt="logo"/>
+  <img src="./public/favicon.ico" width="100px" alt="logo"/>
   <br>
 
   # 청년들을 위한 웰다잉 경험, 설계 서비스 '다잉메이트'
