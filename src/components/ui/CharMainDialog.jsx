@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import DialogBox from './DialogBox'
 
-export default function CharMainDialog({messageArr}) {
+export default function CharMainDialog({messageArr, stageNum}) {
 
   return (
     <DialogBoxWrapper>
       <CharMainDialogBox>
-      <DialogBox messageArr={messageArr} />
+        <DialogBox messageArr={messageArr} stageNum={stageNum} />
       </CharMainDialogBox>
     </DialogBoxWrapper>
   )

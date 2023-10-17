@@ -7,7 +7,7 @@ import { authInstance } from "../utils/api"
 // 사용자 이름 저장
 export const createUsername = async (username) => {
   try {
-    const {data} =  await authInstance.post('/api/onboarding/username/post', {username: username})
+    const {data} =  await authInstance.post('/onboarding/username/post', {username: username})
     return data
   } 
   catch (error) {

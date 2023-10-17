@@ -43,19 +43,11 @@ export default function SignUpForm() {
   }
 
   const handleCheckEmail = () => {
-    axios.get(`https://dying-mate-server.link/user/email/exists/${email}`,{
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    } )
+    axios.get(`https://dying-mate-server.link/user/email/exists/${email}`,{})
     .then(function (res) {
-      // 존재하면
-      if(res.data === true){
-        setEmailCheckText(true)
-        setIsEmailValid(false)
-      }else{
-        setIsEmailValid(true)
-      }
-      
+      setEmailCheckText(true)
+      // 중복 이메일 존재하면 valid 여부에 false 저장
+      setIsEmailValid(!res.data)      
     })
     .catch(function (error) {
       console.log(error);

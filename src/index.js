@@ -21,6 +21,7 @@ import Final from './pages/Final';
 import { RoomFocusProvider } from './contexts/RoomFocus';
 import { AuthContextProvider } from './contexts/AuthContext';
 import { DiaryContextProvider } from './contexts/DiaryContext';
+import { StageContextProvider } from './contexts/StageContext';
 
 
 const router = createBrowserRouter([
@@ -51,12 +52,13 @@ root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <PlayProvider>
-        <DiaryContextProvider>
-          <RoomFocusProvider>
-            <RouterProvider router={router} />
-          </RoomFocusProvider>
-        </DiaryContextProvider>
-
+        <StageContextProvider>
+          <DiaryContextProvider>
+            <RoomFocusProvider>
+              <RouterProvider router={router} />
+            </RoomFocusProvider>
+          </DiaryContextProvider>
+        </StageContextProvider>
       </PlayProvider>
     </AuthContextProvider>
 
