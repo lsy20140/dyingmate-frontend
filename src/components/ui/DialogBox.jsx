@@ -25,7 +25,7 @@ export default function DialogBox({messageArr, stageNum}) {
 
       if(curMessage > messageArr.length -2) {
         axios
-        .patch(`https://dying-mate-server.link/map/open/${stageNum}`, {}, {
+        .patch(`https://dying-mate-server.link/map/open/${stageNum}`, {
           headers: {
             Authorization: `Bearer ${token}`
           },
