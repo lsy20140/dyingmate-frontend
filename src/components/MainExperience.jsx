@@ -1,22 +1,74 @@
-import React, { useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import { usePlay } from '../contexts/Play';
 import { useFrame } from "@react-three/fiber";
-import {OrbitControls} from "@react-three/drei";
+import {PerspectiveCamera, OrbitControls, useScroll} from "@react-three/drei";
 import * as THREE from "three";
+import { Euler, Group, Vector3 } from "three";
+import { MainBackground } from './MainBackground';
+import {Grandmother} from '../components/models/GrandmaRoom/Grandmother'
+import {Shelf} from '../components/models/PlayerRoom/Shelf'
+import { Main_Ground } from './models/Outside/MainGround';
 
-
-
+// 상수 선언
+const CURVE_AHEAD_CAMERA = 0.008
+const LINE_NB_POINTS = 120
 
 
 export default function MainExperience() {
 
-  const sceneOpacity = useRef(0);
-  const lastScroll = useRef(0);
+  const cameraRef = useRef();
+  const scroll = useScroll();
+  const lastScroll = useRef(0)
+  const sceneOpacity = 0
 
-  const { play, setHasScroll, end, setEnd } = usePlay();
+  const {play, setHasScroll, end} = usePlay()
+
+  const curvePoints = useMemo(
+    () => [
+      new THREE.Vector3(126,3,-23),
+      new THREE.Vector3(63,3,-15),
+      new THREE.Vector3(0,3,-20),
+      new THREE.Vector3(-60,3,-50),
+      new THREE.Vector3(-75,3,-100),
+      new THREE.Vector3(-70,3,-180),
+      new THREE.Vector3(0,3,-205),
+      new THREE.Vector3(63,3,-200),
+      new THREE.Vector3(125,3,-210),
+      new THREE.Vector3(180,3,-180),
+      new THREE.Vector3(190,3,-110),
+      new THREE.Vector3(170,3,-65),
+    ],
+    []
+  );
+
+  // 경로 생성
+  const curve = useMemo(() => {
+    return new THREE.CatmullRomCurve3(
+      curvePoints,
+      false, 
+      "catmullrom",
+      1
+    )
+  },[])
+
+  const linePoints = useMemo(() => {
+    return curve.getPoints(LINE_NB_POINTS)
+  }, [curve])
+
+  const shape = useMemo(() => {
+    const shape = new THREE.Shape();
+    shape.moveTo(0, -2)
+    shape.lineTo(0, 0.2)
+    
+    return shape
+  }, [curve])
+
+  const backgroundColors = useRef({
+    colorA: "#aec7da",
+    colorB: "#e8cfc8",
+  });
 
   useFrame((_state, delta) => {
-    // 스크롤 감지되면 play
     if (lastScroll.current <= 0 && scroll.offset > 0) {
       setHasScroll(true);
     }
@@ -41,22 +93,85 @@ export default function MainExperience() {
       return;
     }
 
-  }, []);
+    const scrollOffset = Math.max(0, scroll.offset);
 
-  // useEffect(() => {
-  //   if (play) {
-  //     planeInTl.current.play();
-  //   }
-  // }, [play]);
+    let friction = 1;
 
 
-  return useMemo(() => (
-    <>
-      <axesHelper args={[500, 500, 500]} rotation={[0, -1.395, 0]} />
-      <OrbitControls/>
+    // CALCULATE LERPED SCROLL OFFSET
+    let lerpedScrollOffset = THREE.MathUtils.lerp(
+      lastScroll.current,
+      scrollOffset,
+      delta * friction
+    );
+    // PROTECT BELOW 0 AND ABOVE 1
+    lerpedScrollOffset = Math.min(lerpedScrollOffset, 1);
+    lerpedScrollOffset = Math.max(lerpedScrollOffset, 0);
 
+    lastScroll.current = lerpedScrollOffset;
+
+    const curPoint = curve.getPoint(lerpedScrollOffset);
+    cameraRef.current.position.lerp(curPoint, delta * 24);
+
+    // Make the group look ahead on the curve
+
+    const lookAtPoint = curve.getPoint(
+      Math.min(lerpedScrollOffset + CURVE_AHEAD_CAMERA, 1)
+    );
+
+    const currentLookAt = cameraRef.current.getWorldDirection(
+      new THREE.Vector3()
+    );
+    const targetLookAt = new THREE.Vector3()
+      .subVectors(curPoint, lookAtPoint)
+      .normalize();
+
+    const lookAt = currentLookAt.lerp(targetLookAt, delta * 24);
+    cameraRef.current.lookAt(
+      cameraRef.current.position.clone().add(lookAt)
+    );
+
+  })
+
+
+
+  useEffect(() => {
+    console.log('scroll Offset', scroll.offset)
     
+  })
+
+
+  return useMemo(() =>
+  (
+    <>
+    {/* <OrbitControls/> */}
+      <directionalLight position={[0, 3, 1]} intensity={1} />
+      <group ref={cameraRef}>
+        <MainBackground backgroundColors={backgroundColors} />
+        <PerspectiveCamera position={[0,3,0]} fov={60} makeDefault />
+      </group>
+
+      <group position={[0, 7, 0]}>
+        <mesh>
+          <extrudeGeometry
+            args={[
+              shape, 
+              {
+                steps: LINE_NB_POINTS,
+                bevelEnabled: false,
+                extrudePath: curve,
+              }
+            ]} />
+            <meshStandardMaterial color={"red"} opacity={1} transparent/>
+        </mesh>
+      </group>
+      <group position={[0,-22,0]}>
+        <Main_Ground />
+      </group>
+
+
     </>
+
   )
-  )
+  ) 
 }
