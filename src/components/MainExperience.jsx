@@ -10,8 +10,8 @@ import {Shelf} from '../components/models/PlayerRoom/Shelf'
 import { Main_Ground } from './models/Outside/MainGround';
 
 // 상수 선언
-const CURVE_AHEAD_CAMERA = 0.008
-const LINE_NB_POINTS = 100000
+const CURVE_AHEAD_CAMERA = 0.1
+const LINE_NB_POINTS = 50
 
 
 export default function MainExperience() {
@@ -102,7 +102,7 @@ export default function MainExperience() {
     let lerpedScrollOffset = THREE.MathUtils.lerp(
       lastScroll.current,
       scrollOffset,
-      delta * friction
+      delta * friction * 48
     );
     // PROTECT BELOW 0 AND ABOVE 1
     lerpedScrollOffset = Math.min(lerpedScrollOffset, 1);
@@ -148,8 +148,7 @@ export default function MainExperience() {
       <directionalLight position={[0, 3, 1]} intensity={1} />
       <group ref={cameraRef}>
         <MainBackground backgroundColors={backgroundColors} />
-
-        <PerspectiveCamera position={[0,2,0]} fov={30} makeDefault />
+        <PerspectiveCamera position={[0,-2,0]} fov={60} makeDefault />
       </group>
 
       <group position={[0, 7, 0]}>
