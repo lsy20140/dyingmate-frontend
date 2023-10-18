@@ -26,7 +26,7 @@ export default function Main() {
       <axesHelper args={[1000, 1000, 1000]} />
       <color attach="background" arg={["#f59f9f"]} />
       <ScrollControls
-        pages={play && !end ? 300 : 0}
+        pages={play && !end ? 36 : 0}
         damping={1}
       >
         <MainExperience />

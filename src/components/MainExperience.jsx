@@ -11,7 +11,7 @@ import { Main_Ground } from './models/Outside/MainGround';
 
 // 상수 선언
 const CURVE_AHEAD_CAMERA = 0.008
-const LINE_NB_POINTS = 120
+const LINE_NB_POINTS = 100000
 
 
 export default function MainExperience() {
@@ -47,7 +47,7 @@ export default function MainExperience() {
       curvePoints,
       false, 
       "catmullrom",
-      1
+      0.5
     )
   },[])
 
@@ -77,7 +77,7 @@ export default function MainExperience() {
       sceneOpacity.current = THREE.MathUtils.lerp(
         sceneOpacity.current,
         1,
-        delta * 0.1
+        delta * 0.1 
       );
     }
 
@@ -111,7 +111,7 @@ export default function MainExperience() {
     lastScroll.current = lerpedScrollOffset;
 
     const curPoint = curve.getPoint(lerpedScrollOffset);
-    cameraRef.current.position.lerp(curPoint, delta * 24);
+    cameraRef.current.position.lerp(curPoint, delta);
 
     // Make the group look ahead on the curve
 
@@ -126,7 +126,7 @@ export default function MainExperience() {
       .subVectors(curPoint, lookAtPoint)
       .normalize();
 
-    const lookAt = currentLookAt.lerp(targetLookAt, delta * 24);
+    const lookAt = currentLookAt.lerp(targetLookAt, delta);
     cameraRef.current.lookAt(
       cameraRef.current.position.clone().add(lookAt)
     );
@@ -148,7 +148,8 @@ export default function MainExperience() {
       <directionalLight position={[0, 3, 1]} intensity={1} />
       <group ref={cameraRef}>
         <MainBackground backgroundColors={backgroundColors} />
-        <PerspectiveCamera position={[0,3,0]} fov={60} makeDefault />
+
+        <PerspectiveCamera position={[0,2,0]} fov={30} makeDefault />
       </group>
 
       <group position={[0, 7, 0]}>
