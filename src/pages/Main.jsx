@@ -27,7 +27,7 @@ export default function Main() {
       <color attach="background" arg={["#f59f9f"]} />
       <ScrollControls
         pages={play && !end ? 36 : 0}
-        damping={0.01}
+        damping={0.5}
       >
         <MainExperience />
       </ScrollControls>

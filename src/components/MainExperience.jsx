@@ -5,8 +5,6 @@ import {PerspectiveCamera, OrbitControls, useScroll} from "@react-three/drei";
 import * as THREE from "three";
 import { Euler, Group, Vector3 } from "three";
 import { MainBackground } from './MainBackground';
-import {Grandmother} from '../components/models/GrandmaRoom/Grandmother'
-import {Shelf} from '../components/models/PlayerRoom/Shelf'
 import { Main_Ground } from './models/Outside/MainGround';
 
 // 상수 선언
@@ -25,18 +23,19 @@ export default function MainExperience() {
 
   const curvePoints = useMemo(
     () => [
-      new THREE.Vector3(126,3,-23),
-      new THREE.Vector3(63,3,-15),
-      new THREE.Vector3(0,3,-20),
-      new THREE.Vector3(-60,3,-50),
-      new THREE.Vector3(-75,3,-100),
-      new THREE.Vector3(-70,3,-180),
-      new THREE.Vector3(0,3,-205),
-      new THREE.Vector3(63,3,-200),
-      new THREE.Vector3(125,3,-210),
-      new THREE.Vector3(180,3,-180),
-      new THREE.Vector3(190,3,-110),
-      new THREE.Vector3(170,3,-65),
+      new THREE.Vector3(126,3,-27),
+      new THREE.Vector3(90,3,-15),
+      new THREE.Vector3(63,3,-9),
+      new THREE.Vector3(20,4,-7),
+      new THREE.Vector3(0,4,-12),
+      new THREE.Vector3(-30,4,-28),
+      new THREE.Vector3(-55,5,-50),
+      new THREE.Vector3(-65,5,-75),
+      new THREE.Vector3(-73,5,-105),
+      new THREE.Vector3(-80,5,-145),
+      new THREE.Vector3(-60,5,-185),
+      new THREE.Vector3(-40,5,-203),
+      new THREE.Vector3(0,5,-215),
     ],
     []
   );
@@ -64,8 +63,8 @@ export default function MainExperience() {
   }, [curve])
 
   const backgroundColors = useRef({
-    colorA: "#aec7da",
-    colorB: "#e8cfc8",
+    colorA: "#a8daff",
+    colorB: "white",
   });
 
   useFrame((_state, delta) => {
@@ -133,25 +132,17 @@ export default function MainExperience() {
 
   })
 
-
-
-  useEffect(() => {
-    console.log('scroll Offset', scroll.offset)
-    
-  })
-
-
   return useMemo(() =>
   (
     <>
-    {/* <OrbitControls/> */}
+      {/* <OrbitControls/> */}
       <directionalLight position={[0, 3, 1]} intensity={1} />
       <group ref={cameraRef}>
         <MainBackground backgroundColors={backgroundColors} />
-        <PerspectiveCamera position={[0,-2,0]} fov={60} makeDefault />
+        <PerspectiveCamera position={[0,-1,0]} fov={60} makeDefault />
       </group>
 
-      <group position={[0, 7, 0]}>
+      {/* <group position={[0, -2, 0]}>
         <mesh>
           <extrudeGeometry
             args={[
@@ -164,7 +155,7 @@ export default function MainExperience() {
             ]} />
             <meshStandardMaterial color={"red"} opacity={1} transparent/>
         </mesh>
-      </group>
+      </group> */}
       <group position={[0,-22,0]}>
         <Main_Ground />
       </group>
