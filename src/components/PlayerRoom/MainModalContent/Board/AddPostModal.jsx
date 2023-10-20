@@ -13,6 +13,7 @@ export default function AddPostModal({isImagePost, setOpenModal}) {
   const [photo, setPhoto] = useState()
   const formData = new FormData()
   const {token} = useAuthContext()
+  const baseUrl = 'https://dying-mate-server.link'
 
   const handleChange = (e) => {
     const {name, value, files} = e.target
@@ -36,7 +37,7 @@ export default function AddPostModal({isImagePost, setOpenModal}) {
     console.log("formData", formData)
     closeModal()
     await axios
-    .post('https://dying-mate-server.link/bucketlist/add', formData, {
+    .post(`${baseUrl}/bucketlist/add`, formData, {
       headers: {
         'Content-Type' : 'multipart/form-data',
         'Authorization': `Bearer ${token}`,

@@ -9,13 +9,14 @@ export default function StepFinal() {
   const formData = new FormData()
   const {token} = useAuthContext()
   const {diary} = useDiaryContext()
+  const baseUrl = 'https://dying-mate-server.link'
 
   useEffect(() => {
     for ( const key in diary ) {
       formData.append(key, diary[key]);
     }
     axios
-    .post('https://dying-mate-server.link/funeral/save', formData, {
+    .post(`${baseUrl}/funeral/save`, formData, {
       headers: {
         'Content-Type' : 'multipart/form-data',
         'Authorization': `Bearer ${token}`,

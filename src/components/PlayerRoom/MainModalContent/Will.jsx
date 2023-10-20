@@ -13,6 +13,8 @@ export default function Will() {
   const {token} = useAuthContext();
   const textarea = useRef();
 
+  const baseUrl = 'https://dying-mate-server.link'
+
   const handleChange = (e) => {
     setData(e.target.value)
     textarea.current.style.height = '42rem'
@@ -21,7 +23,7 @@ export default function Will() {
 
   const handleSubmit = (e) => {
     axios
-    .post('https://dying-mate-server.link/will/write', {content: data}, {
+    .post(`${baseUrl}/will/write`, {content: data}, {
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -38,7 +40,7 @@ export default function Will() {
 
   const handleEdit = (e) => {
     axios.patch(
-      'https://dying-mate-server.link/will/modify', 
+      `${baseUrl}/will/modify`, 
       {content: data}, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -55,8 +57,7 @@ export default function Will() {
   }
 
   useEffect(() => {
-    console.log("token??",token)
-    axios.get('https://dying-mate-server.link/will/load', {
+    axios.get(`${baseUrl}/api/will/load`, {
       headers: {Authorization: 'Bearer ' + token},
     }, )
     .then(function (response) {

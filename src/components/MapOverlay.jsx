@@ -43,6 +43,7 @@ const Overlay = styled.div`
   left:0;
   right:0;
   background-color: #1C1717B2;
+  z-index:999;
 `
 
 const Header = styled.div`

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import MainExperience from '../components/MainExperience';
 import { usePlay } from '../contexts/Play';
 import { Canvas } from "@react-three/fiber";
-import { ScrollControls } from "@react-three/drei";
+import { ScrollControls, OrbitControls } from "@react-three/drei";
 import MapOverlay from '../components/MapOverlay';
 import SettingModal from '../components/SetUp/SettingModal';
 import { Overlay } from './Overlay';
@@ -37,18 +37,18 @@ export default function Main() {
     </Header>
 
     <Canvas>
+      <axesHelper args={[1000, 1000, 1000]} />
       <color attach="background" arg={["#f59f9f"]} />
       <ScrollControls
-        pages={play && !end ? 100 : 0}
-        damping={1}
+        pages={play && !end ? 36 : 0}
+        damping={0.5}
       >
-      <MainExperience />
+        <MainExperience />
       </ScrollControls>
     </Canvas>
-
     <Overlay/>
     <MapButtonWrapper>
-      <MapModalButton />
+      <MapModalButton onClick={() => setShowMap(true)}/>
     </MapButtonWrapper>
     <MapOverlay showMap={showMap} setShowMap={setShowMap} />
     <SettingModal showSetup={showSetup} setShowSetup={setShowSetup} />
@@ -60,11 +60,15 @@ const Header = styled.div`
   position: absolute;
   top: 3.75rem;
   right: 3rem;
-  z-index: 999;
+  z-index: 1;
 `
 
 const MapButtonWrapper = styled.div`
-  height: 100%;
+  position: absolute;
+  cursor: pointer;
   display: flex;
   align-items: center;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
 `

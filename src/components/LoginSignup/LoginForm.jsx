@@ -56,8 +56,7 @@ export default function LoginForm() {
     })
     .then(() => {
       setLogin(true)
-      console.log("login 됐나",login)
-      console.log("토큰 저장?",token)
+      navigate('/main')
     })
     .catch(function (error) {
         // 오류발생시 실행

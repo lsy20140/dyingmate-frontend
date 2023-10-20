@@ -12,6 +12,7 @@ export default function Phone() {
   const [data, setData ] = useState('')
   const [isSend, setIsSend] = useState(false);
 
+  const baseUrl = 'https://dying-mate-server.link'
   const {token} = useAuthContext()
 
   // 날짜 구하기
@@ -29,7 +30,7 @@ export default function Phone() {
   const handleSubmit = async (e) => {
     setIsSend(true);
     textarea.value = ''
-    axios.post('https://dying-mate-server.link/message/send', {message: data}, {
+    axios.post(`${baseUrl}/message/send`, {message: data}, {
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -45,7 +46,7 @@ export default function Phone() {
   }
 
   useEffect(() => {
-    axios.get('https://dying-mate-server.link/message/load', {
+    axios.get(`${baseUrl}/message/load`, {
       headers: {Authorization: 'Bearer ' + token},
     }, )
     .then(function (response) {
