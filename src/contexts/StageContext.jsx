@@ -13,8 +13,9 @@ export const StageContextProvider = ({children}) => {
       headers: {Authorization: 'Bearer ' + token},
     }, )
     .then(function (res) {
-      setStage(() => ({...res.data}))
-      console.log('stage', stage)
+      if(res) {
+        setStage(() => ({...res.data}))
+      }
     })
     .catch(function (error) {
       console.log(error);
