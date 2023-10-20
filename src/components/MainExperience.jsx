@@ -129,7 +129,6 @@ export default function MainExperience() {
     cameraRef.current.lookAt(
       cameraRef.current.position.clone().add(lookAt)
     );
-
   })
 
   return useMemo(() =>
@@ -137,7 +136,7 @@ export default function MainExperience() {
     <>
       {/* <OrbitControls/> */}
       <directionalLight position={[0, 3, 1]} intensity={1} />
-      <group ref={cameraRef}>
+      <group ref={cameraRef} position={[126,3,-27]}>
         <MainBackground backgroundColors={backgroundColors} />
         <PerspectiveCamera position={[0,-1,0]} fov={60} makeDefault />
       </group>
