@@ -3,7 +3,7 @@ import { authInstance } from "../../utils/api"
 // 버킷리스트 추가
 export const addBucketlist = async (content, pos) => {
   try {
-    const {data} =  await authInstance.post('/api/bucketlist/add', {content: content, pos:pos})
+    const {data} =  await authInstance.post('/bucketlist/add', {content: content, pos:pos})
     return data
   } 
   catch (error) {

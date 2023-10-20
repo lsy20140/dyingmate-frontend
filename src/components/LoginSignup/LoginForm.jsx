@@ -47,7 +47,7 @@ export default function LoginForm() {
     )
     .then((response) => {
       console.log(response)
-      if(response.data.message !== '로그인 성공'){
+      if(response.data.message !== '성공'){
         setIsValid(false)
         return;
       }
