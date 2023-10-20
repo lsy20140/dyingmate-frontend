@@ -12,7 +12,7 @@ export default function DialogBox({messageArr, stageNum}) {
   const [messageEnded, setMessageEnded] = useState(false);
   const {setFocus} = useRoomFocus();
   const navigate = useNavigate()
-  const {token} = useAuthContext
+  const {token} = useAuthContext()
 
     const handleOnClick = useCallback(() => {
       setMessageEnded(false);

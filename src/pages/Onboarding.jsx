@@ -15,6 +15,7 @@ export default function Onboarding() {
   const location = useLocation();
   const {email, pwd} = location.state
   const {token, setToken, setLogin} = useAuthContext()
+  const baseUrl = 'https://dying-mate-server.link'
 
   const DiaglogArr = [
     { text: `바쁘고 치열한 현재의 삶이 너무 힘들어 스스로에 대해 깊게 생각해 볼 기회가 없던 당신은
@@ -35,7 +36,7 @@ export default function Onboarding() {
 
   useEffect(() => {
     axios.post(
-      '/api/user/login',
+      `${baseUrl}/user/login`,
       {
         email: email,
         pwd: pwd  
@@ -67,7 +68,7 @@ export default function Onboarding() {
   const handleOnSubmit = async (e) => {
     e.preventDefault()
     await axios
-    .post(`/api/user/${userName}/save`, {}, {
+    .post(`${baseUrl}/user/${userName}/save`, {}, {
       headers: {
         Authorization: `Bearer ${token}`
       },
