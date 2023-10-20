@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { ReactComponent as CloseModal } from '../assets/icons/close_modal.svg'
 import MapItem from './Map/MapItem'
 import TestImage from '../assets/img/splashBg.png'
+import { useStageContext } from '../contexts/StageContext'
 
 export default function MapOverlay({showMap, setShowMap}) {
+  const {stage} = useStageContext()
+
   // stageImg 수정 필요
   const StageInfo = [
-    {id: 0, isClear: true, stageTitle: '주인 할머니의 방', stageImg: TestImage, path: '/gmroom'},
-    {id: 1,  isClear: true, stageTitle: '첫 번째 메이트의 방', stageImg: TestImage, path: '/manroom'},
-    {id: 2,  isClear: true, stageTitle: '두 번째 메이트의 방', stageImg: TestImage, path: '/womanroom'},
-    {id: 3,  isClear: false, stageTitle: '나의 방', stageImg: TestImage, path: '/playerroom'},
-    {id: 4,  isClear: false, stageTitle: '마지막 이야기', stageImg: TestImage, path: '/final'},
+    {id: 0, isClear: stage.stage1, stageTitle: '주인 할머니의 방', stageImg: TestImage, path: '/gmroom'},
+    {id: 1,  isClear: stage.stage2, stageTitle: '첫 번째 메이트의 방', stageImg: TestImage, path: '/manroom'},
+    {id: 2,  isClear: stage.stage3, stageTitle: '두 번째 메이트의 방', stageImg: TestImage, path: '/womanroom'},
+    {id: 3,  isClear: stage.stage4, stageTitle: '나의 방', stageImg: TestImage, path: '/playerroom'},
+    {id: 4,  isClear: stage.stage5, stageTitle: '마지막 이야기', stageImg: TestImage, path: '/final'},
   ]
 
   return (

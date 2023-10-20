@@ -6,12 +6,13 @@ import {useNavigate} from 'react-router-dom'
 export default function MapItem({isClear, stageTitle, stageImg, path}) {
   const navigate = useNavigate();
 
-  const handleOnClick = () => {
-    navigate(path)
+  const handleOnClick = (isClear) => {
+    {isClear && navigate(path)}
+    
   }
   
   return (
-    <ItemBox isClear={isClear} onClick={handleOnClick}>
+    <ItemBox isClear={isClear} onClick={() => handleOnClick(isClear)}>
       <Content>
         <ImageWrapper>
           {!isClear && 
