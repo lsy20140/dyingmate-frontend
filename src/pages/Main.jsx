@@ -9,12 +9,13 @@ import { Overlay } from './Overlay';
 import {ReactComponent as SettingIcon} from '../assets/icons/setting_icon.svg'
 import {ReactComponent as MapModalButton} from '../assets/img/map_modal_btn.svg'
 import styled from 'styled-components';
-import { useAuthContext } from '../contexts/AuthContext';
+import EnterRoomDialog from '../components/ui/EnterRoomDialog';
 
 export default function Main() {
   const [showSetup, setShowSetup] = useState(false);
   const [showMap, setShowMap] = useState(false);
   const {play, end} = usePlay();
+  const [showEnterDialog, setShowEnterDialog] = useState(0) // 0인 경우 dialog box 보이지 않음. 1~5까지 각 stage 의미
 
   return (
   <>
@@ -29,7 +30,7 @@ export default function Main() {
         pages={play && !end ? 36 : 0}
         damping={0.5}
       >
-        <MainExperience />
+        <MainExperience setShowEnterDialog={setShowEnterDialog} />
       </ScrollControls>
     </Canvas>
     <Overlay/>
@@ -38,6 +39,7 @@ export default function Main() {
     </MapButtonWrapper>
     <MapOverlay showMap={showMap} setShowMap={setShowMap} />
     <SettingModal showSetup={showSetup} setShowSetup={setShowSetup} />
+    {showEnterDialog !== 0 && <EnterRoomDialog stageNum={showEnterDialog}/>}
   </>
   );
 }
