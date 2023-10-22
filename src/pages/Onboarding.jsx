@@ -6,11 +6,13 @@ import axios from 'axios'
 import { useLocation } from 'react-router-dom'
 import { createUsername } from '../apis/api/user'
 import { useAuthContext } from '../contexts/AuthContext'
+import Loading from './Loading'
 
 export default function Onboarding() {
   const navigate = useNavigate()
   const [curIdx, setCurIdx] = useState(0);
   const [userName, setUserName] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const location = useLocation();
   const {email, pwd} = location.state
@@ -76,7 +78,13 @@ export default function Onboarding() {
     })
     .then((response) => {
       console.log(response)
-      navigate('/main')
+      setIsLoading(true)
+
+      const delayFunc = setTimeout(() => {
+        navigate('/main')
+      }, 2500)
+      return () => clearTimeout(delayFunc)
+
         
     }).catch(function (error) {
         // 오류발생시 실행
@@ -86,6 +94,7 @@ export default function Onboarding() {
 
   return (
     <>
+      {isLoading && <Loading text={'하숙집으로 이동 중'}/>}
       <Container>
         <VideoWrapper>
           <video width="100%" height="100%" min-width="100%"  autoPlay muted playsInline loop>
