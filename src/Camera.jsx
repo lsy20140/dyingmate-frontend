@@ -52,10 +52,15 @@
      // return the controls object   
      return (
        <OrbitControls
-         ref={ref}
-         args={[camera, domElement]}
-         panSpeed={1}
-         maxPolarAngle={Math.PI / 2}
+          ref={ref}
+          args={[camera, domElement]}
+          maxDistance={22}
+          minDistance={10}
+          minPolarAngle={Math.PI / 3}
+          maxPolarAngle={Math.PI/ 3}
+          maxAzimuthAngle={Math.PI / 1.5}
+          minAzimuthAngle={Math.PI / 3}
+          rotateSpeed={0.1}
        />
      );
    };

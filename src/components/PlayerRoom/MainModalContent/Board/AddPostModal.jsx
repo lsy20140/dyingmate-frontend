@@ -123,7 +123,7 @@ const ModalContainer = styled.div`
   height: fit-content;
   outline: 2px solid white;
   filter: drop-shadow(0px 4px 45px rgba(0, 0, 0, 0.10));
-  background: linear-gradient(237deg, rgba(0, 0, 0, 0.51) -23.03%, rgba(0, 0, 0, 0.12) 119.63%);
+  background: linear-gradient(237deg, rgba(0, 0, 0, 0.2) -23.03%, rgba(0, 0, 0, 0.05) 119.63%);
   backdrop-filter: blur(60px);
   border-radius: 2.5rem;
 `

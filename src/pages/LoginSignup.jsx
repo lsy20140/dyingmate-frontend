@@ -52,7 +52,7 @@ const FormBox = styled.div`
   width: 30rem;
   height: fit-content;
   padding: 4rem 3.5rem;
-  background: linear-gradient(223deg, rgba(0, 0, 0, 0.51) 0%, rgba(0, 0, 0, 0.12) 100%);
+  background: linear-gradient(237deg, rgba(0, 0, 0, 0.2) -23.03%, rgba(0, 0, 0, 0.05) 119.63%);
   outline: solid 2px white;
   border-radius: 2.5rem;  
   display: flex;

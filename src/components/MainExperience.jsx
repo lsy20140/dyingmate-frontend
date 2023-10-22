@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { useMemo, useRef } from 'react'
 import { usePlay } from '../contexts/Play';
 import { useFrame } from "@react-three/fiber";
-import {PerspectiveCamera, OrbitControls, useScroll} from "@react-three/drei";
+import {PerspectiveCamera, useScroll} from "@react-three/drei";
 import * as THREE from "three";
 import { Euler, Group, Vector3 } from "three";
 import { MainBackground } from './MainBackground';
@@ -12,7 +12,7 @@ const CURVE_AHEAD_CAMERA = 0.1
 const LINE_NB_POINTS = 50
 
 
-export default function MainExperience() {
+export default function MainExperience({setShowEnterDialog}) {
 
   const cameraRef = useRef();
   const scroll = useScroll();
@@ -129,6 +129,18 @@ export default function MainExperience() {
     cameraRef.current.lookAt(
       cameraRef.current.position.clone().add(lookAt)
     );
+
+    if(scroll.offset > 0.1 && scroll.offset < 0.13){
+      setShowEnterDialog(1)
+    }else if(scroll.offset > 0.3 && scroll.offset < 0.33){
+      setShowEnterDialog(2)
+    }else if(scroll.offset > 0.5 && scroll.offset < 0.53){
+      setShowEnterDialog(3)
+    }else if(scroll.offset > 0.7 && scroll.offset < 0.73){
+      setShowEnterDialog(4)
+    }else{
+      setShowEnterDialog(0) // dialog 박스 보이지 않게
+    }
   })
 
   return useMemo(() =>
@@ -158,7 +170,6 @@ export default function MainExperience() {
       <group position={[0,-22,0]}>
         <Main_Ground />
       </group>
-
 
     </>
 

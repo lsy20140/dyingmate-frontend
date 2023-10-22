@@ -28,7 +28,7 @@ const ContentWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: linear-gradient(223deg, rgba(255, 255, 255, 0.51) 0%, rgba(255, 255, 255, 0.12) 100%);
+  background: linear-gradient(237deg, rgba(0, 0, 0, 0.2) -23.03%, rgba(0, 0, 0, 0.05) 119.63%);
   outline: solid 2px #ffffff;
   border-radius: 2.5rem;  
   margin-top: 4.5rem;
