@@ -24,11 +24,11 @@ export default function PlayerRoom() {
 
   const [curIdx, setCurIdx] = useState(0);
 
-  const [position, setPosition] = useState({ x: 20, y: 8, z: 0 });
+  const [position, setPosition] = useState({ x: 22, y: 5, z: 0 });
   const [target, setTarget] = useState({ x: 0, y: 0, z: 0 });
 
   const setCamera = () => {
-    setPosition({ x: 10, y: 9, z: 0 })
+    setPosition({ x: 10, y: 8, z: 0 })
     setTarget({ x: 0, y: 6, z: 0 })
     setCurIdx(0)
   }
@@ -86,7 +86,7 @@ export default function PlayerRoom() {
 
   return (
     <>
-      <Canvas camera={{position:[20,8,0]}} colorManagement>
+      <Canvas camera={{position:[22,5,0]}} colorManagement>
         {/* <LightHelper /> */}
         <axesHelper args={[200, 200, 200]} />
         <ambientLight intensity={5} />
