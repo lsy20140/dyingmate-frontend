@@ -37,7 +37,7 @@ const ItemBox = styled.div`
     width: 100%;  
   }
   box-shadow: ${props => props.isClear ? '10px 20px 200px 0px rgba(255, 255, 255, 0.50)' : '0px 4px 45px 0px rgba(0, 0, 0, 0.10)'};
-  background: ${props => props.isClear ? 'linear-gradient(237deg, rgba(253, 131, 95, 0.51) -23.03%, rgba(253, 131, 95, 0.51) 119.63%)' : 'linear-gradient(237deg, rgba(0, 0, 0, 0.51) -23.03%, rgba(0, 0, 0, 0.12) 119.63%)'};
+  background: ${props => props.isClear ? 'linear-gradient(237deg, rgba(253, 131, 95, 0.51) -23.03%, rgba(253, 131, 95, 0.51) 119.63%)' : 'linear-gradient(237deg, rgba(0, 0, 0, 0.2) -23.03%, rgba(0, 0, 0, 0.05) 119.63%)'};
   border: 2px solid white;
   backdrop-filter: blur(60px);
 `

@@ -56,7 +56,7 @@ const Overlay = styled.div`
 const Container = styled.div`
   width: 32rem;
   height: 44rem;
-  background: linear-gradient(237deg, rgba(0, 0, 0, 0.51) -23.03%, rgba(0, 0, 0, 0.12) 119.63%);
+  background: linear-gradient(237deg, rgba(0, 0, 0, 0.2) -23.03%, rgba(0, 0, 0, 0.05) 119.63%);
   outline: 2px solid white;
   border-radius: 2.5rem;  
   backdrop-filter: blur(60px);

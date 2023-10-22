@@ -23,7 +23,6 @@ const ButtonWrapper = styled.div`
 `
 
 const CircleWrapper = styled.div`
-  // background: linear-gradient(237deg, rgba(0, 0, 0, 0.51) -23.03%, rgba(0, 0, 0, 0.12) 119.63%);
   background-color: #FD835F;
 
   outline: 2px solid white; 

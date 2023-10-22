@@ -54,7 +54,7 @@ const Container = styled.div`
   border-radius: 2.5rem;  
   margin: 0 auto;
   color: white;
-  background: linear-gradient(237deg, rgba(0, 0, 0, 0.51) -23.03%, rgba(0, 0, 0, 0.12) 119.63%);
+  background: linear-gradient(237deg, rgba(0, 0, 0, 0.2) -23.03%, rgba(0, 0, 0, 0.05) 119.63%);
 `
 const Header = styled.div`
   display: flex;

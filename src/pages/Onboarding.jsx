@@ -136,7 +136,7 @@ const ContentBox = styled.div`
   flex-direction: column;
   width: 45%;
   padding: 4rem 11rem;
-  background: linear-gradient(223deg, rgba(0, 0, 0, 0.51) 0%, rgba(0, 0, 0, 0.12) 100%);
+  background: linear-gradient(237deg, rgba(0, 0, 0, 0.2) -23.03%, rgba(0, 0, 0, 0.05) 119.63%);
   backdrop-filter: blur(60px);
   outline: solid 2px #ffffff;
   border-radius: 2.5rem;  
