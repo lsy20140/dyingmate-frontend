@@ -10,31 +10,31 @@ import { MessageArr } from '../data/man_script';
 
 export default function ManRoom() {
   const {focus} = useRoomFocus();
-  const [position, setPosition] = useState({ x: 24, y: 8, z: 0 });
-  const [target, setTarget] = useState({ x: 0, y: 0, z: 0 });
+  const [position, setPosition] = useState({ x: 12, y: 8, z: 0 });
+  const [target, setTarget] = useState({ x: 0, y: -5, z: 0 });
 
   useEffect(() => {
     if(focus) {
-      setPosition({ x: 0, y: 3, z: 1 });
-      setTarget({ x: -4, y: 0, z: 0 });
+      setPosition({ x: 2, y: 4.5, z: -4 });
+      setTarget({ x: -2, y: 3, z: -4 });
     }
     else {
-      setPosition({ x: 24, y: 8, z: 0 });
-      setTarget({ x: 0, y: 0, z: 0});
+      setPosition({ x: 12, y: 8, z: 0 });
+      setTarget({ x: 0, y: 5, z: 0});
     }
   },[focus])
 
   return (
     <>
-      <Canvas camera={{fov: 30, position:[24,8,0]}} colorManagement>
+      <Canvas camera={{position:[12,8,0]}} colorManagement>
         <OrbitControls/>
         {/* <LightHelper /> */}
         <axesHelper args={[200, 200, 200]} />
-        <ambientLight intensity={50} />
+        <ambientLight intensity={1} />
         <directionalLight intensity={8}  decay={1} color="#ffffff" position={[ 20, 3, -2]} target-position={[-5, 2, 2]} />
         <directionalLight intensity={10} castShadow decay={2} color="#ffffff" position={[20, 5, -5]} target-position={[2, 2, 0]} />
         <CameraControls position={position} target={target} />
-        <group rotation-y={-Math.PI} rotation-z={-Math.PI/10} position-y={-5}>
+        <group rotation-y={-Math.PI} rotation-z={-Math.PI/10} position-y={-3}>
           <Man_Room/>
           <Man/>
         </group>
