@@ -53,14 +53,17 @@
      return (
        <OrbitControls
           ref={ref}
+          target={[0,5,0]}
           args={[camera, domElement]}
           maxDistance={22}
-          minDistance={10}
-          minPolarAngle={Math.PI / 3}
-          maxPolarAngle={Math.PI/ 3}
-          maxAzimuthAngle={Math.PI / 1.5}
-          minAzimuthAngle={Math.PI / 3}
+          minDistance={1}
+          minPolarAngle={Math.PI/ 4}
+          maxPolarAngle={Math.PI/ 2}
+          maxAzimuthAngle={Math.PI}
+          minAzimuthAngle={Math.PI /6 }
           rotateSpeed={0.1}
+          enableZoom={false}
+          enablePan={false}
        />
      );
    };
