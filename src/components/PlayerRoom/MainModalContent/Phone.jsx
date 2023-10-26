@@ -9,7 +9,8 @@ import { ReactComponent as BubbleVector } from '../../../assets/img/PlayerRoom/m
 import { useAuthContext } from '../../../contexts/AuthContext'
 
 export default function Phone() {
-  const [data, setData ] = useState('')
+  const [inputData, setInputData] = useState('')
+  const [data, setData] = useState('')
   const [isSend, setIsSend] = useState(false);
 
   const baseUrl = 'https://dying-mate-server.link'
@@ -23,14 +24,15 @@ export default function Phone() {
 
 
   const handleChange = (e) => {
-    setData(e.target.value);
+    setInputData(e.target.value);
     textarea.current.style.height = textarea.current.scrollHeight + 'px';
   }
 
   const handleSubmit = async (e) => {
     setIsSend(true);
-    textarea.value = ''
-    axios.post(`${baseUrl}/message/send`, {message: data}, {
+    setInputData('')
+    setData(inputData)
+    axios.post(`${baseUrl}/message/send`, {message: inputData}, {
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -51,6 +53,7 @@ export default function Phone() {
     }, )
     .then(function (response) {
       console.log(response)
+      setData(response.data.data.message)
     })
     .catch(function (error) {
       console.log(error);
@@ -87,13 +90,13 @@ export default function Phone() {
               type={"text"}
               id='message' 
               name='message' 
-              value={data ?? ''}
+              value={inputData ?? ''}
               onChange={handleChange}
               placeholder='부고 문자에 들어갈 내용을 작성해주세요.' 
               spellCheck="false"
               required
             />
-            <StyledButton width={'6rem'} handleOnClick={handleSubmit} text={<SendIcon/>} btnColor={`var(--main-color)`} />
+            <StyledButton width={'7rem'} handleOnClick={handleSubmit} text={<SendIcon/>} btnColor={`var(--main-color)`} />
           </Footer>
         </PhoneWrapper>
         <TextArea>
@@ -123,7 +126,7 @@ const Container = styled.div`
 `
 
 const PhoneWrapper = styled.div`
-  width: 26rem;
+  width: 24rem;
   height: 95%;
   background-color: white;
   border-radius: 1.25rem;
@@ -143,15 +146,15 @@ const Header = styled.div`
   p{
     color: black;
     font-weight: 600;
-
+    font-size: 0.875rem;
   }
 `
 
 const Main = styled.div`
-  padding: 1.8rem;
+  padding: 1.4rem;
   box-sizing: border-box;
   height: 100%;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -165,6 +168,7 @@ const MessageArea = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  margin-top: 0.5rem;
 
   svg {
     position: absolute;
@@ -216,6 +220,8 @@ const FormInput = styled.textarea`
   border-radius: 1.25rem;
   color: var(--font-gray-2);
   background-color: #f3f3f3;
+  resize: none;
+
   &:focus {
     border: none;
   }

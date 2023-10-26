@@ -84,6 +84,11 @@ const Header = styled.div`
     width: 3rem;
     height: 3rem;
     z-index:999;
+    cursor: pointer;
+    
+    &:hover{
+      filter: brightness(1.1)
+    }
   }
 `
 const MainComp = styled.div`

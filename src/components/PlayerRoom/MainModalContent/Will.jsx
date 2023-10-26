@@ -9,21 +9,22 @@ import { authInstance } from '../../../apis/utils/api';
 
 
 export default function Will() {
-  let [data, setData] = useState('');
+  let [inputData, setInputData] = useState('');
+  const [data, setData] = useState('')
   const {token} = useAuthContext();
   const textarea = useRef();
 
   const baseUrl = 'https://dying-mate-server.link'
 
   const handleChange = (e) => {
-    setData(e.target.value)
+    setInputData(e.target.value)
     textarea.current.style.height = '42rem'
     // textarea.current.style.height = textarea.current.scrollHeight + 'px';
   }
 
   const handleSubmit = (e) => {
     axios
-    .post(`${baseUrl}/will/write`, {content: data}, {
+    .post(`${baseUrl}/will/write`, {content: inputData}, {
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -41,7 +42,7 @@ export default function Will() {
   const handleEdit = (e) => {
     axios.patch(
       `${baseUrl}/will/modify`, 
-      {content: data}, {
+      {content: inputData}, {
         headers: {
           Authorization: `Bearer ${token}`
         },
@@ -57,12 +58,12 @@ export default function Will() {
   }
 
   useEffect(() => {
-    axios.get(`${baseUrl}/api/will/load`, {
+    axios.get(`${baseUrl}/will/load`, {
       headers: {Authorization: 'Bearer ' + token},
     }, )
     .then(function (response) {
       console.log("response.data",response.data)
-      setData(response.data.data.content)
+      setInputData(response.data.data.content)
     })
     .catch(function (error) {
       console.log(error);
@@ -88,14 +89,17 @@ export default function Will() {
             type={"text"}
             id='content' 
             name='content' 
-            value={data ?? ''}
+            value={inputData ?? ''}
             onChange={handleChange}
             placeholder='내용을 입력해주세요.' 
             spellCheck="false"
             required
           />
-          <StyledButton type="submit" width={'8rem'} handleOnClick={handleSubmit} text={"완료하기"} textColor={'white'} btnColor={`var(--main-color)`} />
-          <StyledButton width={'8rem'} handleOnClick={handleEdit} text={"수정하기"} textColor={`var(--font-gray-3)`} btnColor={'#F0EAE0'} />
+          {data && data.length > 0 ?
+            <StyledButton width={'8rem'} handleOnClick={handleEdit} text={"수정하기"} textColor={`var(--font-gray-3)`} btnColor={'#F0EAE0'} />
+            :
+            <StyledButton type="submit" width={'8rem'} handleOnClick={handleSubmit} text={"저장하기"} textColor={'white'} btnColor={`var(--main-color)`} />
+          }
         </WillContainer>
       </Container>
     </>   
@@ -146,6 +150,8 @@ const FormInput = styled.textarea`
   border: none;
   border-radius: 1.25rem;
   color: var(--font-gray-3);
+  resize: none;
+
   &:focus {
     border: none;
     outline: none;
