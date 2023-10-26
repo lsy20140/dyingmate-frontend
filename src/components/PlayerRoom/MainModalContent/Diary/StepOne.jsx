@@ -4,11 +4,14 @@ import {ReactComponent as MainIcon} from '../../../../assets/icons/PlayerRoom/Di
 import MethodItem from '../../../Diary/MethodItem'
 import MethodExplain from '../../../Diary/MethodExplain';
 import { useDiaryContext } from '../../../../contexts/DiaryContext';
-import { getDiary } from '../../../../apis/api/PlayerRoom/diary';
+import axios from 'axios'
+import { useAuthContext } from '../../../../contexts/AuthContext';
 
 export default function StepOne() {
   const {diary, setDiary} = useDiaryContext()
-  const [curIdx, setCurIdx] = useState(diary && diary.method);
+  const [curIdx, setCurIdx] = useState();
+  const {token} = useAuthContext()
+  const baseUrl = 'https://dying-mate-server.link'
 
   const data= [
     { id: 1, itemText: "화장 후 봉안", explain: `화장을 통해 향기로운 아름다움을 간직해볼 수 있습니다. \n \n 화장은 당신의 존재와 흔적을 살아있는 불꽃으로 옮기며, \n 당신의 애도와 사랑을 함께 전달할 수 있습니다. \n 이것은 고인을 위로하고, 그들이 향하는 곳에서 편안함과 평화를 느낄 수 있는 방법으로 알려져 있습니다. `},
@@ -16,11 +19,13 @@ export default function StepOne() {
     { id: 3, itemText: "매장", explain: `매장 방신은 공간에서 사랑하는 이들과 함께하는 장례방법입니다. \n \n 사랑하는 사람들이 편안하고 평화로운 곳에서 쉬어갈 수 있도록 고정적인 장소를 마련해 장례를 진행하는 하나의 방식입니다. `},
   ]
 
-  useEffect(() => {
-    getDiary()
-    .then((res) => {
-      console.log("Step one comp res",res.data)
+  useEffect(() =>  {
+    axios.get(`${baseUrl}/funeral/select`, {
+      headers: {Authorization: 'Bearer ' + token},
+    }, )
+    .then(function(res){
       setDiary(() => ({...res.data}))
+      
     })
     .then(() => {
       console.log("StepOne diary", diary)

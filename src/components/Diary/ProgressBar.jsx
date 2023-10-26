@@ -9,7 +9,7 @@ export default function ProgressBar({curIdx}) {
     <ProgressBarWrapper>
       {arrIdx.map((item, i) => (
         <OneStepWrapper>
-          <ProgressBarOneStep curStep={(i+1 <= curIdx) ? true: false} text={(i+1 !== 4) ? `Step ${i+1}` : 'Finish'}/>
+          <ProgressBarOneStep key={i} curStep={(i+1 <= curIdx) ? true: false} text={(i+1 !== 4) ? `Step ${i+1}` : 'Finish'}/>
           {i!==3 && <Line curStep={(i+1 < curIdx) ? true: false}/>}
         </OneStepWrapper>
       ))}
