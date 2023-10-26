@@ -27,7 +27,7 @@ export default function MapOverlay({showMap, setShowMap}) {
     .then(function (res) {
       if(res) {
         console.log(res)
-        setStage(() => ({...res.data}))
+        setStage(() => ({...res.data.data}))
       }
     })
     .catch(function (error) {
