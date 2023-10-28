@@ -11,6 +11,7 @@ import { authInstance } from '../../../apis/utils/api';
 export default function Will() {
   let [inputData, setInputData] = useState('');
   const [data, setData] = useState('')
+  const hasData = data && (data !== '')
   const {token} = useAuthContext();
   const textarea = useRef();
 
@@ -22,7 +23,7 @@ export default function Will() {
     // textarea.current.style.height = textarea.current.scrollHeight + 'px';
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => {   
     axios
     .post(`${baseUrl}/will/write`, {content: inputData}, {
       headers: {
@@ -64,6 +65,7 @@ export default function Will() {
     .then(function (response) {
       console.log("response.data",response.data)
       setInputData(response.data.data.content)
+      setData(response.data.data.content)
     })
     .catch(function (error) {
       console.log(error);
@@ -95,7 +97,7 @@ export default function Will() {
             spellCheck="false"
             required
           />
-          {data && data.length > 0 ?
+          { hasData ?
             <StyledButton width={'8rem'} handleOnClick={handleEdit} text={"수정하기"} textColor={`var(--font-gray-3)`} btnColor={'#F0EAE0'} />
             :
             <StyledButton type="submit" width={'8rem'} handleOnClick={handleSubmit} text={"저장하기"} textColor={'white'} btnColor={`var(--main-color)`} />
