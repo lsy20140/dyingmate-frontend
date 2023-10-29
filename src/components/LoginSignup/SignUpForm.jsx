@@ -161,6 +161,7 @@ const PasswordInput = styled.div`
   align-items: center;
   verticle-align: middle;
   margin-bottom: 1rem;
+  cursor: pointer;
 
   svg {
     height: 100%;
@@ -241,6 +242,10 @@ const SocialLogin = styled.div`
 
   p:after {
     margin-left: 1.25rem;
+  }
+
+  svg {
+    cursor: pointer;
   }
 `
 

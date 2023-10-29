@@ -26,7 +26,8 @@ const ItemBox = styled.div`
   color: ${props => props.isSelected ? `var(--main-color)` : 'white'};
   padding: 0 1.5rem;
   margin-bottom: 0.75rem;
-
+  cursor: pointer;
+  
   &:hover {
     background-color: #F0EAE0;
     color: var(--main-color);
