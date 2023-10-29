@@ -16,31 +16,35 @@ export default function Onboarding() {
   const [isLoading, setIsLoading] = useState(false)
 
   const location = useLocation();
-  const {email, pwd} = location.state
+  const {isSocialLogin} = location.state
+  const {email, pwd} = isSocialLogin && location.state
   const {token, setToken, setLogin} = useAuthContext()
   const baseUrl = 'https://dying-mate-server.link'
 
   useEffect(() => {
-    axios.post(
-      `${baseUrl}/user/login`,
-      {
-        email: email,
-        pwd: pwd  
-      },
-      {withCredentials: true},
-    )
-    .then((response) => {
-      console.log(response)
-      localStorage.setItem('login-token', response.data.data.token);
-      setToken(localStorage.getItem('login-token'));
-    })
-    .then(() => {
-      setLogin(true)
-    })
-    .catch(function (error) {
-        // 오류발생시 실행
-        console.log(error.message)
-    })
+    if(!isSocialLogin) {
+      axios.post(
+        `${baseUrl}/user/login`,
+        {
+          email: email,
+          pwd: pwd  
+        },
+        {withCredentials: true},
+      )
+      .then((response) => {
+        console.log(response)
+        localStorage.setItem('login-token', response.data.data.token);
+        setToken(localStorage.getItem('login-token'));
+      })
+      .then(() => {
+        setLogin(true)
+      })
+      .catch(function (error) {
+          // 오류발생시 실행
+          console.log(error.message)
+      })
+    }
+
   },[])
   
   const handleDiaglogBox = () => {
