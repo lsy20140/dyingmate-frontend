@@ -6,27 +6,36 @@ import OneFriendItem from './FriendList/OneFriendItem'
 import OneRequestItem from './FriendList/OneRequestItem'
 import axios from 'axios'
 import { getAllFriends, getAllRequests } from '../../apis/api/PlayerRoom/friendList'
+import OneSearchItem from './FriendList/OneSearchItem'
+
 
 export default function FriendListModal({setFriendListModal}) {
-  const [searchInput, setSearchInput] = useState('')
-  
+  const [searchInput, setSearchInput] = useState('')  
   const [friendList, setFriendList] = useState([])
   const [requestList, setRequestList] = useState([])
+  const [userList, setUserList] = useState([])
+  const baseUrl = 'https://dying-mate-server.link'
 
 
   const handleOnChange = (e) => {
     setSearchInput(e.target.value)
+    console.log("filteredList", filteredList)
   }
 
+  const filteredList = userList.filter((item) => {
+    if(searchInput !== '' && item.email.toLowerCase().includes(searchInput.toLowerCase())){ 
+      return item
+    }
+  })
+
+
   useEffect(() => {
-    axios.all([getAllFriends(), getAllRequests()])
-    .then(
-      axios.spread((res1, res2) => {
-        setFriendList(res1);
-        setRequestList(res2);
-      })
-    )
-    .catch(() => {})
+    async function getUserList() {
+      const {data} = await axios.get('http://localhost:3000/data/PlayerRoom/allUsers.json',{})
+      setUserList(data.data.users)
+    }
+    getUserList();
+    console.log(userList)
   },[])
 
 
@@ -40,10 +49,23 @@ export default function FriendListModal({setFriendListModal}) {
           </HeaderTitle>
           <IoIosClose onClick={() => setFriendListModal()}/>
         </Header>  
-        <InputWrapper>
-          <SearchInput onChange={handleOnChange} placeholder='사용자의 이름을 입력하세요.' value={searchInput ?? ''}/>
-          <AddButton isFill={searchInput!==''}>친구 추가</AddButton>
-        </InputWrapper>
+        <SearchContainer>
+          <InputWrapper>
+            <SearchInput onChange={handleOnChange} placeholder='사용자의 이름을 입력하세요.' value={searchInput ?? ''}/>
+          </InputWrapper>
+          {searchInput !== '' &&
+            <SearchList>
+              {filteredList && filteredList.length > 0 ?
+                filteredList.map(data => {
+                  console.log("data",data)
+                  const {email, name, photo} = data
+                  return <OneSearchItem isExist={true} email={email} name={name} photo={photo} />
+                })    
+                :<OneSearchItem isExist={false}/>
+              }
+            </SearchList>
+          }
+        </SearchContainer>
         <ListContainer>
           <ListWrapper>
             <p>친구 목록</p>
@@ -90,6 +112,7 @@ const Header = styled.div`
   svg {
     color: white;
     font-size: 2.5rem;
+    cursor: pointer;
   }
 
 `
@@ -106,14 +129,19 @@ const HeaderTitle = styled.div`
   }
 `
 
+const SearchContainer = styled.div`
+  margin: 2.25rem 3.75rem 3rem 3.75rem;
+  position: relative;
+`
+
+
+
 const InputWrapper = styled.div`
   display: flex;
   gap: 0.75rem;
-  margin: 2.25rem 3.75rem 3rem 3.75rem;
   height: 3rem;
   box-sizing: border-box;
   align-items: center;
-
 `
 
 const SearchInput = styled.input`
@@ -130,16 +158,14 @@ const SearchInput = styled.input`
   }
 `
 
-const AddButton = styled.button`
-  width: 16.5rem;
-  height: 100%;
+const SearchList = styled.div`
+  position: absolute;
+  top: 3.2rem;
+  width: 100%;
+  height: fit-content;  
   border-radius: 0.75rem;
-  padding: 0.5rem 1.25rem;
-  font-weight: 700;
+  background-color: white;
   box-sizing: border-box;
-  border: none;
-  background-color: ${(props) => props.isFill ? 'var(--main-color)' : '#DEDEDE'};
-  color: ${(props) => props.isFill ? 'white' : '#999'};
 `
 
 const ListContainer = styled.div`
