@@ -24,11 +24,15 @@ const ButtonWrapper = styled.div`
 
 const CircleWrapper = styled.div`
   background-color: #FD835F;
-
   outline: 2px solid white; 
   position: relative;
   padding: 1.2rem;
   border-radius: 100%;
+  cursor: pointer;
+  
+  &:hover{
+    filter: brightness(1.1);
+  }
 
   svg {
     width: 3rem;

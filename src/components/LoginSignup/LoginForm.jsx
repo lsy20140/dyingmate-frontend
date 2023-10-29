@@ -121,6 +121,8 @@ const PasswordInput = styled.div`
   display: flex;
   align-items: center;
   margin: 1rem 0;
+  cursor: pointer;
+
   svg {
     height: 100%;
     width: 1rem;
@@ -194,6 +196,10 @@ const SocialLoginIcons = styled.div`
   display: flex;
   justify-content: center;
   gap: 1rem;
+
+  svg {
+    cursor: pointer;
+  }
 `
 
 const FindInfoText = styled.p`
@@ -202,7 +208,7 @@ const FindInfoText = styled.p`
   font-size: 0.9rem;
   color: white;
   font-weight: 300;
-
+  cursor: pointer;
 `
 
 

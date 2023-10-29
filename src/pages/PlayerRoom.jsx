@@ -14,6 +14,7 @@ import { Phone } from '../components/models/PlayerRoom/Phone';
 import { Diary } from '../components/models/PlayerRoom/Diary';
 import { Shelf } from '../components/models/PlayerRoom/Shelf';
 import { Desktop } from '../components/models/PlayerRoom/Desktop';
+import { Selection, Select, EffectComposer, Outline } from '@react-three/postprocessing'
 
 export default function PlayerRoom() {
   const light1 = useRef()
@@ -26,6 +27,8 @@ export default function PlayerRoom() {
 
   const [position, setPosition] = useState({ x: 12, y: 8, z: 0 });
   const [target, setTarget] = useState({ x: 0, y: 5, z: 0 });
+  const [hovered, setHovered] = useState(false)
+  
 
   const setCamera = () => {
     setPosition({ x: 12, y: 8, z: 0 })
@@ -33,6 +36,7 @@ export default function PlayerRoom() {
     setCurIdx(0)
   }
   
+  // 오브젝트 클릭시 카메라 pos, target 설정
   const handleClick = (idx) => {
     let position = { x: 0, y: 0, z: 0 };
     let target = { x: 0, y: 0, z: 0 };
@@ -77,40 +81,44 @@ export default function PlayerRoom() {
     
   },[curIdx])
 
+  useEffect(() => {
+    document.body.style.cursor = hovered ? 'pointer' : 'default'
+  },[hovered])
 
-  // const LightHelper = () => {
-  //   useHelper(light1, DirectionalLightHelper, 1, "red");
-  //   useHelper(light2, DirectionalLightHelper, 1, "blue");
-  // }
+
+  const LightHelper = () => {
+    useHelper(light1, DirectionalLightHelper, 1, "red");
+    useHelper(light2, DirectionalLightHelper, 1, "blue");
+  }
 
 
   return (
     <>
       <Canvas camera={{position:[12,8,0]}} colorManagement>
-        {/* <LightHelper /> */}
+        <LightHelper />
         <axesHelper args={[200, 200, 200]} />
-        <ambientLight intensity={5} />
-        <directionalLight ref={light1} intensity={5}  decay={2} color="#eca864" position={[ 17, 12.421, -2]} target-position={[0, 9, 2]} />
+        <ambientLight intensity={2} />
+        <directionalLight ref={light1} intensity={5}  decay={2} color="#eca864" position={[ 17, 12.421, 2]} target-position={[0, 9, 0]} />
         <directionalLight ref={light2} intensity={5} castShadow decay={2} color="#d8b58d" position={[22, 15.344, -5]} target-position={[2, 10, 0]} />
         <CameraControls position={position} target={target} />
         <group rotation-y={-Math.PI} >
           <Room/>
-          <group onClick={() => handleClick(1)}>
+          <group onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} onClick={() => handleClick(1)}>
             <Will/>
           </group>
-          <group onClick={() => handleClick(2)}>
+          <group onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} onClick={() => handleClick(2)}>
             <Board/>  
           </group>
-          <group onClick={() => handleClick(3)}>
+          <group onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} onClick={() => handleClick(3)}>
             <Phone/>
           </group>
-          <group onClick={() => handleClick(4)}>
+          <group onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} onClick={() => handleClick(4)}>
             <Diary/>
           </group>
-          <group onClick={() => handleClick(5)}>
+          <group onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} onClick={() => handleClick(5)}>
             <Shelf/>
           </group>
-          <group onClick={() => handleClick(6)}>
+          <group onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} onClick={() => handleClick(6)}>
             <Desktop/>
           </group>
         </group>

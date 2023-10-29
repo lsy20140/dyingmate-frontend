@@ -92,4 +92,5 @@ const Button = styled.div`
   display: flex;
   justify-content: center;
   width: 8.5rem;
+  cursor: pointer;
 `

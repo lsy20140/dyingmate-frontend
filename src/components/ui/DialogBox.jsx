@@ -77,6 +77,7 @@ const Container = styled.div`
 `
 const NextButton = styled.div`
   width: 100%;
+  cursor: pointer;
   
   & > *{
     position: absolute;

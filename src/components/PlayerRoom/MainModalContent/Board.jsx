@@ -91,6 +91,7 @@ const NewPostWrapper = styled.div`
     &:hover{
       transform: scale(1.2) rotate(10deg);
       transition: transform 0.2s;
+      cursor: pointer;
     }
   }
 `
