@@ -72,7 +72,7 @@ export default function SignUpForm() {
         return;
       }
       else{
-        navigate('/onboarding',{state: {email: email, pwd: pwd}})
+        navigate('/onboarding',{state: {isSocialLogin: false, email: email, pwd: pwd}})
       }
         
     }).catch(function (error) {
