@@ -33,7 +33,7 @@ export default function Onboarding() {
       )
       .then((response) => {
         console.log(response)
-        localStorage.setItem('login-token', response.data.data.token);
+        localStorage.setItem('login-token', response.data.data.accessToken);
         setToken(localStorage.getItem('login-token'));
       })
       .then(() => {
