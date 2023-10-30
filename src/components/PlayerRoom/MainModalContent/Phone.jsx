@@ -53,7 +53,7 @@ export default function Phone() {
     }, )
     .then(function (response) {
       console.log(response)
-      setData(response.data.data.message)
+      setData(response.data.data.message ?? '')
     })
     .catch(function (error) {
       console.log(error);
