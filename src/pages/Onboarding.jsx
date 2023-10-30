@@ -17,11 +17,12 @@ export default function Onboarding() {
 
   const location = useLocation();
   const {isSocialLogin} = location.state
-  const {email, pwd} = isSocialLogin && location.state
+  const {email, pwd} = !isSocialLogin && location.state
   const {token, setToken, setLogin} = useAuthContext()
   const baseUrl = 'https://dying-mate-server.link'
 
   useEffect(() => {
+    console.log("onboarding location.state.isSocialLogin",isSocialLogin )
     if(!isSocialLogin) {
       axios.post(
         `${baseUrl}/user/login`,
