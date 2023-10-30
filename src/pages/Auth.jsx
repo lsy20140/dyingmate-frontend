@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 import { useAuthContext } from '../contexts/AuthContext';
 import styled from 'styled-components';
 
 export default function Auth() {
   const code = new URL(window.location.href).searchParams.get("code");
   const baseUrl = 'https://dying-mate-server.link'
+  const navigate = useNavigate()
 
   const {user, setUser, token, setToken, setLogin} = useAuthContext()
   const [accessTokenFetching, setAccessTokenFetching] = useState(false)
