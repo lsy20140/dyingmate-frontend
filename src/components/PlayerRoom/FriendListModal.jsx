@@ -7,14 +7,16 @@ import OneRequestItem from './FriendList/OneRequestItem'
 import axios from 'axios'
 import { getAllFriends, getAllRequests } from '../../apis/api/PlayerRoom/friendList'
 import OneSearchItem from './FriendList/OneSearchItem'
+import { useAuthContext } from '../../contexts/AuthContext'
 
 
 export default function FriendListModal({setFriendListModal}) {
   const [searchInput, setSearchInput] = useState('')  
-  const [friendList, setFriendList] = useState([])
-  const [requestList, setRequestList] = useState([])
-  const [userList, setUserList] = useState([])
+  const [friendList, setFriendList] = useState()
+  const [requestList, setRequestList] = useState()
+  const [userList, setUserList] = useState()
   const baseUrl = 'https://dying-mate-server.link'
+  const {token} = useAuthContext()
 
 
   const handleOnChange = (e) => {
@@ -31,11 +33,27 @@ export default function FriendListModal({setFriendListModal}) {
 
   useEffect(() => {
     async function getUserList() {
-      const {data} = await axios.get('http://localhost:3000/data/PlayerRoom/allUsers.json',{})
-      setUserList(data.data.users)
+      const {data} = await axios.get(`${baseUrl}/friend/search`,{
+        headers: {Authorization: 'Bearer ' + token},
+      }, )
+      setUserList(data.data)
     }
+
+    // 친구 맺은 목록, 친구 요청 받은 목록
+    async function getFriendList() {
+      const {data} = await axios.get(`${baseUrl}/friend/list`, {
+        headers: {Authorization: 'Bearer ' + token},
+      }, )
+      setFriendList(data.data.friendRequestResponseList)
+      setRequestList(data.data.friendListResponseList)
+    }
+
     getUserList();
-    console.log(userList)
+    getFriendList();
+
+    console.log("userList",userList)
+    console.log("friendList", friendList)
+    console.log("requestList", requestList)
   },[])
 
 
