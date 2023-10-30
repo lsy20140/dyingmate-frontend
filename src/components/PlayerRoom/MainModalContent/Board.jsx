@@ -1,28 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import BoardSrc4 from '../../../assets/img/PlayerRoom/boardSrc4.png'
 import BoardSrc5 from '../../../assets/img/PlayerRoom/boardSrc5.png'
 import NewTextPost from './Board/NewTextPost'
 import NewImagePost from './Board/NewImagePost'
 import AddPostModal from './Board/AddPostModal'
 import { getAllBucketlist } from '../../../apis/api/PlayerRoom/bucketlist'
+import axios from 'axios'
+import OnePostItem from './Board/OnePostItem'
+import { useAuthContext } from '../../../contexts/AuthContext'
 
 export default function Board() {
   const [openModal, setOpenModal] = useState(false)
-  const [posts, setAllPosts] = useState([])
   const [isImagePost, setIsImagePost] = useState(false)
+  const [allBucketlist, setAllBucketlist] = useState()
+  const baseUrl = 'https://dying-mate-server.link'
+  const {token} = useAuthContext()
 
   useEffect(() => {
+    async function getAllBucketlist() {
+      const {data} = await axios.get(`${baseUrl}/bucketlist/load`,{
+        headers: {Authorization: 'Bearer ' + token},
+      }, )
+      setAllBucketlist(data.data.fileResponseList)
+    }
+    // async function getAllBucketlist() {
+    //   const {data} = await axios.get('/data/PlayerRoom/allBucketlist.json',{})
+    //   setAllBucketlist(data.data.fileResponseList)
+    // }
+
     getAllBucketlist()
-    .then((res) => {
-      console.log("getAllBucketlist", res.data)
-      res.data.map((item) => setAllPosts([...posts, item]))
-      console.log(posts)
-    }).catch(function (error) {
-      // 오류발생시 실행
-      console.log(error.message)
-    })
-  },[])
+    console.log("allBucketlist", allBucketlist)
+  },[getAllBucketlist])
 
   const handleOnClick = (isImagePost) => {
     setOpenModal(true)
@@ -41,7 +49,9 @@ export default function Board() {
             <NewTextPost />
           </NewPostWrapper>
           <PostWrapper>
-            {/* 생성한 post 보여주기  */}
+            {allBucketlist && allBucketlist.map((memo, idx) => (
+              <OnePostItem key={idx} memo={memo}/>
+            ))}            
           </PostWrapper>
         </BoardContainer>
       </Container>
