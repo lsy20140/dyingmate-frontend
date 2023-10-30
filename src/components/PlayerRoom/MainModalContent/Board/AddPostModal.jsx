@@ -17,7 +17,7 @@ export default function AddPostModal({isImagePost, setOpenModal}) {
 
   const handleChange = (e) => {
     const {name, value, files} = e.target
-    setPost((post) => ({...post, 'title': 'title', 'photo': '', 'xLoc': getRandomX, 'yLoc': getRandomY, [name]:value}))
+    setPost((post) => ({...post, [name]: value, 'memoX': getRandomX, 'memoY': getRandomY}))
     if(name === 'file') {
       setPhoto(files && files[0]);
       setPost((post) => ({...post, 'photo': files[0]}))
@@ -34,8 +34,6 @@ export default function AddPostModal({isImagePost, setOpenModal}) {
     for ( const key in post ) {
       formData.append(key, post[key]);
     }
-    console.log("formData", formData)
-    closeModal()
     await axios
     .post(`${baseUrl}/bucketlist/add`, formData, {
       headers: {
@@ -51,6 +49,8 @@ export default function AddPostModal({isImagePost, setOpenModal}) {
         // 오류발생시 실행
       console.log(error.message)
     })
+    closeModal()
+
   }
 
 
@@ -87,7 +87,7 @@ export default function AddPostModal({isImagePost, setOpenModal}) {
                 {isImagePost && 
                   <UploadBox>
                     <p>+ 파일 추가하기</p>
-                    <input type="file" name='file' accept='.png, .jpg,image/*' onChange={handleChange}/>
+                    <input type="file" name='photo' accept='.png, .jpg,image/*' onChange={handleChange}/>
                   </UploadBox>
                 }
                 <IconStyledButton width={'100%'} text={'생성하기'} fontSize={'1.25rem'} fontWeight={'700'} color={'white'} btnColor={'var(--main-color)'} handleOnClick={handleSubmit} />

@@ -41,6 +41,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["pure-react-carousel", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:1.30.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:18.2.0"],\
+            ["react-draggable", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:4.4.6"],\
             ["react-icons", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:4.11.0"],\
             ["react-loader-spinner", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:5.4.5"],\
             ["react-router-dom", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:6.15.0"],\
@@ -8358,6 +8359,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["string-width", "npm:4.2.3"],\
             ["strip-ansi", "npm:6.0.1"],\
             ["wrap-ansi", "npm:7.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["clsx", [\
+        ["npm:1.2.1", {\
+          "packageLocation": "./.yarn/cache/clsx-npm-1.2.1-77792dc182-30befca801.zip/node_modules/clsx/",\
+          "packageDependencies": [\
+            ["clsx", "npm:1.2.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -17360,6 +17370,34 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["react-draggable", [\
+        ["npm:4.4.6", {\
+          "packageLocation": "./.yarn/cache/react-draggable-npm-4.4.6-4867b50158-9b15aac592.zip/node_modules/react-draggable/",\
+          "packageDependencies": [\
+            ["react-draggable", "npm:4.4.6"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:4.4.6", {\
+          "packageLocation": "./.yarn/__virtual__/react-draggable-virtual-937820d844/0/cache/react-draggable-npm-4.4.6-4867b50158-9b15aac592.zip/node_modules/react-draggable/",\
+          "packageDependencies": [\
+            ["react-draggable", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:4.4.6"],\
+            ["@types/react", null],\
+            ["@types/react-dom", null],\
+            ["clsx", "npm:1.2.1"],\
+            ["prop-types", "npm:15.8.1"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react",\
+            "react-dom",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["react-dropzone", [\
         ["npm:12.1.0", {\
           "packageLocation": "./.yarn/cache/react-dropzone-npm-12.1.0-56c67f77aa-1be37433cf.zip/node_modules/react-dropzone/",\
@@ -17403,6 +17441,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["pure-react-carousel", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:1.30.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:18.2.0"],\
+            ["react-draggable", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:4.4.6"],\
             ["react-icons", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:4.11.0"],\
             ["react-loader-spinner", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:5.4.5"],\
             ["react-router-dom", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:6.15.0"],\
