@@ -17,20 +17,50 @@ export default function Board() {
   const {token} = useAuthContext()
 
   useEffect(() => {
-    async function getAllBucketlist() {
-      const {data} = await axios.get(`${baseUrl}/bucketlist/load`,{
-        headers: {Authorization: 'Bearer ' + token},
-      }, )
-      setAllBucketlist(data.data.fileResponseList)
-    }
     // async function getAllBucketlist() {
-    //   const {data} = await axios.get('/data/PlayerRoom/allBucketlist.json',{})
+    //   const {data} = await axios.get(`${baseUrl}/bucketlist/load`,{
+    //     headers: {Authorization: 'Bearer ' + token},
+    //   }, )
     //   setAllBucketlist(data.data.fileResponseList)
     // }
+    async function getAllBucketlist() {
+      try{
+        const {data} = await axios.get(`${baseUrl}/bucketlist/load`,{
+          headers: {Authorization: 'Bearer ' + token},
+        }, )
+        return data
+      }
+      catch(error) {
+        console.log(error)
+      }
+    }
+    
+    getAllBucketlist().then((res) =>{
+      if(res) {
+        setAllBucketlist(res.data.fileResponseList)
+      }
+      }).then(() => {
+        console.log("allBucketlist", allBucketlist)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
 
-    getAllBucketlist()
-    console.log("allBucketlist", allBucketlist)
-  },[getAllBucketlist])
+    // async function getAllBucketlist() {
+    //   try{
+    //     const {data} = await axios.get('/data/PlayerRoom/allBucketlist.json',{})
+    //     return data
+    //   }
+    //   catch(error) {
+    //     console.log(error)
+    //   }
+    // }
+    // getAllBucketlist().then((res) =>{
+    //   setAllBucketlist(res.data.fileResponseList)
+    // }).then(() => {
+    //   console.log("allBucketlist", allBucketlist)
+    // })
+  },[])
 
   const handleOnClick = (isImagePost) => {
     setOpenModal(true)

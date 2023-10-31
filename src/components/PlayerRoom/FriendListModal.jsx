@@ -24,7 +24,7 @@ export default function FriendListModal({setFriendListModal}) {
     console.log("filteredList", filteredList)
   }
 
-  const filteredList = userList.filter((item) => {
+  const filteredList = userList && userList.filter((item) => {
     if(searchInput !== '' && item.email.toLowerCase().includes(searchInput.toLowerCase())){ 
       return item
     }

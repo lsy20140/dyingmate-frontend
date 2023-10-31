@@ -32,7 +32,7 @@ export default function Phone() {
     setIsSend(true);
     setInputData('')
     setData(inputData)
-    axios.post(`${baseUrl}/message/send`, {message: inputData}, {
+    axios.post(`${baseUrl}/message/send`, {message: data}, {
       headers: {
         Authorization: `Bearer ${token}`
       },
