@@ -64,8 +64,8 @@ export default function Will() {
     }, )
     .then(function (response) {
       console.log("response.data",response)
-      setInputData(response.data.content ?? '')
-      setData(response.data.content ?? '')
+      setInputData(response.data.data.content ?? '')
+      setData(response.data.data.content ?? '')
     })
     .catch(function (error) {
       console.log(error);

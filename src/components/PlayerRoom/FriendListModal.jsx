@@ -25,7 +25,7 @@ export default function FriendListModal({setFriendListModal}) {
   }
 
   const filteredList = userList && userList.filter((item) => {
-    if(searchInput !== '' && item.email.toLowerCase().includes(searchInput.toLowerCase())){ 
+    if(searchInput !== '' && item.friendEmail.toLowerCase().includes(searchInput.toLowerCase())){ 
       return item
     }
   })
@@ -76,8 +76,8 @@ export default function FriendListModal({setFriendListModal}) {
               {filteredList && filteredList.length > 0 ?
                 filteredList.map(data => {
                   console.log("data",data)
-                  const {email, name, photo} = data
-                  return <OneSearchItem isExist={true} email={email} name={name} photo={photo} />
+                  const {friendEmail, friendName, friendProfile} = data
+                  return <OneSearchItem isExist={true} email={friendEmail} name={friendName} photo={friendProfile} />
                 })    
                 :<OneSearchItem isExist={false}/>
               }
@@ -88,13 +88,13 @@ export default function FriendListModal({setFriendListModal}) {
           <ListWrapper>
             <p>친구 목록</p>
             {friendList && friendList.map((data, idx) => (
-              <OneFriendItem key={data.id} userId={data.userId} username={data.userName}/>
+              <OneFriendItem key={idx} userId={data.email} username={data.name}/>
             ))}
           </ListWrapper>
           <ListWrapper>
             <p>친구 요청</p>
             {requestList && requestList.map((data, idx) => (
-              <OneRequestItem key={data.id} userId={data.userId} username={data.userName}/>
+              <OneRequestItem key={idx} userId={data.email} username={data.name}/>
             ))}
           </ListWrapper>
         </ListContainer>
