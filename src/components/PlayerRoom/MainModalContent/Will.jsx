@@ -63,9 +63,9 @@ export default function Will() {
       headers: {Authorization: 'Bearer ' + token},
     }, )
     .then(function (response) {
-      console.log("response.data",response.data)
-      setInputData(response.data.data.content ?? '')
-      setData(response.data.data.content ?? '')
+      console.log("response.data",response)
+      setInputData(response.data.content ?? '')
+      setData(response.data.content ?? '')
     })
     .catch(function (error) {
       console.log(error);
