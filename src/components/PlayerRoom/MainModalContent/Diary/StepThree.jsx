@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import {ReactComponent as MainIcon} from '../../../../assets/icons/PlayerRoom/Diary/main_icon.svg'
 import UploadFrameSrc from '../../../../assets/img/PlayerRoom/upload_frame.png'
-import UploadBoxSrc from '../../../../assets/img/PlayerRoom/upload_box.png'
 import { useDiaryContext } from '../../../../contexts/DiaryContext'
+import {FiFolderPlus} from 'react-icons/fi'
 
 export default function StepThree() {
   const fileInput = useRef(null)
@@ -32,7 +32,14 @@ export default function StepThree() {
     <Content>
       <UploadBox>
         <img src={UploadFrameSrc}/>
-        {/* <img src={selectImg ? URL.createObjectURL(selectImg) : UploadBoxSrc } /> */}
+        {selectImg ? 
+          <img src={selectImg && URL.createObjectURL(selectImg) } />
+          :
+          <SelectFileBox>
+            <FiFolderPlus/>
+          </SelectFileBox>
+        }
+        
         <input type="file" name='file' ref={fileInput} accept='.png, .jpg,image/*' onChange={handleChange}/>
       </UploadBox>
       <TextArea>
@@ -78,17 +85,34 @@ const UploadBox = styled.div`
     height: 16.5rem;
     border-radius: 0.25rem;
   }
-  
 
   input[type="file"] {
     width: 10rem;
+    height: 100%;
     position: absolute;
     padding: 0;
     overflow: hidden;
     border: 0;
     z-index: 999;
     opacity: 0;
-    
+    cursor: pointer;
+  }
+`
+
+const SelectFileBox = styled.div`
+  position: absolute;
+  width: 10.8rem;
+  height: 16.5rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  svg {
+    color: #CCC;
+    width: 2.25rem;
+    height: 2.25rem;
   }
 `
 

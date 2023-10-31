@@ -25,7 +25,6 @@ export default function StepOne() {
     }, )
     .then(function(res){
       setDiary(() => ({...res.data}))
-      
     })
     .then(() => {
       console.log("StepOne diary", diary)
@@ -43,9 +42,9 @@ export default function StepOne() {
       <TextArea>
         <MainIcon/>
         <Text>
-          <p>장례방식 지정하기</p>
-          <p>당신의 장례 방식에 대해 생각해보고 어떤 방식으로 나의 향기를 세상에 남겨둘지 선택해주세요. <br/>
-            당신의 선택은 당신의 존재와 가치를 빛내는 소중한 결정입니다. 당신의 흔적을 남기는 방법을 고민하며, 감정과 세심함을 담아 장례 방식을 정해보세요. 
+          <p>장례방식은,</p>
+          <p>당신의 존재와 가치를 빛내는 소중한 결정입니다.<br/>
+            당신의 흔적을 남길 장례방식을 고민하며, 감정과 세심함을 담아 정해보세요. 
           </p>
         </Text>
       </TextArea>

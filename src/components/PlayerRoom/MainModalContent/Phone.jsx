@@ -32,7 +32,7 @@ export default function Phone() {
     setIsSend(true);
     setInputData('')
     setData(inputData)
-    axios.post(`${baseUrl}/message/send`, {message: data}, {
+    axios.post(`${baseUrl}/message/send`, {message: inputData}, {
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -53,7 +53,7 @@ export default function Phone() {
     }, )
     .then(function (response) {
       console.log(response)
-      setData(response.data.data.message ?? '')
+      setData(response.data.data.message)    
     })
     .catch(function (error) {
       console.log(error);
@@ -74,7 +74,7 @@ export default function Phone() {
             <p>부고문자는 한번만 작성할 수 있으니 신중하게 작성해야 합니다. <br/>
               {date.getMonth()}월 {date.getDay()}일 ({week[date.getDay()]}) {date.getHours()}:{String(date.getMinutes()).padStart(2, "0")}
             </p>
-            {isSend && 
+            {(isSend || data.length>0) && 
             <MessageArea>
               <Bubble>
                 <p>{data}</p>

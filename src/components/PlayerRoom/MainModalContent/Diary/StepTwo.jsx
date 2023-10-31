@@ -19,7 +19,7 @@ export default function StepTwo() {
 
   const handleClick = (e) => {
     setIsDone(true)
-    setDiary((data) => ({...data, 'epitaph': stoneText}))
+    setDiary((data) => ({...data, 'epitaph': stoneTextInput}))
   }
 
   useEffect(() => {
