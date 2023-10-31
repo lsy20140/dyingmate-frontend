@@ -17,7 +17,7 @@ export default function AddPostModal({isImagePost, setOpenModal}) {
 
   const handleChange = (e) => {
     const {name, value, files} = e.target
-    setPost((post) => ({...post, [name]: value, 'memoX': getRandomX, 'memoY': getRandomY}))
+    setPost((post) => ({...post, [name]: value, 'memoX': getRandomX, 'memoY': getRandomY, 'photo': ""}))
     if(name === 'file') {
       setPhoto(files && files[0]);
       setPost((post) => ({...post, 'photo': files[0]}))
@@ -30,16 +30,12 @@ export default function AddPostModal({isImagePost, setOpenModal}) {
     setOpenModal(false)
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     for ( const key in post ) {
       formData.append(key, post[key]);
     }
-    for(const data in formData) {
-      console.log("data", data)
-    }
 
-    await axios
-    .post(`${baseUrl}/bucketlist/add`, formData, {
+    axios.post(`${baseUrl}/bucketlist/add`, formData, {
       headers: {
         'Content-Type' : 'multipart/form-data',
         'Authorization': `Bearer ${token}`,

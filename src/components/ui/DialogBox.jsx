@@ -36,7 +36,7 @@ export default function DialogBox({messageArr, stageNum}) {
             
         }).catch(function (error) {
             // 오류발생시 실행
-            console.log(error.message)
+            console.log(error)
         })
         setTimeout(() => {
           navigate('/main')
