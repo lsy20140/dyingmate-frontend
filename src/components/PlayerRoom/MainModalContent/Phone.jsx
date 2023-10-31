@@ -7,11 +7,13 @@ import StyledButton from '../../ui/StyledButton'
 import {ReactComponent as SendIcon} from '../../../assets/icons/PlayerRoom/Phone/send_icon.svg'
 import { ReactComponent as BubbleVector } from '../../../assets/img/PlayerRoom/message_bubble_vec.svg'
 import { useAuthContext } from '../../../contexts/AuthContext'
+import {IoMdAlert} from 'react-icons/io'
 
 export default function Phone() {
   const [inputData, setInputData] = useState('')
   const [data, setData] = useState('')
   const [isSend, setIsSend] = useState(false);
+  const [isMaxLength, setIsMaxLength] = useState(false)
 
   const baseUrl = 'https://dying-mate-server.link'
   const {token} = useAuthContext()
@@ -24,8 +26,11 @@ export default function Phone() {
 
 
   const handleChange = (e) => {
-    setInputData(e.target.value);
+    const {value, maxLength} = e.target
+    setInputData(value);
     textarea.current.style.height = textarea.current.scrollHeight + 'px';
+
+    setIsMaxLength(value.length === maxLength)
   }
 
   const handleSubmit = async (e) => {
@@ -85,17 +90,30 @@ export default function Phone() {
 
           </Main>
           <Footer method='POST'>
-            <FormInput 
-              ref={textarea}
-              type={"text"}
-              id='message' 
-              name='message' 
-              value={inputData ?? ''}
-              onChange={handleChange}
-              placeholder='부고 문자에 들어갈 내용을 작성해주세요.' 
-              spellCheck="false"
-              required
-            />
+            <TextAreaWrapper>
+              {isMaxLength && 
+                <ValidText>
+                  <IoMdAlert/>
+                  <p>200자까지만 작성 가능합니다.</p>
+                </ValidText>
+              }
+
+              <FormInput 
+                ref={textarea}
+                type={"text"}
+                id='message' 
+                name='message' 
+                value={inputData ?? ''}
+                onChange={handleChange}
+                placeholder='부고 문자에 들어갈 내용을 작성해주세요.' 
+                spellCheck="false"
+                required
+                maxLength={10}
+                isMaxLength={isMaxLength}
+              />
+
+            </TextAreaWrapper>
+
             <StyledButton width={'7rem'} handleOnClick={handleSubmit} text={<SendIcon/>} btnColor={`var(--main-color)`} />
           </Footer>
         </PhoneWrapper>
@@ -212,11 +230,33 @@ const Footer = styled.form`
   align-items: flex-end;
 `
 
+const TextAreaWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+
+`
+
+const ValidText = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--main-color);
+  font-size: 0.875rem;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+`
+
 const FormInput = styled.textarea`
   width: 100%;
   box-sizing: border-box;
   padding: 1rem;
   border: none;
+  outline: 2px solid ${(props) => props.isMaxLength ? 'var(--main-color)' : 'transparent'};
   border-radius: 1.25rem;
   color: var(--font-gray-2);
   background-color: #f3f3f3;
