@@ -73,9 +73,7 @@ export default function FriendListModal({setFriendListModal}) {
 
   const handleAcceptFriend = (acceptEmail) => {
     axios
-    .post(`${baseUrl}/friend/accept`, {
-      "acceptEmail": acceptEmail
-    }, {
+    .post(`${baseUrl}/friend/accept?acceptEmail=${acceptEmail}`, {}, {
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -89,11 +87,9 @@ export default function FriendListModal({setFriendListModal}) {
     })
   }
 
-  const handleRefuseFriend = (acceptEmail) => {
+  const handleRefuseFriend = (refuseEmail) => {
     axios
-    .delete(`${baseUrl}/friend/refuse`, {
-      "acceptEmail": acceptEmail
-    }, {
+    .delete(`${baseUrl}/friend/refuse?refuseEmail=${refuseEmail}`, {}, {
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -173,7 +169,7 @@ const Container = styled.div`
   width: 60rem;
   height: 42rem;
   background: linear-gradient(237deg, rgba(0, 0, 0, 0.2) -23.03%, rgba(0, 0, 0, 0.05) 119.63%);
-  outline: 3px solid white; 
+  outline: 2px solid white; 
   border-radius: 2.5rem;  
   backdrop-filter: blur(60px);
   box-sizing: border-box;
