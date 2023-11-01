@@ -138,6 +138,7 @@ const CloseHeader = styled.div`
   svg {
     color: white;
     font-size: 2rem;
+    cursor: pointer;
   }
 `
 
@@ -225,6 +226,7 @@ const UploadBox = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  cursor: pointer;
 
   input[type="file"] {
     width: 100%;

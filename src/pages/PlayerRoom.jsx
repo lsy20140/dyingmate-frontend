@@ -99,7 +99,9 @@ export default function PlayerRoom() {
       const {data} = await axios.get(`${baseUrl}/friend/list`, {
         headers: {Authorization: 'Bearer ' + token},
       }, )
-      console.log("requestcount", data.data.friendRequestResponseList.length)
+      console.log(data)
+      console.log("requestcount", data && data.data.friendRequestResponseList.length)
+
       setRequestCount(data.data.friendRequestResponseList.length)
     }
     getFriendList();

@@ -43,11 +43,6 @@ export default function FriendListModal({setFriendListModal}) {
       setFriendList((friendList) => [...friendList, ...res.data.data.friendListResponseList])
       setRequestList((requestList) => [...requestList, ...res.data.data.friendRequestResponseList])
     })
-
-
-    console.log("userList",userList)
-    console.log("friendList", friendList)
-    console.log("requestList", requestList)
   },[])
 
   const filteredList = userList && userList.filter((item) => {
@@ -55,6 +50,26 @@ export default function FriendListModal({setFriendListModal}) {
       return item
     }
   })
+
+  const handleAddFriend = ({friendEmail, friendName, friendProfile}) => {
+    axios
+    .post(`${baseUrl}/friend/add`, {
+      "friendEmail": friendEmail,
+      "friendName": friendName,
+      "friendProfile": friendProfile,
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      withCredentials: true,
+    })
+    .then((response) => {
+      console.log(response)        
+    }).catch(function (error) {
+        // 오류발생시 실행
+        console.log(error.message)
+    })
+  }
 
 
   return (
@@ -77,7 +92,7 @@ export default function FriendListModal({setFriendListModal}) {
                 filteredList.map(data => {
                   console.log("data",data)
                   const {friendEmail, friendName, friendProfile} = data
-                  return <OneSearchItem isExist={true} email={friendEmail} name={friendName} photo={friendProfile} />
+                  return <OneSearchItem isExist={true} email={friendEmail} name={friendName} photo={friendProfile} handleAddFriend={() => handleAddFriend(friendEmail, friendName, friendProfile)}/>
                 })    
                 :<OneSearchItem isExist={false}/>
               }
