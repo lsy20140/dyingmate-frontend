@@ -4,9 +4,15 @@ import {IoIosClose} from 'react-icons/io'
 import IconStyledButton from '../../../ui/IconStyledButton'
 import {PiImageSquareBold} from 'react-icons/pi'
 import { addBucketlist } from '../../../../apis/api/PlayerRoom/bucketlist'
-import { getRandomX, getRandomY } from '../../../../apis/utils/PlayerRoom/getRandomPosition'
 import { useAuthContext } from '../../../../contexts/AuthContext'
 import axios from 'axios'
+import { getRandomPos } from '../../../../apis/utils/PlayerRoom/getRandomPosition'
+
+const MAX_X = 1440
+const MIN_X = 150
+
+const MAX_Y = 800
+const MIN_Y = 150
 
 export default function AddPostModal({isImagePost, setOpenModal}) {
   const [post, setPost] = useState({})
@@ -14,10 +20,12 @@ export default function AddPostModal({isImagePost, setOpenModal}) {
   const formData = new FormData()
   const {token} = useAuthContext();
   const baseUrl = 'https://dying-mate-server.link'
+  const [randomX, setRandomX] = useState(0)
+  const [randomY, setRandomY] = useState(0)
 
   const handleChange = (e) => {
     const {name, value, files} = e.target
-    setPost((post) => ({...post, [name]: value, 'memoX': getRandomX, 'memoY': getRandomY, 'photo': ''}))
+    setPost((post) => ({...post, [name]: value, 'memoX': randomX, 'memoY': randomY, 'photo': ''}))
     if(name === 'photo') {
       setPhoto(files && files[0]);
       console.log("files[0]",files[0])
@@ -54,6 +62,11 @@ export default function AddPostModal({isImagePost, setOpenModal}) {
     closeModal()
 
   }
+
+  useEffect(() => {
+    setRandomX(getRandomPos(MAX_X, MIN_X))
+    setRandomY(getRandomPos(MAX_Y, MIN_Y))
+  },[])
 
 
   return (
