@@ -9,6 +9,7 @@ import Phone from '../PlayerRoom/MainModalContent/Phone'
 import Diary from '../PlayerRoom/MainModalContent/Diary'
 import Board from './MainModalContent/Board';
 import Shelf from './MainModalContent/Shelf/Shelf';
+import Desktop from './MainModalContent/Desktop';
 
 export default function ModalOverlay({curIdx, setCamera}) {
   const {setFocus} = usePlay()
@@ -35,6 +36,9 @@ export default function ModalOverlay({curIdx, setCamera}) {
         break;
       case 5: 
         setComp(<Shelf/>)
+        break;
+      case 6:
+        setComp(<Desktop/>)
         break;
     }
   },[]);
