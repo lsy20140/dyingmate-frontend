@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import TestProfile from '../../../assets/img/splashBg.png'
 
-export default function OneRequestItem({userId, username}) {
+export default function OneRequestItem({userId, username, handleAcceptFriend, handleRefuseFriend}) {
   return (
     <ItemBox>
       <UserInfo>
@@ -13,8 +13,8 @@ export default function OneRequestItem({userId, username}) {
         </IdNameText>
       </UserInfo>
       <ButtonWrapper>
-        <button>수락</button>
-        <button>취소</button>
+        <button onClick={() => handleAcceptFriend()}>수락</button>
+        <button onClick={() => handleRefuseFriend()}>취소</button>
       </ButtonWrapper>
     </ItemBox>
   )

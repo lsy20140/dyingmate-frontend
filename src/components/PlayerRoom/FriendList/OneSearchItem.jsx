@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import TestProfile from '../../../assets/img/splashBg.png'
 
 
-export default function OneSearchItem({isExist, email, name, photo}) {
+export default function OneSearchItem({isExist, email, name, photo, handleAddFriend}) {
   const handleAddFriend = () => {
     // 친구 추가/요청 api 연동
   }
