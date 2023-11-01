@@ -86,6 +86,21 @@ export default function PlayerRoom() {
   },[hovered])
 
 
+
+  useEffect(() => {
+    // 친구 맺은 목록, 친구 요청 받은 목록
+    async function getFriendList() {
+      const {data} = await axios.get(`${baseUrl}/friend/list`, {
+        headers: {Authorization: 'Bearer ' + token},
+      }, )
+      console.log(data)
+      console.log("requestcount", data && data.data.friendRequestResponseList.length)
+      setRequestCount(data.data.friendRequestResponseList.length)
+    }
+    getFriendList();
+  },[])
+
+
   const LightHelper = () => {
     useHelper(light1, DirectionalLightHelper, 1, "red");
     useHelper(light2, DirectionalLightHelper, 1, "blue");
