@@ -14,8 +14,7 @@ import { Phone } from '../components/models/PlayerRoom/Phone';
 import { Diary } from '../components/models/PlayerRoom/Diary';
 import { Shelf } from '../components/models/PlayerRoom/Shelf';
 import { Desktop } from '../components/models/PlayerRoom/Desktop';
-import axios from 'axios'
-import { useAuthContext } from '../contexts/AuthContext';
+import { getAllRequests } from '../apis/api/PlayerRoom/friendList';
 
 export default function PlayerRoom() {
   const light1 = useRef()
@@ -29,11 +28,8 @@ export default function PlayerRoom() {
   const [position, setPosition] = useState({ x: 12, y: 8, z: 0 });
   const [target, setTarget] = useState({ x: 0, y: 5, z: 0 });
   const [hovered, setHovered] = useState(false)
-
   
-  const [requestCount, setRequestCount] = useState(0)
-  const baseUrl = 'https://dying-mate-server.link'
-  const {token} = useAuthContext()
+  const [requestCount, setRequestCount] = useState()
   
 
   const setCamera = () => {
@@ -94,15 +90,9 @@ export default function PlayerRoom() {
 
 
   useEffect(() => {
-    // 친구 맺은 목록, 친구 요청 받은 목록
-    axios.get(`${baseUrl}/friend/list`, {
-      headers: {Authorization: 'Bearer ' + token},
-    }, )
-    .then((res) => {
+    getAllRequests().then((res) => {
+      console.log(res)
       setRequestCount(res.data.data.friendRequestResponseList.length)
-    })
-    .catch((error) => {
-      console.log(error)
     })
   },[])
 

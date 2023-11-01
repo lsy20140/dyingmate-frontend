@@ -47,22 +47,7 @@ export default function Board() {
       .catch((error) => {
         console.log(error)
       })
-
-    // async function getAllBucketlist() {
-    //   try{
-    //     const {data} = await axios.get('/data/PlayerRoom/allBucketlist.json',{})
-    //     return data
-    //   }
-    //   catch(error) {
-    //     console.log(error)
-    //   }
-    // }
-    // getAllBucketlist().then((res) =>{
-    //   setAllBucketlist(res.data.fileResponseList)
-    // }).then(() => {
-    //   console.log("allBucketlist", allBucketlist)
-    // })
-  },[])
+  },[allBucketlist])
 
   const handleOnClick = (isImagePost) => {
     setOpenModal(true)
