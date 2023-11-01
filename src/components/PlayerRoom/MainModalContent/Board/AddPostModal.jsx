@@ -17,7 +17,7 @@ export default function AddPostModal({isImagePost, setOpenModal}) {
 
   const handleChange = (e) => {
     const {name, value, files} = e.target
-    setPost((post) => ({...post, [name]: value, 'memoX': getRandomX, 'memoY': getRandomY, 'photo':null}))
+    setPost((post) => ({...post, [name]: value, 'memoX': getRandomX, 'memoY': getRandomY, 'photo': ''}))
     if(name === 'photo') {
       setPhoto(files && files[0]);
       console.log("files[0]",files[0])

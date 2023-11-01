@@ -14,7 +14,8 @@ import { Phone } from '../components/models/PlayerRoom/Phone';
 import { Diary } from '../components/models/PlayerRoom/Diary';
 import { Shelf } from '../components/models/PlayerRoom/Shelf';
 import { Desktop } from '../components/models/PlayerRoom/Desktop';
-import { Selection, Select, EffectComposer, Outline } from '@react-three/postprocessing'
+import { useAuthContext } from '../../../contexts/AuthContext'
+import axios from 'axios'
 
 export default function PlayerRoom() {
   const light1 = useRef()
@@ -28,6 +29,11 @@ export default function PlayerRoom() {
   const [position, setPosition] = useState({ x: 12, y: 8, z: 0 });
   const [target, setTarget] = useState({ x: 0, y: 5, z: 0 });
   const [hovered, setHovered] = useState(false)
+
+  
+  const [requestCount, setRequestCount] = useState(0)
+  const baseUrl = 'https://dying-mate-server.link'
+  const {token} = useAuthContext()
   
 
   const setCamera = () => {
@@ -95,6 +101,7 @@ export default function PlayerRoom() {
       }, )
       console.log(data)
       console.log("requestcount", data && data.data.friendRequestResponseList.length)
+
       setRequestCount(data.data.friendRequestResponseList.length)
     }
     getFriendList();
@@ -142,7 +149,7 @@ export default function PlayerRoom() {
 
       {/* 친구 목록 */}
       <div onClick={() => {handleClick(10); setFriendListModal(true)}}>
-        <ModalButton />
+        <ModalButton requestCount={requestCount} />
       </div>
       {friendListModal && <FriendListModal setFriendListModal={setFriendListModal}/>}
     </>

@@ -40,8 +40,8 @@ export default function FriendListModal({setFriendListModal}) {
     }, )
     .then((res) => {
       console.log("friend/list", res)
-      setFriendList((friendList) => [...friendList, ...res.data.data.friendRequestResponseList])
-      setRequestList((requestList) => [...requestList, ...res.data.data.friendListResponseList])
+      setFriendList((friendList) => [...friendList, ...res.data.data.friendListResponseList])
+      setRequestList((requestList) => [...requestList, ...res.data.data.friendRequestResponseList])
     })
   },[])
 
