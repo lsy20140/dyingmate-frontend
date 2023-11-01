@@ -14,8 +14,8 @@ import { Phone } from '../components/models/PlayerRoom/Phone';
 import { Diary } from '../components/models/PlayerRoom/Diary';
 import { Shelf } from '../components/models/PlayerRoom/Shelf';
 import { Desktop } from '../components/models/PlayerRoom/Desktop';
-import { useAuthContext } from '../../../contexts/AuthContext'
 import axios from 'axios'
+import { useAuthContext } from '../contexts/AuthContext';
 
 export default function PlayerRoom() {
   const light1 = useRef()

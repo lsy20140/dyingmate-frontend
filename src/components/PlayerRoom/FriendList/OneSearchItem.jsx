@@ -4,9 +4,6 @@ import TestProfile from '../../../assets/img/splashBg.png'
 
 
 export default function OneSearchItem({isExist, email, name, photo, handleAddFriend}) {
-  const handleAddFriend = () => {
-    // 친구 추가/요청 api 연동
-  }
 
   return (
     <>
@@ -20,7 +17,7 @@ export default function OneSearchItem({isExist, email, name, photo, handleAddFri
             <p>{name}</p>
           </IdNameText>
         </UserInfo>
-        <RequestButton onClick={handleAddFriend}>친구 추가</RequestButton>
+        <RequestButton onClick={() =>handleAddFriend(email, name, photo)}>친구 추가</RequestButton>
       </ItemBox>
       :
       <ItemBox><p>존재하지 않는 사용자입니다.</p></ItemBox>
