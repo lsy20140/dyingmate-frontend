@@ -71,6 +71,42 @@ export default function FriendListModal({setFriendListModal}) {
     })
   }
 
+  const handleAcceptFriend = ({acceptEmail}) => {
+    axios
+    .post(`${baseUrl}/friend/accept`, {
+      "acceptEmail": acceptEmail
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      withCredentials: true,
+    })
+    .then((response) => {
+      console.log(response)        
+    }).catch(function (error) {
+        // 오류발생시 실행
+        console.log(error.message)
+    })
+  }
+
+  const handleRefuseFriend = ({acceptEmail}) => {
+    axios
+    .delete(`${baseUrl}/friend/refuse`, {
+      "acceptEmail": acceptEmail
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      withCredentials: true,
+    })
+    .then((response) => {
+      console.log(response)        
+    }).catch(function (error) {
+        // 오류발생시 실행
+        console.log(error.message)
+    })
+  }
+
 
   return (
     <Overlay>
@@ -109,7 +145,13 @@ export default function FriendListModal({setFriendListModal}) {
           <ListWrapper>
             <p>친구 요청</p>
             {requestList && requestList.map((data, idx) => (
-              <OneRequestItem key={idx} userId={data.email} username={data.name}/>
+              <OneRequestItem 
+                key={idx} 
+                userId={data.email} 
+                username={data.name} 
+                handleAcceptFriend={() => handleAcceptFriend(data.email)} 
+                handleRefuseFriend={() => handleRefuseFriend(data.email)}
+              />
             ))}
           </ListWrapper>
         </ListContainer>
