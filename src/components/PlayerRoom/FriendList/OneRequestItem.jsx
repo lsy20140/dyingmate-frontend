@@ -13,8 +13,8 @@ export default function OneRequestItem({userId, username, handleAcceptFriend, ha
         </IdNameText>
       </UserInfo>
       <ButtonWrapper>
-        <button onClick={() => handleAcceptFriend()}>수락</button>
-        <button onClick={() => handleRefuseFriend()}>취소</button>
+        <button onClick={() => handleAcceptFriend(userId)}>수락</button>
+        <button onClick={() => handleRefuseFriend(userId)}>취소</button>
       </ButtonWrapper>
     </ItemBox>
   )

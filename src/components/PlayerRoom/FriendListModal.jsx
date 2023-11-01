@@ -51,7 +51,7 @@ export default function FriendListModal({setFriendListModal}) {
     }
   })
 
-  const handleAddFriend = ({friendEmail, friendName, friendProfile}) => {
+  const handleAddFriend = (friendEmail, friendName, friendProfile) => {
     axios
     .post(`${baseUrl}/friend/add`, {
       "friendEmail": friendEmail,
@@ -71,7 +71,7 @@ export default function FriendListModal({setFriendListModal}) {
     })
   }
 
-  const handleAcceptFriend = ({acceptEmail}) => {
+  const handleAcceptFriend = (acceptEmail) => {
     axios
     .post(`${baseUrl}/friend/accept`, {
       "acceptEmail": acceptEmail
@@ -89,7 +89,7 @@ export default function FriendListModal({setFriendListModal}) {
     })
   }
 
-  const handleRefuseFriend = ({acceptEmail}) => {
+  const handleRefuseFriend = (acceptEmail) => {
     axios
     .delete(`${baseUrl}/friend/refuse`, {
       "acceptEmail": acceptEmail
@@ -149,8 +149,8 @@ export default function FriendListModal({setFriendListModal}) {
                 key={idx} 
                 userId={data.email} 
                 username={data.name} 
-                handleAcceptFriend={() => handleAcceptFriend(data.email)} 
-                handleRefuseFriend={() => handleRefuseFriend(data.email)}
+                handleAcceptFriend={() =>handleAcceptFriend(data.email)} 
+                handleRefuseFriend={() =>handleRefuseFriend(data.email)}
               />
             ))}
           </ListWrapper>
