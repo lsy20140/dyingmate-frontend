@@ -17,11 +17,12 @@ export default function Onboarding() {
 
   const location = useLocation();
   const {isSocialLogin} = location.state
-  const {email, pwd} = isSocialLogin && location.state
+  const {email, pwd} = !isSocialLogin && location.state
   const {token, setToken, setLogin} = useAuthContext()
   const baseUrl = 'https://dying-mate-server.link'
 
   useEffect(() => {
+    console.log("onboarding location.state.isSocialLogin",isSocialLogin )
     if(!isSocialLogin) {
       axios.post(
         `${baseUrl}/user/login`,
@@ -86,7 +87,7 @@ export default function Onboarding() {
       <Container>
         <VideoWrapper>
           <video width="100%" height="100%" min-width="100%"  autoPlay muted playsInline loop>
-            <source src={'/videos/testOnboarding.mp4'} type="video/mp4" />
+            <source src={'/videos/onboardingVideo.mp4'} type="video/mp4" />
           </video>
         </VideoWrapper>
 

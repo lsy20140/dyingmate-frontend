@@ -15,7 +15,7 @@ export default function LoginForm() {
   const [pwd, setPwd] = useState('')
   const [showPwd, setShowPwd] = useState()
   const [isValid, setIsValid] = useState(true)
-  const {setUser, setToken, setLogin} = useAuthContext()
+  const {user, setUser, setLogin} = useAuthContext()
 
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_REST_API_KEY}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=code`
   const handleKakaoLogin = ()=>{
@@ -52,8 +52,9 @@ export default function LoginForm() {
         return;
       }
       localStorage.setItem('login-token', response.data.data.accessToken);
-      setToken(response.data.data.accessToken)
       setUser(response.data.data)
+      console.log("response.data.data",response.data.data)
+      console.log("user", user)
     })
     .then(() => {
       setLogin(true)

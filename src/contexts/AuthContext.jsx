@@ -8,6 +8,10 @@ export const AuthContextProvider = ({children}) => {
   const [login, setLogin] = useState(false)
   const [logout, setLogout] = useState(false)
 
+  useEffect(() => {
+    setToken(localStorage.getItem('login-token'))
+  },[])
+
   return (
     <AuthContext.Provider value={{
       user, setUser, 

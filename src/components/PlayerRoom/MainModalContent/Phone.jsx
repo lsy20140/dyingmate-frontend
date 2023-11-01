@@ -16,7 +16,8 @@ export default function Phone() {
   const [isMaxLength, setIsMaxLength] = useState(false)
 
   const baseUrl = 'https://dying-mate-server.link'
-  const {token} = useAuthContext()
+  const {token} = useAuthContext();
+  // const token = localStorage.getItem('login-token')
 
   // 날짜 구하기
   const date = new Date();

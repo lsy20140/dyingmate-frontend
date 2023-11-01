@@ -1,29 +1,16 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { useAuthContext } from "./AuthContext";
-import axios from 'axios'
+import { createContext, useContext, useMemo, useState } from "react";
 
 const StageContext = createContext()
 
 export const StageContextProvider = ({children}) => {
-  const {token} = useAuthContext()
   const [stage, setStage] = useState({})
 
-  useEffect(() => {
-    axios.get(`https://dying-mate-server.link/map`, {
-      headers: {Authorization: 'Bearer ' + token},
-    }, )
-    .then(function (res) {
-      if(res) {
-        setStage(() => ({...res.data}))
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  },[])
+  const value = useMemo(() => ({
+    stage, setStage
+  }),[stage])
 
   return (
-    <StageContext.Provider value={{stage, setStage}}>
+    <StageContext.Provider value={value}>
       {children}
     </StageContext.Provider>
   )

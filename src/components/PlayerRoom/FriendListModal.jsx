@@ -12,9 +12,9 @@ import { useAuthContext } from '../../contexts/AuthContext'
 
 export default function FriendListModal({setFriendListModal}) {
   const [searchInput, setSearchInput] = useState('')  
-  const [friendList, setFriendList] = useState()
-  const [requestList, setRequestList] = useState()
-  const [userList, setUserList] = useState()
+  const [friendList, setFriendList] = useState([])
+  const [requestList, setRequestList] = useState([])
+  const [userList, setUserList] = useState([])
   const baseUrl = 'https://dying-mate-server.link'
   const {token} = useAuthContext()
 
@@ -24,37 +24,37 @@ export default function FriendListModal({setFriendListModal}) {
     console.log("filteredList", filteredList)
   }
 
-  const filteredList = userList && userList.filter((item) => {
-    if(searchInput !== '' && item.email.toLowerCase().includes(searchInput.toLowerCase())){ 
-      return item
-    }
-  })
-
 
   useEffect(() => {
-    async function getUserList() {
-      const {data} = await axios.get(`${baseUrl}/friend/search`,{
-        headers: {Authorization: 'Bearer ' + token},
-      }, )
-      setUserList(data.data)
-    }
+    axios.get(`${baseUrl}/friend/search`,{
+      headers: {Authorization: 'Bearer ' + token},
+    }, )
+    .then((res) => {
+      console.log("friend/search", res.data.data)
+      setUserList(prev => [...prev, ...res.data.data])
+      console.log("userList",userList)
+    })
 
-    // 친구 맺은 목록, 친구 요청 받은 목록
-    async function getFriendList() {
-      const {data} = await axios.get(`${baseUrl}/friend/list`, {
-        headers: {Authorization: 'Bearer ' + token},
-      }, )
-      setFriendList(data.data.friendRequestResponseList)
-      setRequestList(data.data.friendListResponseList)
-    }
+    axios.get(`${baseUrl}/friend/list`, {
+      headers: {Authorization: 'Bearer ' + token},
+    }, )
+    .then((res) => {
+      console.log("friend/list", res)
+      setFriendList((friendList) => [...friendList, ...res.data.data.friendRequestResponseList])
+      setRequestList((requestList) => [...requestList, ...res.data.data.friendListResponseList])
+    })
 
-    getUserList();
-    getFriendList();
 
     console.log("userList",userList)
     console.log("friendList", friendList)
     console.log("requestList", requestList)
   },[])
+
+  const filteredList = userList && userList.filter((item) => {
+    if(searchInput !== '' && item.friendEmail && item.friendEmail.toLowerCase().includes(searchInput.toLowerCase())){ 
+      return item
+    }
+  })
 
 
   return (
@@ -76,8 +76,8 @@ export default function FriendListModal({setFriendListModal}) {
               {filteredList && filteredList.length > 0 ?
                 filteredList.map(data => {
                   console.log("data",data)
-                  const {email, name, photo} = data
-                  return <OneSearchItem isExist={true} email={email} name={name} photo={photo} />
+                  const {friendEmail, friendName, friendProfile} = data
+                  return <OneSearchItem isExist={true} email={friendEmail} name={friendName} photo={friendProfile} />
                 })    
                 :<OneSearchItem isExist={false}/>
               }
@@ -88,13 +88,13 @@ export default function FriendListModal({setFriendListModal}) {
           <ListWrapper>
             <p>친구 목록</p>
             {friendList && friendList.map((data, idx) => (
-              <OneFriendItem key={data.id} userId={data.userId} username={data.userName}/>
+              <OneFriendItem key={idx} userId={data.email} username={data.name}/>
             ))}
           </ListWrapper>
           <ListWrapper>
             <p>친구 요청</p>
             {requestList && requestList.map((data, idx) => (
-              <OneRequestItem key={data.id} userId={data.userId} username={data.userName}/>
+              <OneRequestItem key={idx} userId={data.email} username={data.name}/>
             ))}
           </ListWrapper>
         </ListContainer>

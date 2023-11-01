@@ -37,6 +37,8 @@ export default function Board() {
     
     getAllBucketlist().then((res) =>{
       if(res) {
+        console.log("res",res)
+        console.log("res.data.fileResponseList", res.data.fileResponseList)
         setAllBucketlist(res.data.fileResponseList)
       }
       }).then(() => {

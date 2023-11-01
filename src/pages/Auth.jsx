@@ -23,6 +23,7 @@ export default function Auth() {
         `${baseUrl}/user/kakao?code=${code}`, {}, {
           withCredentials: true,
       })
+      localStorage.setItem('login-token', res.data.data.accessToken);
       setToken(res.data.data.accessToken)
       setUser(res.data.data)
       console.log("res.data.data.accessToken",res.data.data.accessToken)
