@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import splashBg from '../assets/img/splashBg.png'
 import {ReactComponent as TitleSrc} from '../assets/img/title.svg'
 import styled from 'styled-components'

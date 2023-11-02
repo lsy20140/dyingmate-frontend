@@ -3,7 +3,6 @@ import { usePlay } from '../contexts/Play';
 import { useFrame } from "@react-three/fiber";
 import {PerspectiveCamera, useScroll} from "@react-three/drei";
 import * as THREE from "three";
-import { Euler, Group, Vector3 } from "three";
 import { MainBackground } from './MainBackground';
 import { Main_Ground } from './models/Outside/MainGround';
 import { useStageContext } from '../contexts/StageContext';

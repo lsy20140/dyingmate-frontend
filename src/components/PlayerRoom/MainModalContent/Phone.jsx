@@ -18,7 +18,6 @@ export default function Phone() {
 
   const baseUrl = 'https://dying-mate-server.link'
   const {token} = useAuthContext();
-  // const token = localStorage.getItem('login-token')
 
   // 날짜 구하기
   const date = new Date();
@@ -31,7 +30,6 @@ export default function Phone() {
     const {value, maxLength} = e.target
     setInputData(value);
     textarea.current.style.height = textarea.current.scrollHeight + 'px';
-
     setIsMaxLength(value.length === maxLength)
   }
 
@@ -46,7 +44,6 @@ export default function Phone() {
       withCredentials: true,
     })
     .then((response) => {
-      console.log(response)
       saveSuccess()
         
     }).catch(function (error) {
@@ -60,7 +57,6 @@ export default function Phone() {
       headers: {Authorization: 'Bearer ' + token},
     }, )
     .then(function (response) {
-      console.log(response)
       setData(response.data.data.message)    
     })
     .catch(function (error) {

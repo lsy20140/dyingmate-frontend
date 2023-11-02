@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { ReactComponent as MainIcon } from '../../assets/icons/PlayerRoom/friend_list.svg'
+import { ReactComponent as MainIcon } from '../../assets/icons/PlayerRoom//Friend/friend_list.svg'
 import {IoIosClose} from 'react-icons/io'
 import OneFriendItem from './FriendList/OneFriendItem'
 import OneRequestItem from './FriendList/OneRequestItem'
 import axios from 'axios'
-import { getAllFriends, getAllRequests } from '../../apis/api/PlayerRoom/friendList'
 import OneSearchItem from './FriendList/OneSearchItem'
 import { useAuthContext } from '../../contexts/AuthContext'
 import { addFriendSuccess } from '../ui/ToastMessage'
@@ -22,7 +21,6 @@ export default function FriendListModal({setFriendListModal}) {
 
   const handleOnChange = (e) => {
     setSearchInput(e.target.value)
-    console.log("filteredList", filteredList)
   }
 
 
@@ -31,9 +29,7 @@ export default function FriendListModal({setFriendListModal}) {
       headers: {Authorization: 'Bearer ' + token},
     }, )
     .then((res) => {
-      console.log("friend/search", res.data.data)
       setUserList(prev => [...prev, ...res.data.data])
-      console.log("userList",userList)
     })
   },[])
 
@@ -42,7 +38,6 @@ export default function FriendListModal({setFriendListModal}) {
       headers: {Authorization: 'Bearer ' + token},
     }, )
     .then((res) => {
-      console.log("friend/list", res)
       setFriendList((friendList) => [...friendList, ...res.data.data.friendListResponseList])
       setRequestList((requestList) => [...requestList, ...res.data.data.friendRequestResponseList])
     })
@@ -67,12 +62,11 @@ export default function FriendListModal({setFriendListModal}) {
       withCredentials: true,
     })
     .then((response) => {
-      console.log(response)     
       addFriendSuccess()   
       setSearchInput('')
     }).catch(function (error) {
         // 오류발생시 실행
-        console.log(error.message)
+        console.log(error)
     })
   }
 
@@ -88,7 +82,7 @@ export default function FriendListModal({setFriendListModal}) {
       console.log(response)        
     }).catch(function (error) {
         // 오류발생시 실행
-        console.log(error.message)
+      console.log(error.message)
     })
   }
 
@@ -104,7 +98,7 @@ export default function FriendListModal({setFriendListModal}) {
       console.log(response)        
     }).catch(function (error) {
         // 오류발생시 실행
-        console.log(error.message)
+      console.log(error.message)
     })
   }
 

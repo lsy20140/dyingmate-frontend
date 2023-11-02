@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import {ReactComponent as FriendModalIcon} from '../../../assets/icons/PlayerRoom/friend_modal.svg'
+import {ReactComponent as FriendModalIcon} from '../../../assets/icons/PlayerRoom/Friend/friend_modal.svg'
 
 export default function ModalButton({requestCount}) {
   return (

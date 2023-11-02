@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { usePlay } from '../../contexts/Play';
 import { ReactComponent as CloseModal } from '../../assets/icons/close_modal.svg'

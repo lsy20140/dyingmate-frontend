@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import React, { useState } from 'react'
 import LoginForm from '../components/LoginSignup/LoginForm'
 import SignUpForm from '../components/LoginSignup/SignUpForm'
 import styled from 'styled-components'
 
 export default function LoginSignup() {
-  const navigate = useNavigate()
-
   const [curIdx, setCurIdx] = useState(0)
 
   const tabArr = [
@@ -17,10 +14,6 @@ export default function LoginSignup() {
   const handleSelectTab = (idx) => {
     setCurIdx(idx);
   }
-
-  useEffect(() => {
-    console.log(curIdx)
-  })
 
   return (
     <Container>
@@ -35,9 +28,7 @@ export default function LoginSignup() {
           <LoginForm />
         ) : <SignUpForm/>}
       </FormBox>
-
     </Container>
-
   )
 }
 

@@ -26,7 +26,6 @@ export default function MapOverlay({showMap, setShowMap}) {
     }, )
     .then(function (res) {
       if(res) {
-        console.log(res)
         setStage(() => ({...res.data.data}))
       }
     })

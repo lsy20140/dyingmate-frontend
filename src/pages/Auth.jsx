@@ -15,8 +15,6 @@ export default function Auth() {
   const getUserInfo = async () => {
     if(accessTokenFetching) return;
 
-    console.log("getAccessToken 호출")
-
     try{
       setAccessTokenFetching(true)
       const res = await axios.post(
@@ -26,8 +24,6 @@ export default function Auth() {
       localStorage.setItem('login-token', res.data.data.accessToken);
       setToken(res.data.data.accessToken)
       setUser(res.data.data)
-      console.log("res.data.data.accessToken",res.data.data.accessToken)
-      console.log("res.data.data",res.data.data)
       setAccessTokenFetching(false)
       setLogin(true)
       navigate("/onboarding",{state: {isSocialLogin: true}} )

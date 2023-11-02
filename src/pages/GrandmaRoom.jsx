@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Canvas } from "@react-three/fiber";
 import { GMHome } from '../components/models/GrandmaRoom/GrandmaRoom';
 import {OrbitControls} from '@react-three/drei'
@@ -7,7 +7,6 @@ import { useRoomFocus } from '../contexts/RoomFocus';
 import { Grandmother } from '../components/models/GrandmaRoom/Grandmother';
 import { MessageArr } from '../data/grandma_script';
 import CharMainDialog from '../components/ui/CharMainDialog';
-import Loading from './Loading';
 import {useProgress} from '@react-three/drei'
 
 export default function GrandmaRoom() {
@@ -15,8 +14,6 @@ export default function GrandmaRoom() {
   const [position, setPosition] = useState({ x: 10, y: 9, z: 0 });
   const [target, setTarget] = useState({ x: 0, y: -5, z: 0 });
   const { progress } = useProgress();
-
-  const [audio] = useState(typeof Audio !== 'undefined' && new Audio("/audio/grandmaRoom.mp3"))
 
   useEffect(() => { 
     if(focus) {
@@ -36,7 +33,6 @@ export default function GrandmaRoom() {
       </audio>
       {progress === 100 &&
       <>
-
         <Canvas camera={{position:[10,9,0]}}>
         <OrbitControls/>
         {/* <LightHelper /> */}
@@ -52,8 +48,6 @@ export default function GrandmaRoom() {
         </Canvas>
         <CharMainDialog messageArr={MessageArr} stageNum={1} />
       </>
-
-      
       }
 
     </>

@@ -6,7 +6,7 @@ import { ScrollControls, OrbitControls } from "@react-three/drei";
 import MapOverlay from '../components/MapOverlay';
 import SettingModal from '../components/SetUp/SettingModal';
 import { Overlay } from './Overlay';
-import {ReactComponent as SettingIcon} from '../assets/icons/setting_icon.svg'
+import {ReactComponent as SettingIcon} from '../assets/icons/SetUp/setting_modal.svg'
 import {ReactComponent as MapModalButton} from '../assets/img/map_modal_btn.svg'
 import styled from 'styled-components';
 import EnterRoomDialog from '../components/ui/EnterRoomDialog';
