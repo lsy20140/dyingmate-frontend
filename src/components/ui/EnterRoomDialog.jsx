@@ -7,8 +7,7 @@ import { EnterRoomMsg } from '../../data/enter_room_dialog'
 
 export default function EnterRoomDialog({stageNum}) {
   const navigate = useNavigate()
-  // const {stage} = useStageContext()
-  const stage={'stage1': true,'stage2': false, 'stage3': false,'stage4': true,}
+  const {stage} = useStageContext()
   const [enterFail, setEnterFail] = useState(false)
 
   const handleOnClick = () => {

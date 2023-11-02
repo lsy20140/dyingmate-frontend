@@ -92,7 +92,7 @@ export default function PlayerRoom() {
   useEffect(() => {
     getAllRequests().then((res) => {
       console.log(res)
-      setRequestCount(res.data.data.friendRequestResponseList.length)
+      setRequestCount(res.data.friendRequestResponseList.length)
     })
   },[])
 
