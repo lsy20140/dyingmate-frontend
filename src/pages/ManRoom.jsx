@@ -29,7 +29,7 @@ export default function ManRoom() {
       <Canvas camera={{position:[12,8,0]}} colorManagement>
         <OrbitControls/>
         {/* <LightHelper /> */}
-        <axesHelper args={[200, 200, 200]} />
+        {/* <axesHelper args={[200, 200, 200]} /> */}
         <ambientLight intensity={1} />
         <directionalLight intensity={8}  decay={1} color="#ffffff" position={[ 20, 3, -2]} target-position={[-5, 2, 2]} />
         <directionalLight intensity={10} castShadow decay={2} color="#ffffff" position={[20, 5, -5]} target-position={[2, 2, 0]} />
