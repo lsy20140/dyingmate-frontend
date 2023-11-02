@@ -1,16 +1,16 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const StageContext = createContext()
 
 export const StageContextProvider = ({children}) => {
   const [stage, setStage] = useState({})
-
-  const value = useMemo(() => ({
-    stage, setStage
-  }),[stage])
+  const [addOffset, setAddOffset] = useState(0)
 
   return (
-    <StageContext.Provider value={value}>
+    <StageContext.Provider value={{
+      stage, setStage,
+      addOffset, setAddOffset
+    }}>
       {children}
     </StageContext.Provider>
   )
