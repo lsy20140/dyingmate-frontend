@@ -5,8 +5,8 @@ import willPaper from '../../../assets/img/PlayerRoom/will_paper.png'
 import StyledButton from '../../ui/StyledButton';
 import axios from 'axios'  
 import { useAuthContext } from '../../../contexts/AuthContext';
-import { authInstance } from '../../../apis/utils/api';
-
+import {ToastContainer} from 'react-toastify'
+import { editSuccess, saveSuccess } from '../../ui/ToastMessage';
 
 export default function Will() {
   let [inputData, setInputData] = useState('');
@@ -33,7 +33,7 @@ export default function Will() {
     })
     .then((response) => {
       console.log(response)
-        
+      saveSuccess()
     }).catch(function (error) {
         // 오류발생시 실행
         console.log(error.message)
@@ -51,6 +51,7 @@ export default function Will() {
       })
     .then((response) => {
       console.log(response)
+      editSuccess()
         
     }).catch(function (error) {
         // 오류발생시 실행
@@ -104,6 +105,7 @@ export default function Will() {
           }
         </WillContainer>
       </Container>
+      <ToastContainer />
     </>   
   )
 }

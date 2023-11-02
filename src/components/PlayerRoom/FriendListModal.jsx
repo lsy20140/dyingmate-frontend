@@ -8,6 +8,7 @@ import axios from 'axios'
 import { getAllFriends, getAllRequests } from '../../apis/api/PlayerRoom/friendList'
 import OneSearchItem from './FriendList/OneSearchItem'
 import { useAuthContext } from '../../contexts/AuthContext'
+import { addFriendSuccess } from '../ui/ToastMessage'
 
 
 export default function FriendListModal({setFriendListModal}) {
@@ -34,7 +35,9 @@ export default function FriendListModal({setFriendListModal}) {
       setUserList(prev => [...prev, ...res.data.data])
       console.log("userList",userList)
     })
+  },[])
 
+  useEffect(() => {
     axios.get(`${baseUrl}/friend/list`, {
       headers: {Authorization: 'Bearer ' + token},
     }, )
@@ -43,7 +46,7 @@ export default function FriendListModal({setFriendListModal}) {
       setFriendList((friendList) => [...friendList, ...res.data.data.friendListResponseList])
       setRequestList((requestList) => [...requestList, ...res.data.data.friendRequestResponseList])
     })
-  },[])
+  },[friendList, requestList])
 
   const filteredList = userList && userList.filter((item) => {
     if(searchInput !== '' && item.friendEmail && item.friendEmail.toLowerCase().includes(searchInput.toLowerCase())){ 
@@ -64,7 +67,9 @@ export default function FriendListModal({setFriendListModal}) {
       withCredentials: true,
     })
     .then((response) => {
-      console.log(response)        
+      console.log(response)     
+      addFriendSuccess()   
+      setSearchInput('')
     }).catch(function (error) {
         // 오류발생시 실행
         console.log(error.message)

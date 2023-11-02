@@ -8,6 +8,7 @@ import {ReactComponent as SendIcon} from '../../../assets/icons/PlayerRoom/Phone
 import { ReactComponent as BubbleVector } from '../../../assets/img/PlayerRoom/message_bubble_vec.svg'
 import { useAuthContext } from '../../../contexts/AuthContext'
 import {IoMdAlert} from 'react-icons/io'
+import { saveSuccess } from '../../ui/ToastMessage'
 
 export default function Phone() {
   const [inputData, setInputData] = useState('')
@@ -46,6 +47,7 @@ export default function Phone() {
     })
     .then((response) => {
       console.log(response)
+      saveSuccess()
         
     }).catch(function (error) {
         // 오류발생시 실행
