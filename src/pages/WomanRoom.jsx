@@ -29,7 +29,7 @@ export default function WomanRoom() {
       <Canvas camera={{position:[12,9,0]}} colorManagement>
         <OrbitControls/>
         {/* <LightHelper /> */}
-        <axesHelper args={[200, 200, 200]} />
+        {/* <axesHelper args={[200, 200, 200]} /> */}
         <ambientLight intensity={0.1} />
         <directionalLight intensity={1}  decay={2} color="#eca864" position={[ 17, 12.421, -2]} target-position={[0, 9, 2]} />
         <directionalLight intensity={1.2} castShadow decay={2} color="#d8b58d" position={[22, 15.344, -5]} target-position={[2, 10, 0]} />

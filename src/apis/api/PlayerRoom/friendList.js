@@ -1,4 +1,5 @@
 import { defaultInstance } from '../../utils/api'
+import axios from 'axios'
 
 const baseUrl = 'https://dying-mate-server.link'
 const token = localStorage.getItem('login-token')

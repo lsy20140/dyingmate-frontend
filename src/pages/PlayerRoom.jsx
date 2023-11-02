@@ -92,7 +92,7 @@ export default function PlayerRoom() {
   useEffect(() => {
     getAllRequests().then((res) => {
       console.log(res)
-      setRequestCount(res.data.data.friendRequestResponseList.length)
+      setRequestCount(res.data.friendRequestResponseList.length)
     })
   },[])
 
@@ -105,7 +105,7 @@ export default function PlayerRoom() {
     <>
       <Canvas camera={{position:[12,8,0]}} colorManagement>
         <LightHelper />
-        <axesHelper args={[200, 200, 200]} />
+        {/* <axesHelper args={[200, 200, 200]} /> */}
         <ambientLight intensity={2} />
         <directionalLight ref={light1} intensity={5}  decay={2} color="#eca864" position={[ 17, 12.421, 2]} target-position={[0, 9, 0]} />
         <directionalLight ref={light2} intensity={5} castShadow decay={2} color="#d8b58d" position={[22, 15.344, -5]} target-position={[2, 10, 0]} />

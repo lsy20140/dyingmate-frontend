@@ -40,7 +40,7 @@ export default function GrandmaRoom() {
         <Canvas camera={{position:[10,9,0]}}>
         <OrbitControls/>
         {/* <LightHelper /> */}
-        <axesHelper args={[200, 200, 200]} />
+        {/* <axesHelper args={[200, 200, 200]} /> */}
         <ambientLight intensity={5} />
         <directionalLight intensity={8}  decay={1} color="#daae73" position={[ 5, 8, -2]} target-position={[-5, 8, 2]} />
         <directionalLight intensity={3} castShadow decay={2} color="#d8b58d" position={[5, 8, -5]} target-position={[2, 10, 0]} />

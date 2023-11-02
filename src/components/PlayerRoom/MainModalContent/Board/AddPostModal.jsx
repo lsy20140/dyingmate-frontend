@@ -8,11 +8,11 @@ import { useAuthContext } from '../../../../contexts/AuthContext'
 import axios from 'axios'
 import { getRandomPos } from '../../../../apis/utils/PlayerRoom/getRandomPosition'
 
-const MAX_X = 1440
-const MIN_X = 150
+const MAX_X = 500
+const MIN_X = 0
 
-const MAX_Y = 800
-const MIN_Y = 150
+const MAX_Y = 500
+const MIN_Y = 0
 
 export default function AddPostModal({isImagePost, setOpenModal}) {
   const [post, setPost] = useState({})
