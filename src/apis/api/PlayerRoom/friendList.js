@@ -1,8 +1,7 @@
-import { useAuthContext } from '../../../contexts/AuthContext'
 import { defaultInstance } from '../../utils/api'
 
 const baseUrl = 'https://dying-mate-server.link'
-const {token} = useAuthContext()
+const token = localStorage.getItem('login-token')
 
 export const getAllFriends = async () => {
   try {
