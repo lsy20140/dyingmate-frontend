@@ -1,25 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import splashBg from '../assets/img/splashBg.png'
 import {ReactComponent as TitleSrc} from '../assets/img/title.svg'
 import styled from 'styled-components'
 import LoginSignup from './LoginSignup'
 
-
 export default function Splash() {
-
   return (
     <>
-        <SplashContainer>
-          <ContentBox>
-            <Description>
-              <TitleSrc/>
-              <p>다잉메이트에 방문하신 걸 환영합니다!<br/>
-                웰다잉하우스에서 다잉메이트들을 만나<br/>
-                당신만의 특별한 웰다잉을 경험하고 설계해보세요.</p>
-            </Description>
-            <LoginSignup/>
-          </ContentBox>
-        </SplashContainer>
+      <SplashContainer>
+        <ContentBox>
+          <Description>
+            <TitleSrc/>
+            <p>다잉메이트에 방문하신 걸 환영합니다!<br/>
+              웰다잉하우스에서 다잉메이트들을 만나<br/>
+              당신만의 특별한 웰다잉을 경험하고 설계해보세요.</p>
+          </Description>
+          <LoginSignup/>
+        </ContentBox>
+      </SplashContainer>
     </>
   )
 }
