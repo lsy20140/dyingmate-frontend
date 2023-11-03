@@ -8,13 +8,14 @@ import axios from 'axios'
 import OneSearchItem from './FriendList/OneSearchItem'
 import { useAuthContext } from '../../contexts/AuthContext'
 import { addFriendSuccess } from '../ui/ToastMessage'
+import {ToastContainer} from 'react-toastify'
 
 
 export default function FriendListModal({setFriendListModal}) {
   const [searchInput, setSearchInput] = useState('')  
   const [friendList, setFriendList] = useState([])
   const [requestList, setRequestList] = useState([])
-  const [userList, setUserList] = useState([])
+  const [searchList, setSearchList] = useState([])
   const baseUrl = 'https://dying-mate-server.link'
   const {token} = useAuthContext()
 
@@ -29,7 +30,7 @@ export default function FriendListModal({setFriendListModal}) {
       headers: {Authorization: 'Bearer ' + token},
     }, )
     .then((res) => {
-      setUserList(prev => [...prev, ...res.data.data])
+      setSearchList(prev => [...prev, ...res.data.data])
     })
   },[])
 
@@ -43,7 +44,7 @@ export default function FriendListModal({setFriendListModal}) {
     })
   },[])
 
-  const filteredList = userList && userList.filter((item) => {
+  const filteredList = searchList && searchList.filter((item) => {
     if(searchInput !== '' && item.friendEmail && item.friendEmail.toLowerCase().includes(searchInput.toLowerCase())){ 
       return item
     }
@@ -151,6 +152,7 @@ export default function FriendListModal({setFriendListModal}) {
           </ListWrapper>
         </ListContainer>
       </Container>
+      <ToastContainer />
     </Overlay>
   )
 }
