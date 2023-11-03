@@ -41,7 +41,7 @@ export default function FriendListModal({setFriendListModal}) {
       setFriendList((friendList) => [...friendList, ...res.data.data.friendListResponseList])
       setRequestList((requestList) => [...requestList, ...res.data.data.friendRequestResponseList])
     })
-  },[friendList, requestList])
+  },[])
 
   const filteredList = userList && userList.filter((item) => {
     if(searchInput !== '' && item.friendEmail && item.friendEmail.toLowerCase().includes(searchInput.toLowerCase())){ 
