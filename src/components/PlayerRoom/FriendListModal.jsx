@@ -9,6 +9,7 @@ import OneSearchItem from './FriendList/OneSearchItem'
 import { useAuthContext } from '../../contexts/AuthContext'
 import { addFriendSuccess } from '../ui/ToastMessage'
 import {ToastContainer} from 'react-toastify'
+import { getFriendList } from '../../apis/api/PlayerRoom/friendList'
 
 
 export default function FriendListModal({setFriendListModal}) {
@@ -16,6 +17,8 @@ export default function FriendListModal({setFriendListModal}) {
   const [friendList, setFriendList] = useState([])
   const [requestList, setRequestList] = useState([])
   const [searchList, setSearchList] = useState([])
+  const [update, setUpdate] = useState(false)
+  
   const baseUrl = 'https://dying-mate-server.link'
   const {token} = useAuthContext()
 
@@ -32,17 +35,19 @@ export default function FriendListModal({setFriendListModal}) {
     .then((res) => {
       setSearchList(prev => [...prev, ...res.data.data])
     })
+
+    getFriendList().then((res) => {
+      setFriendList((friendList) => [...friendList, ...res.data.friendListResponseList])
+      setRequestList((requestList) => [...requestList, ...res.data.friendRequestResponseList])
+    })
   },[])
 
   useEffect(() => {
-    axios.get(`${baseUrl}/friend/list`, {
-      headers: {Authorization: 'Bearer ' + token},
-    }, )
-    .then((res) => {
-      setFriendList((friendList) => [...friendList, ...res.data.data.friendListResponseList])
-      setRequestList((requestList) => [...requestList, ...res.data.data.friendRequestResponseList])
+    getFriendList().then((res) => {
+      setFriendList((friendList) => [...friendList, ...res.data.friendListResponseList])
+      setRequestList((requestList) => [...requestList, ...res.data.friendRequestResponseList])
     })
-  },[])
+  },[update])
 
   const filteredList = searchList && searchList.filter((item) => {
     if(searchInput !== '' && item.friendEmail && item.friendEmail.toLowerCase().includes(searchInput.toLowerCase())){ 
@@ -65,6 +70,7 @@ export default function FriendListModal({setFriendListModal}) {
     .then((response) => {
       addFriendSuccess()   
       setSearchInput('')
+      setUpdate((prev) => !prev)
     }).catch(function (error) {
         // 오류발생시 실행
         console.log(error)
@@ -80,7 +86,8 @@ export default function FriendListModal({setFriendListModal}) {
       withCredentials: true,
     })
     .then((response) => {
-      console.log(response)        
+      console.log(response)   
+      setUpdate((prev) => !prev)     
     }).catch(function (error) {
         // 오류발생시 실행
       console.log(error.message)
@@ -97,6 +104,7 @@ export default function FriendListModal({setFriendListModal}) {
     })
     .then((response) => {
       console.log(response)        
+      setUpdate((prev) => !prev)
     }).catch(function (error) {
         // 오류발생시 실행
       console.log(error.message)
