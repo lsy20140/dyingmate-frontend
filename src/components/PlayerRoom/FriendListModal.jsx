@@ -35,11 +35,6 @@ export default function FriendListModal({setFriendListModal}) {
     .then((res) => {
       setSearchList(prev => [...prev, ...res.data.data])
     })
-
-    getFriendList().then((res) => {
-      setFriendList((friendList) => [...friendList, ...res.data.friendListResponseList])
-      setRequestList((requestList) => [...requestList, ...res.data.friendRequestResponseList])
-    })
   },[])
 
   useEffect(() => {
