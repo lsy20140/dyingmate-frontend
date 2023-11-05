@@ -18,14 +18,10 @@ export default function StepThree() {
       setDiary((data) => ({...data, 'portrait_photo': files[0]}))
       return;
     }
-
   };
 
   useEffect(() => {
-    console.log("Step three diary", diary)
-    console.log("Step three diary.portrait_photo", diary.portrait_photo)
     setSelectImg(diary.portrait_photo)
-    console.log("selectImg", selectImg)
   },[])
 
   return (

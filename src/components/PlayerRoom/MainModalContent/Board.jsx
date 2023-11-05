@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import BoardSrc5 from '../../../assets/img/PlayerRoom/boardSrc5.png'
 import NewTextPost from './Board/NewTextPost'
 import NewImagePost from './Board/NewImagePost'
 import AddPostModal from './Board/AddPostModal'
-import { getAllBucketlist } from '../../../apis/api/PlayerRoom/bucketlist'
 import axios from 'axios'
 import OnePostItem from './Board/OnePostItem'
 import { useAuthContext } from '../../../contexts/AuthContext'
@@ -17,12 +15,6 @@ export default function Board() {
   const {token} = useAuthContext()
 
   useEffect(() => {
-    // async function getAllBucketlist() {
-    //   const {data} = await axios.get(`${baseUrl}/bucketlist/load`,{
-    //     headers: {Authorization: 'Bearer ' + token},
-    //   }, )
-    //   setAllBucketlist(data.data.fileResponseList)
-    // }
     async function getAllBucketlist() {
       try{
         const {data} = await axios.get(`${baseUrl}/bucketlist/load`,{
@@ -37,12 +29,10 @@ export default function Board() {
     
     getAllBucketlist().then((res) =>{
       if(res) {
-        console.log("res",res)
-        console.log("res.data.fileResponseList", res.data.fileResponseList)
+        console.log("getAllBucketlist",res)
         setAllBucketlist(res.data.fileResponseList)
       }
       }).then(() => {
-        console.log("allBucketlist", allBucketlist)
       })
       .catch((error) => {
         console.log(error)
@@ -52,8 +42,6 @@ export default function Board() {
   const handleOnClick = (isImagePost) => {
     setOpenModal(true)
     setIsImagePost(isImagePost)
-    console.log("isImagePost", isImagePost)
-    console.log("openModal", openModal)
   }
 
   return (
@@ -89,7 +77,6 @@ const BoardContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  // background: url(${BoardSrc5}) no-repeat center;
   background-color: #D9995D;
   border: 5px solid white;
   box-sizing: border-box;

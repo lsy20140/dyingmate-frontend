@@ -14,7 +14,8 @@ import { Phone } from '../components/models/PlayerRoom/Phone';
 import { Diary } from '../components/models/PlayerRoom/Diary';
 import { Shelf } from '../components/models/PlayerRoom/Shelf';
 import { Desktop } from '../components/models/PlayerRoom/Desktop';
-import { getAllRequests } from '../apis/api/PlayerRoom/friendList';
+import { useAuthContext } from '../contexts/AuthContext';
+import { getFriendList } from '../apis/api/PlayerRoom/friendList';
 
 export default function PlayerRoom() {
   const light1 = useRef()
@@ -28,9 +29,10 @@ export default function PlayerRoom() {
   const [position, setPosition] = useState({ x: 12, y: 8, z: 0 });
   const [target, setTarget] = useState({ x: 0, y: 5, z: 0 });
   const [hovered, setHovered] = useState(false)
-  
-  const [requestCount, setRequestCount] = useState()
-  
+
+  const baseUrl = 'https://dying-mate-server.link'
+  const {token} = useAuthContext()
+  const [requestCount, setRequestCount] = useState(0)
 
   const setCamera = () => {
     setPosition({ x: 12, y: 8, z: 0 })
@@ -87,13 +89,23 @@ export default function PlayerRoom() {
     document.body.style.cursor = hovered ? 'pointer' : 'default'
   },[hovered])
 
-
-
-  useEffect(() => {
-    getAllRequests().then((res) => {
-      console.log(res)
+  const getRequestCount = () => {
+    getFriendList().then((res) => {
       setRequestCount(res.data.friendRequestResponseList.length)
     })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
+
+  useEffect(() => {
+    getRequestCount()
+
+    const intervalId = setInterval(getRequestCount, 5000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
   },[])
 
   const LightHelper = () => {

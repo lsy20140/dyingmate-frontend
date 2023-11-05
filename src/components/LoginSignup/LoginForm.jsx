@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import styled from 'styled-components';
-import { ReactComponent as GoogleIcon } from '../../assets/icons/google_icon.svg'
-import { ReactComponent as KakaoIcon } from '../../assets/icons/kakao_icon.svg'
-import { ReactComponent as HidePwdIcon } from '../../assets/icons/hide_pwd_icon.svg'
+import { ReactComponent as GoogleIcon } from '../../assets/icons/Splash/google_icon.svg'
+import { ReactComponent as KakaoIcon } from '../../assets/icons/Splash/kakao_icon.svg'
+import { ReactComponent as HidePwdIcon } from '../../assets/icons/Splash/hide_pwd_icon.svg'
 import {IoMdAlert} from 'react-icons/io'
 import axios from 'axios'  
 import { useAuthContext } from '../../contexts/AuthContext';
@@ -20,7 +20,6 @@ export default function LoginForm() {
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_REST_API_KEY}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=code`
   const handleKakaoLogin = ()=>{
       window.location.href = kakaoURL;
-      console.log(new URL(window.location.href))
   }
 
   const handleEmail = (e) => {
@@ -53,8 +52,6 @@ export default function LoginForm() {
       }
       localStorage.setItem('login-token', response.data.data.accessToken);
       setUser(response.data.data)
-      console.log("response.data.data",response.data.data)
-      console.log("user", user)
     })
     .then(() => {
       setLogin(true)
@@ -62,7 +59,7 @@ export default function LoginForm() {
     })
     .catch(function (error) {
         // 오류발생시 실행
-        console.log(error.message)
+        console.log(error)
     })
   }
 

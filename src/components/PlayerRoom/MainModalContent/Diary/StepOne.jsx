@@ -27,7 +27,6 @@ export default function StepOne() {
       setDiary(() => ({...res.data}))
     })
     .then(() => {
-      console.log("StepOne diary", diary)
       setCurIdx(diary.method)
     })
   },[])

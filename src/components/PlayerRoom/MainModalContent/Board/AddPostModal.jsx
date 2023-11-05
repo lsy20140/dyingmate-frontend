@@ -3,12 +3,11 @@ import styled from 'styled-components'
 import {IoIosClose} from 'react-icons/io'
 import IconStyledButton from '../../../ui/IconStyledButton'
 import {PiImageSquareBold} from 'react-icons/pi'
-import { addBucketlist } from '../../../../apis/api/PlayerRoom/bucketlist'
 import { useAuthContext } from '../../../../contexts/AuthContext'
 import axios from 'axios'
 import { getRandomPos } from '../../../../apis/utils/PlayerRoom/getRandomPosition'
 
-const MAX_X = 500
+const MAX_X = 1000
 const MIN_X = 0
 
 const MAX_Y = 500

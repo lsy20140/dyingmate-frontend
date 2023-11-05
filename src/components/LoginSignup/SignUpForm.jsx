@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import styled from 'styled-components';
-import {ReactComponent as GoogleIcon} from '../../assets/icons/google_icon.svg'
-import {ReactComponent as KakaoIcon} from '../../assets/icons/kakao_icon.svg'
-import {ReactComponent as HidePwdIcon} from '../../assets/icons/hide_pwd_icon.svg'
+import {ReactComponent as GoogleIcon} from '../../assets/icons/Splash/google_icon.svg'
+import {ReactComponent as KakaoIcon} from '../../assets/icons/Splash/kakao_icon.svg'
+import {ReactComponent as HidePwdIcon} from '../../assets/icons/Splash/hide_pwd_icon.svg'
 import axios from 'axios'  
 import {GoCheckCircleFill} from 'react-icons/go'
 import {IoMdAlert} from 'react-icons/io'

@@ -40,7 +40,7 @@ const PostItem = styled.div`
   flex-direction: column;
   gap: 0.3rem;
   align-items: center;
-  top: ${(props) => props.memoX}px;
+  top: ${(props) => props.memoY}px;
   left: ${(props) => props.memoX}px;
 
 `

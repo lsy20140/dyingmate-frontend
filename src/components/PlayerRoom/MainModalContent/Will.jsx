@@ -6,7 +6,8 @@ import StyledButton from '../../ui/StyledButton';
 import axios from 'axios'  
 import { useAuthContext } from '../../../contexts/AuthContext';
 import {ToastContainer} from 'react-toastify'
-import { editSuccess, saveSuccess } from '../../ui/ToastMessage';
+import { editSuccess, nullWarning, saveSuccess } from '../../ui/ToastMessage';
+
 
 export default function Will() {
   let [inputData, setInputData] = useState('');
@@ -24,6 +25,10 @@ export default function Will() {
   }
 
   const handleSubmit = (e) => {   
+    if(inputData === '') {
+      nullWarning()
+      return 
+    }
     axios
     .post(`${baseUrl}/will/write`, {content: inputData}, {
       headers: {
@@ -64,7 +69,6 @@ export default function Will() {
       headers: {Authorization: 'Bearer ' + token},
     }, )
     .then(function (response) {
-      console.log("response.data",response)
       setInputData(response.data.data.content ?? '')
       setData(response.data.data.content ?? '')
     })

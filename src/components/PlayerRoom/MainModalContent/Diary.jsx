@@ -30,7 +30,6 @@ export default function Diary() {
   }
 
   useEffect(() => {
-
     switch(curIdx) {
       case 1:
         setComp(<StepOne/>)

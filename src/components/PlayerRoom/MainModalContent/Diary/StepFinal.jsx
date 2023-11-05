@@ -23,8 +23,8 @@ export default function StepFinal() {
       },
       withCredentials: true,
     })
-    .then((response) => {
-      console.log(response)
+    .then((res) => {
+      console.log(res)
         
     }).catch(function (error) {
         // 오류발생시 실행

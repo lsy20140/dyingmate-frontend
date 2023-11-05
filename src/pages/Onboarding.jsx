@@ -4,7 +4,6 @@ import { ReactComponent as DialogNextIcon } from '../assets/icons/dialog_next_ic
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios'  
 import { useLocation } from 'react-router-dom'
-import { createUsername } from '../apis/api/user'
 import { useAuthContext } from '../contexts/AuthContext'
 import Loading from './Loading'
 import { DiaglogArr } from '../data/onboarding'
@@ -22,7 +21,6 @@ export default function Onboarding() {
   const baseUrl = 'https://dying-mate-server.link'
 
   useEffect(() => {
-    console.log("onboarding location.state.isSocialLogin",isSocialLogin )
     if(!isSocialLogin) {
       axios.post(
         `${baseUrl}/user/login`,
@@ -33,7 +31,6 @@ export default function Onboarding() {
         {withCredentials: true},
       )
       .then((response) => {
-        console.log(response)
         localStorage.setItem('login-token', response.data.data.accessToken);
         setToken(localStorage.getItem('login-token'));
       })
@@ -42,7 +39,7 @@ export default function Onboarding() {
       })
       .catch(function (error) {
           // 오류발생시 실행
-          console.log(error.message)
+        console.log(error.message)
       })
     }
 
@@ -57,6 +54,7 @@ export default function Onboarding() {
   }
 
   const handleOnSubmit = async (e) => {
+    setIsLoading(true)
     e.preventDefault()
     await axios
     .post(`${baseUrl}/user/${userName}/save`, {}, {
@@ -66,12 +64,11 @@ export default function Onboarding() {
       withCredentials: true,
     })
     .then((response) => {
-      console.log(response)
-      setIsLoading(true)
+      setIsLoading(false)
 
       const delayFunc = setTimeout(() => {
         navigate('/main')
-      }, 2500)
+      }, 1500)
       return () => clearTimeout(delayFunc)
 
         

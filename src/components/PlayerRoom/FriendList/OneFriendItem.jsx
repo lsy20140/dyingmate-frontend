@@ -3,10 +3,6 @@ import styled from 'styled-components'
 import TestProfile from '../../../assets/img/splashBg.png'
 
 export default function OneFriendItem({userId, username}) {
-  const handleOnClick = () => {
-    
-  }
-
   return (
     <ItemBox>
       <UserInfo>

@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { ReactComponent as MainIcon } from '../../assets/icons/PlayerRoom/friend_list.svg'
+import { ReactComponent as MainIcon } from '../../assets/icons/PlayerRoom//Friend/friend_list.svg'
 import {IoIosClose} from 'react-icons/io'
 import OneFriendItem from './FriendList/OneFriendItem'
 import OneRequestItem from './FriendList/OneRequestItem'
 import axios from 'axios'
-import { getAllFriends, getAllRequests } from '../../apis/api/PlayerRoom/friendList'
 import OneSearchItem from './FriendList/OneSearchItem'
 import { useAuthContext } from '../../contexts/AuthContext'
 import { addFriendSuccess } from '../ui/ToastMessage'
+import {ToastContainer} from 'react-toastify'
+import { getFriendList } from '../../apis/api/PlayerRoom/friendList'
 
 
 export default function FriendListModal({setFriendListModal}) {
   const [searchInput, setSearchInput] = useState('')  
   const [friendList, setFriendList] = useState([])
   const [requestList, setRequestList] = useState([])
-  const [userList, setUserList] = useState([])
+  const [searchList, setSearchList] = useState([])
+  const [update, setUpdate] = useState(false)
+  
   const baseUrl = 'https://dying-mate-server.link'
   const {token} = useAuthContext()
 
 
   const handleOnChange = (e) => {
     setSearchInput(e.target.value)
-    console.log("filteredList", filteredList)
   }
 
 
@@ -31,24 +33,18 @@ export default function FriendListModal({setFriendListModal}) {
       headers: {Authorization: 'Bearer ' + token},
     }, )
     .then((res) => {
-      console.log("friend/search", res.data.data)
-      setUserList(prev => [...prev, ...res.data.data])
-      console.log("userList",userList)
+      setSearchList(prev => [...prev, ...res.data.data])
     })
   },[])
 
   useEffect(() => {
-    axios.get(`${baseUrl}/friend/list`, {
-      headers: {Authorization: 'Bearer ' + token},
-    }, )
-    .then((res) => {
-      console.log("friend/list", res)
-      setFriendList((friendList) => [...friendList, ...res.data.data.friendListResponseList])
-      setRequestList((requestList) => [...requestList, ...res.data.data.friendRequestResponseList])
+    getFriendList().then((res) => {
+      setFriendList((friendList) => [...friendList, ...res.data.friendListResponseList])
+      setRequestList((requestList) => [...requestList, ...res.data.friendRequestResponseList])
     })
-  },[friendList, requestList])
+  },[update])
 
-  const filteredList = userList && userList.filter((item) => {
+  const filteredList = searchList && searchList.filter((item) => {
     if(searchInput !== '' && item.friendEmail && item.friendEmail.toLowerCase().includes(searchInput.toLowerCase())){ 
       return item
     }
@@ -67,12 +63,12 @@ export default function FriendListModal({setFriendListModal}) {
       withCredentials: true,
     })
     .then((response) => {
-      console.log(response)     
       addFriendSuccess()   
       setSearchInput('')
+      setUpdate((prev) => !prev)
     }).catch(function (error) {
         // 오류발생시 실행
-        console.log(error.message)
+        console.log(error)
     })
   }
 
@@ -85,10 +81,11 @@ export default function FriendListModal({setFriendListModal}) {
       withCredentials: true,
     })
     .then((response) => {
-      console.log(response)        
+      console.log(response)   
+      setUpdate((prev) => !prev)     
     }).catch(function (error) {
         // 오류발생시 실행
-        console.log(error.message)
+      console.log(error.message)
     })
   }
 
@@ -102,9 +99,10 @@ export default function FriendListModal({setFriendListModal}) {
     })
     .then((response) => {
       console.log(response)        
+      setUpdate((prev) => !prev)
     }).catch(function (error) {
         // 오류발생시 실행
-        console.log(error.message)
+      console.log(error.message)
     })
   }
 
@@ -157,6 +155,7 @@ export default function FriendListModal({setFriendListModal}) {
           </ListWrapper>
         </ListContainer>
       </Container>
+      <ToastContainer />
     </Overlay>
   )
 }

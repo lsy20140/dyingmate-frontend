@@ -12,7 +12,6 @@ import App from './App';
 import LoginSignup from './pages/LoginSignup';
 import Onboarding from './pages/Onboarding';
 import PlayerRoom from './pages/PlayerRoom';
-import BucketList from './pages/BucketList';
 import Auth from './pages/Auth';
 import GrandmaRoom from './pages/GrandmaRoom';
 import ManRoom from './pages/ManRoom';
@@ -40,7 +39,6 @@ const router = createBrowserRouter([
       {path: '/manroom', element: <ManRoom/>},
       {path: '/womanroom', element: <WomanRoom/>},
       {path: '/final', element: <Final/>},
-      {path: '/bucketlist', element: <BucketList/>},
       {path: '/auth', element: <Auth/>},
 
     ]

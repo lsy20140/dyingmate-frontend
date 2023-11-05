@@ -8,7 +8,6 @@ import {ReactComponent as SendIcon} from '../../../assets/icons/PlayerRoom/Phone
 import { ReactComponent as BubbleVector } from '../../../assets/img/PlayerRoom/message_bubble_vec.svg'
 import { useAuthContext } from '../../../contexts/AuthContext'
 import {IoMdAlert} from 'react-icons/io'
-import { saveSuccess } from '../../ui/ToastMessage'
 
 export default function Phone() {
   const [inputData, setInputData] = useState('')
@@ -18,7 +17,6 @@ export default function Phone() {
 
   const baseUrl = 'https://dying-mate-server.link'
   const {token} = useAuthContext();
-  // const token = localStorage.getItem('login-token')
 
   // 날짜 구하기
   const date = new Date();
@@ -31,7 +29,6 @@ export default function Phone() {
     const {value, maxLength} = e.target
     setInputData(value);
     textarea.current.style.height = textarea.current.scrollHeight + 'px';
-
     setIsMaxLength(value.length === maxLength)
   }
 
@@ -39,6 +36,8 @@ export default function Phone() {
     setIsSend(true);
     setInputData('')
     setData(inputData)
+    textarea.current.style.height = '4rem'
+    setIsMaxLength(false)
     axios.post(`${baseUrl}/message/send`, {message: inputData}, {
       headers: {
         Authorization: `Bearer ${token}`
@@ -46,9 +45,7 @@ export default function Phone() {
       withCredentials: true,
     })
     .then((response) => {
-      console.log(response)
-      saveSuccess()
-        
+      console.log(response)        
     }).catch(function (error) {
         // 오류발생시 실행
         console.log(error.message)  
@@ -60,7 +57,6 @@ export default function Phone() {
       headers: {Authorization: 'Bearer ' + token},
     }, )
     .then(function (response) {
-      console.log(response)
       setData(response.data.data.message)    
     })
     .catch(function (error) {
@@ -111,7 +107,7 @@ export default function Phone() {
                 placeholder='부고 문자에 들어갈 내용을 작성해주세요.' 
                 spellCheck="false"
                 required
-                maxLength={10}
+                maxLength={500}
                 isMaxLength={isMaxLength}
               />
 
