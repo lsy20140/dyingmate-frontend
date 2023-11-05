@@ -39,7 +39,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:1.5.0"],\
             ["gsap", "npm:3.12.2"],\
             ["lamina", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:1.1.23"],\
-            ["pure-react-carousel", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:1.30.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:18.2.0"],\
             ["react-draggable", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:4.4.6"],\
@@ -4179,15 +4178,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:20.6.0"],\
             ["@types/yargs", "npm:17.0.24"],\
             ["chalk", "npm:4.1.2"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@jkroso/type", [\
-        ["npm:1.1.1", {\
-          "packageLocation": "./.yarn/cache/@jkroso-type-npm-1.1.1-4eda899d56-c2bb3cf56d.zip/node_modules/@jkroso/type/",\
-          "packageDependencies": [\
-            ["@jkroso/type", "npm:1.1.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -9339,15 +9329,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["deep-freeze", [\
-        ["npm:0.0.1", {\
-          "packageLocation": "./.yarn/cache/deep-freeze-npm-0.0.1-12d684fc1a-1e43c98e44.zip/node_modules/deep-freeze/",\
-          "packageDependencies": [\
-            ["deep-freeze", "npm:0.0.1"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["deep-is", [\
         ["npm:0.1.4", {\
           "packageLocation": "./.yarn/cache/deep-is-npm-0.1.4-88938b5a67-edb65dd0d7.zip/node_modules/deep-is/",\
@@ -9358,13 +9339,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["deepmerge", [\
-        ["npm:2.2.1", {\
-          "packageLocation": "./.yarn/cache/deepmerge-npm-2.2.1-44c00cbffa-284b710650.zip/node_modules/deepmerge/",\
-          "packageDependencies": [\
-            ["deepmerge", "npm:2.2.1"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["npm:4.3.1", {\
           "packageLocation": "./.yarn/cache/deepmerge-npm-4.3.1-4f751a0844-2024c6a980.zip/node_modules/deepmerge/",\
           "packageDependencies": [\
@@ -9841,16 +9815,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/env-paths-npm-2.2.1-7c7577428c-65b5df55a8.zip/node_modules/env-paths/",\
           "packageDependencies": [\
             ["env-paths", "npm:2.2.1"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["equals", [\
-        ["npm:1.1.0", {\
-          "packageLocation": "./.yarn/cache/equals-npm-1.1.0-680ab26517-8b4aafef92.zip/node_modules/equals/",\
-          "packageDependencies": [\
-            ["equals", "npm:1.1.0"],\
-            ["@jkroso/type", "npm:1.1.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -17154,37 +17118,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["pure-react-carousel", [\
-        ["npm:1.30.1", {\
-          "packageLocation": "./.yarn/cache/pure-react-carousel-npm-1.30.1-8503b3beba-f117e2366d.zip/node_modules/pure-react-carousel/",\
-          "packageDependencies": [\
-            ["pure-react-carousel", "npm:1.30.1"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:1.30.1", {\
-          "packageLocation": "./.yarn/__virtual__/pure-react-carousel-virtual-c5444c4b47/0/cache/pure-react-carousel-npm-1.30.1-8503b3beba-f117e2366d.zip/node_modules/pure-react-carousel/",\
-          "packageDependencies": [\
-            ["pure-react-carousel", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:1.30.1"],\
-            ["@babel/runtime", "npm:7.22.15"],\
-            ["@types/react", null],\
-            ["@types/react-dom", null],\
-            ["deep-freeze", "npm:0.0.1"],\
-            ["deepmerge", "npm:2.2.1"],\
-            ["equals", "npm:1.1.0"],\
-            ["prop-types", "npm:15.8.1"],\
-            ["react", "npm:18.2.0"],\
-            ["react-dom", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:18.2.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/react-dom",\
-            "@types/react",\
-            "react-dom",\
-            "react"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["q", [\
         ["npm:1.5.1", {\
           "packageLocation": "./.yarn/cache/q-npm-1.5.1-a28b3cfeaf-147baa93c8.zip/node_modules/q/",\
@@ -17481,7 +17414,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:1.5.0"],\
             ["gsap", "npm:3.12.2"],\
             ["lamina", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:1.1.23"],\
-            ["pure-react-carousel", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:1.30.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:18.2.0"],\
             ["react-draggable", "virtual:54a7302bd272f63b7a17d50ad0a2aea6fc882dacfb4dc1d034117e329b267063a5d565b07d897b749a8c1e5937e20370f29182e49cede326dd95b30ca5b7c50a#npm:4.4.6"],\

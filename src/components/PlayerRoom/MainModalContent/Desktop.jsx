@@ -13,7 +13,7 @@ export default function Desktop() {
             <MainIcon/>
             <p>죽음에 대해 토론해봐요!</p>
           </HeaderTitle>
-          <IoIosClose/>
+          {/* <IoIosClose/> */}
         </Header>
         <ScrollSection>
           <TopicWrapper>

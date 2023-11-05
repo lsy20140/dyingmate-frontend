@@ -1682,7 +1682,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.20.7, @babel/runtime@npm:^7.22.5, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.20.7, @babel/runtime@npm:^7.22.5, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
   version: 7.22.15
   resolution: "@babel/runtime@npm:7.22.15"
   dependencies:
@@ -2395,13 +2395,6 @@ __metadata:
     "@types/yargs": ^17.0.8
     chalk: ^4.0.0
   checksum: a0bcf15dbb0eca6bdd8ce61a3fb055349d40268622a7670a3b2eb3c3dbafe9eb26af59938366d520b86907b9505b0f9b29b85cec11579a9e580694b87cd90fcc
-  languageName: node
-  linkType: hard
-
-"@jkroso/type@npm:1":
-  version: 1.1.1
-  resolution: "@jkroso/type@npm:1.1.1"
-  checksum: c2bb3cf56d8225e8e74ccb5e1dcc44132ab89056389f18ac05866c540873a4b330034e78cc3f95628f80ed576e58d4a6dea7dbcd09447992187ee3f0883a8509
   languageName: node
   linkType: hard
 
@@ -6248,24 +6241,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"deep-freeze@npm:0.0.1":
-  version: 0.0.1
-  resolution: "deep-freeze@npm:0.0.1"
-  checksum: 1e43c98e44c7849382d9f896e679d48a1b5bf40993f7cc858e3730ef4e2ba387b9b7b7fe722cac34febe7f6a564cd242c27bbc319e8df793c2a287f21e5ba038
-  languageName: node
-  linkType: hard
-
 "deep-is@npm:^0.1.3, deep-is@npm:~0.1.3":
   version: 0.1.4
   resolution: "deep-is@npm:0.1.4"
   checksum: edb65dd0d7d1b9c40b2f50219aef30e116cedd6fc79290e740972c132c09106d2e80aa0bc8826673dd5a00222d4179c84b36a790eef63a4c4bca75a37ef90804
-  languageName: node
-  linkType: hard
-
-"deepmerge@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "deepmerge@npm:2.2.1"
-  checksum: 284b71065079e66096229f735a9a0222463c9ca9ee9dda7d5e9a0545bf254906dbc7377e3499ca3b2212073672b1a430d80587993b43b87d8de17edc6af649a8
   languageName: node
   linkType: hard
 
@@ -6683,15 +6662,6 @@ __metadata:
   version: 2.2.1
   resolution: "env-paths@npm:2.2.1"
   checksum: 65b5df55a8bab92229ab2b40dad3b387fad24613263d103a97f91c9fe43ceb21965cd3392b1ccb5d77088021e525c4e0481adb309625d0cb94ade1d1fb8dc17e
-  languageName: node
-  linkType: hard
-
-"equals@npm:^1.0.5":
-  version: 1.1.0
-  resolution: "equals@npm:1.1.0"
-  dependencies:
-    "@jkroso/type": 1
-  checksum: 8b4aafef92e7dfa795245700fc25d19a920a08da5a9ffb781649e272689daf3fb6b076d252da430cf49eb43760bf4115345c907b920069dde27fcd94690cfc50
   languageName: node
   linkType: hard
 
@@ -12298,7 +12268,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.0, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -12337,22 +12307,6 @@ __metadata:
   version: 2.3.0
   resolution: "punycode@npm:2.3.0"
   checksum: 39f760e09a2a3bbfe8f5287cf733ecdad69d6af2fe6f97ca95f24b8921858b91e9ea3c9eeec6e08cede96181b3bb33f95c6ffd8c77e63986508aa2e8159fa200
-  languageName: node
-  linkType: hard
-
-"pure-react-carousel@npm:^1.30.1":
-  version: 1.30.1
-  resolution: "pure-react-carousel@npm:1.30.1"
-  dependencies:
-    "@babel/runtime": ^7.5.5
-    deep-freeze: 0.0.1
-    deepmerge: ^2.2.1
-    equals: ^1.0.5
-    prop-types: ^15.6.2
-  peerDependencies:
-    react: 15.x || 16.x || 17.x || 18.x
-    react-dom: 15.x || 16.x || 17.x || 18.x
-  checksum: f117e2366def64464b0e58e2df257d3b4bb107e1608a317e38987bf173f23006355619cbe8d62f00652c48a80ed4ac137c7ca5375f1b9b521e56efadd255e41b
   languageName: node
   linkType: hard
 
@@ -12543,7 +12497,6 @@ __metadata:
     axios: ^1.4.0
     gsap: ^3.12.1
     lamina: ^1.1.23
-    pure-react-carousel: ^1.30.1
     react: ^18.2.0
     react-dom: ^18.2.0
     react-draggable: ^4.4.6

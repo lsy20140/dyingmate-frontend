@@ -6,31 +6,41 @@ export default function ColumnItem({title, content, link}) {
     <ItemBox>
       <Title>{title}</Title>
       <Content>{content}</Content>
-      <a href={link}/>
+      <a href={link}>{link}</a>
     </ItemBox>
   )
 }
 
 const ItemBox = styled.div`
-  width: 32rem;
-  height: 16rem;
+  height: 100%;
   background-color: white;
   border-radius: 1.25rem;
   color: var(--font-gray-3);
   box-sizing: border-box;
+  text-align: left;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 
-  
-`
+  a{
+    color: var(--font-gray-3);
+    font-weight: 400;
 
-const Content = styled.p`
-  width: 32rem;
-  word-break:break-all;
+  }
 `
 
 const Title = styled.p`
-
   font-size: 1.5rem;
-  font-style: 700;
+  font-weight: 700;
+`
+
+const Content = styled.p`
+  width: 100%;
+  word-break: break-all;
+  font-weight: 400;
 
 `
+
+
 
