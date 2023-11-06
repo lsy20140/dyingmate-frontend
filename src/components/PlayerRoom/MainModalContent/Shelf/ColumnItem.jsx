@@ -6,7 +6,7 @@ export default function ColumnItem({title, content, link}) {
     <ItemBox>
       <Title>{title}</Title>
       <Content>{content}</Content>
-      <a href={link}>{link}</a>
+      <a href={link} target='_blank'>{link}</a>
     </ItemBox>
   )
 }
@@ -21,6 +21,7 @@ const ItemBox = styled.div`
   padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   gap: 0.75rem;
 
   a{

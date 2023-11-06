@@ -19,15 +19,14 @@ export default function Shelf() {
   useEffect(() => {
     setWidthSize(slideWrapperRef.current && slideWrapperRef.current.clientWidth)
     setHeightSize(slideWrapperRef.current && slideWrapperRef.current.clientHeight)
-    slideListRef.current.draggable = true
   },[])
 
 const handleScrollLeft = () => {
-  setScrollPage(scrollPage - widthSize)
+  setScrollPage(scrollPage - widthSize - 24)
 }
 
 const handleScrollRight = () => {
-  setScrollPage(scrollPage + widthSize)
+  setScrollPage(scrollPage + widthSize + 24)
 }
 
 useEffect(() => {
@@ -45,9 +44,9 @@ useEffect(() => {
         {/* <CgClose fontSize={'1.5rem'}/> */}
       </Header>
       <SlideWrapper ref={slideWrapperRef}>
-        <SlideList ref={slideListRef} heightSize={heightSize} widthSize={widthSize} style={{scrollLeft:scrollPage}}>
+        <SlideList ref={slideListRef} style={{scrollLeft:scrollPage}}>
           {mapArray.map((i, item) => (
-            <ColumnItem key={i} title={'죽음 불안이란?'} content={'죽음은 우리 인생에서 불가피한 순간 중 하나입니다. 이러한 사실은 때로는 불안과 두려움을 일으킬 수 있습니다. 그러나 죽음에 대한 불안은 개인에 따라 다를 수 있으며, 이는 자연스러운 경험입니다. 이해와 받아들임을 통해 이 불안 요소를 완화할 수 있습니다....'} link={'www.naver.com'} />
+            <ColumnItem key={i} title={'죽음 불안이란?'} content={'죽음은 우리 인생에서 불가피한 순간 중 하나입니다. 이러한 사실은 때로는 불안과 두려움을 일으킬 수 있습니다. 그러나 죽음에 대한 불안은 개인에 따라 다를 수 있으며, 이는 자연스러운 경험입니다. 이해와 받아들임을 통해 이 불안 요소를 완화할 수 있습니다....'} link={'https://www.naver.com/'} />
 
           ))}
         </SlideList>
@@ -104,8 +103,8 @@ const SlideList = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: repeat(2,  ${props => (props.heightSize - 120 ) / 2 }px);
-  grid-template-columns: repeat(10, ${props => (props.widthSizes) / 2 }px);
+  grid-template-rows: repeat(2,  calc((100% - 1.5rem)/2));
+  grid-template-columns: repeat(10, calc((100% - 1.5rem)/2));
   grid-gap: 1.5rem;
 
   &::-webkit-scrollbar{
