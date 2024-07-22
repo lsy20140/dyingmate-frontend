@@ -48,13 +48,13 @@ Dying  Mate는 죽음을 본인과는 상관없는 먼 미래로만 여기는 �
 ![스플래시](https://github.com/lsy20140/dyingmate-frontend/assets/68267094/5fb19155-3b5d-4499-8538-f5a5736d9630)
 
 ![ezgif com-video-to-gif-converted](https://github.com/lsy20140/dyingmate-frontend/assets/68267094/76d2b16f-dfa5-43fa-bdca-6b81948eb1d1)
+<img src="https://github.com/user-attachments/assets/603fb6e6-7ca9-4025-bbd8-04bc8cc52d5d" width="548" height="316"/>
 
 ![ezgif com-video-to-gif-converted (2)](https://github.com/lsy20140/dyingmate-frontend/assets/68267094/b2238bd1-dbb1-4f1a-8637-f282711f5f30)
 
 ![인물 방](https://github.com/lsy20140/dyingmate-frontend/assets/68267094/0253ae2f-dd0e-40eb-8025-b9474b68e3fe)
-
-<img src="https://github.com/user-attachments/assets/b1728e2c-c0a2-419d-853c-84250aa7c0e0" width="600" height="400"/>
-<img src="https://github.com/user-attachments/assets/555fa8ed-a4e8-41e2-9a4a-f0555b08c305" width="600" height="400"/>
+<img src="https://github.com/user-attachments/assets/59b6fb14-aeec-4dc5-a3f7-192f5a2a0ccd" width="548" height="316"/>
+<img src="https://github.com/user-attachments/assets/a09013fc-26cb-4e23-8b2b-6208cfe63d88" width="548" height="316"/>
 
 ![포커싱](https://github.com/lsy20140/dyingmate-frontend/assets/68267094/6f914585-26f4-48bc-8698-f1b3129163c4)
 
