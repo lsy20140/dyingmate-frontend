@@ -53,7 +53,12 @@ Dying  Mate는 죽음을 본인과는 상관없는 먼 미래로만 여기는 �
 
 ![인물 방](https://github.com/lsy20140/dyingmate-frontend/assets/68267094/0253ae2f-dd0e-40eb-8025-b9474b68e3fe)
 
+<img src="https://github.com/user-attachments/assets/b1728e2c-c0a2-419d-853c-84250aa7c0e0" width="600" height="400"/>
+<img src="https://github.com/user-attachments/assets/555fa8ed-a4e8-41e2-9a4a-f0555b08c305" width="600" height="400"/>
+
 ![포커싱](https://github.com/lsy20140/dyingmate-frontend/assets/68267094/6f914585-26f4-48bc-8698-f1b3129163c4)
+
+
 
 ![유언장 작성](https://github.com/lsy20140/dyingmate-frontend/assets/68267094/990c2686-a301-4f2b-bb7d-8157919d1c3c)
 
